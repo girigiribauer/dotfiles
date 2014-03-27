@@ -1,0 +1,87 @@
+# ----------------------------------------
+# basic settings
+# ----------------------------------------
+
+# lang
+export LANG=ja_JP.UTF-8
+
+# SHELL
+export SHELL='/bin/zsh'
+
+# EDITOR
+# MacVim があればそちらを使う
+# I love Vim.
+PATH="/Applications/MacVim.app/Contents/MacOS:$PATH"
+export EDITOR=/usr/bin/vim
+if [ -f /Applications/MacVim.app/Contents/MacOS/Vim ]; then
+  export EDITOR=/Applications/MacVim.app/Contents/MacOS/Vim
+  alias vi=vim
+fi
+
+# keybind (like emacs)
+# C-a, C-e, C-w とか使いたい
+bindkey -e
+
+# TERM
+# http://vim.wikia.com/wiki/256_colors_in_vim
+if [ -e /usr/share/terminfo/x/xterm-256color ]; then
+  export TERM='xterm-256color'
+else
+  export TERM='xterm-color'
+fi
+
+# PATH
+# Homebrew と coreutils を使う
+# http://ja.wikipedia.org/wiki/Homebrew_(%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E7%AE%A1%E7%90%86%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0)
+# http://ja.wikipedia.org/wiki/Coreutils
+export PATH=/usr/local/Cellar:$PATH
+export PATH=/usr/local/sbin:$PATH
+export PATH=$PATH:$HOME/bin
+export PATH=$PATH:/usr/local/bin
+export PATH=/usr/local/opt/coreutils/libexec/gnubin:$PATH
+
+# PATH (npm)
+export PATH="$HOME/.npm:$PATH"
+export PATH="/usr/local/share/npm/bin:$PATH"
+
+# MANPATH
+export MANPATH=/usr/local/opt/coreutils/libexec/gnuman:$MANPATH
+export MANPATH=$MANPATH:/opt/local/man
+
+# LESS
+export LESS='-X -i -P -R ?f%f:(stdin). ?lb%lb?L/%L.. [?eEOF:?pb%pb\%..]'
+
+# HISTORY
+HISTFIE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+
+# Z
+_Z_DATA="$HOME/.z"
+_Z_NO_RESOLVE_SYMLINKS=true
+. /usr/local/etc/profile.d/z.sh
+function _Z_precmd {
+  z --add "$(pwd -P)" 61
+}
+precmd_functions=($precmd_functions _Z_precmd)
+
+# Perl
+export PERL_CPANM_OPT="--local-lib=$HOME/.perl-extlib"
+export PERL5LIB="$HOME/.perl-extlib/lib/perl5:$PERL5LIB"
+
+# Ruby
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
+
+# color settings
+source $HOME/.zsh/color.sh
+
+# completion settings
+source $HOME/.zsh/completion.sh
+
+# keybind, alias settings
+source $HOME/.zsh/mapping.sh
+
+# tmux(Terminal Multiplexer) settings
+source $HOME/.zsh/tmux.sh
+
