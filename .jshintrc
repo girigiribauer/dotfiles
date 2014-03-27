@@ -1,0 +1,227 @@
+{
+  // --------------------
+  // Enforcing Options
+  // --------------------
+
+  // ビット演算を禁止するかどうか、そこそこ使うかもしれないのでfalse
+  "bitwise": false,
+
+  // キャメルケース（testTest とか）やアッパーケース（TEST_TEST とか）を強いることを許可するかどうか
+  "camelcase": false,
+
+  // ifとかforとかに常に括弧つける
+  "curly": true,
+
+  // ==, != ではなく、===, !== を使う
+  "eqeqeq": true,
+
+  // for-inの中では、ちゃんとhasOwnProperty() でフィルタリングする
+  "forin": true,
+
+  // 即時関数は括弧でラッピングすることを強いる
+  "immed": true,
+
+  // インデントを縛る（whiteがtrueのとき有効、使わないほうが良さげ）
+  //"indent": 4,
+
+  // 定義する前に使っちゃうようなやつを禁止する
+  "latedef": true,
+
+  // newする対象のFunctionは大文字から始めるべき
+  "newcap": true,
+
+  // arguments.caller と arguments.callee を禁止する（廃止されるので）
+  "noarg": true,
+
+  // 例えば for の中に何もないとかいう、空のブロックを禁止する
+  "noempty": true,
+
+  // new 使わない（個人的には new は許容してもいいのでfalseにしとく）
+  "nonew": false,
+
+  // a++ とか a-- を禁止する（個人的には使ってもいい）
+  "plusplus": false,
+
+  // シングルクオートかダブルクオートのどちらかに統一する
+  // （個人的にはシングルの中にHTMLタグなどでダブル書くのでシングルに統一すべき）
+  "quotmark": true,
+
+  // 正規表現の何か1文字に一致するドットを制限するかどうか
+  // （ちょっとやりすぎ感あるのでOFFにしとく）
+  "regexp": false,
+
+  // 未定義の変数を参照したりするのを禁止する
+  "undef": true,
+
+  // 定義された変数が未使用なままになっているのを禁止する
+  "unused": true,
+
+  // strict mode にするかどうか
+  // （そういったプログラムばかりを触るわけではないのでOFF）
+  "strict": false,
+
+  // 複数行の文字列のエスケープ後のホワイトスペースを禁止するかどうか
+  // （そもそも複数行の文字列禁止するのでどちらでも変わらない）
+  "trailing": true,
+
+  // 関数の引数の最大数を縛る（良いと思うけどおせっかいになりそうなのでやめとく）
+  //"maxparams": 3,
+
+  // ネストの深さの制限（良いと思うけど自分が書くだけじゃないのでやめとく） 
+  //"maxdepth": 3,
+
+  // 関数内に書ける文の数の最大数を定める
+  // （さすがにいらないかも。。。）
+  //"maxstatements": 5,
+
+  // ソフトウェア測定法で使われる循環的複雑度を測定し、制限する
+  // （さすがにまだそこまでのものを使いこなすスキルはないかな。。。）
+  // http://ja.wikipedia.org/wiki/%E5%BE%AA%E7%92%B0%E7%9A%84%E8%A4%87%E9%9B%91%E5%BA%A6
+  //"maxcomplexity": 5,
+
+  // --------------------
+  // Relaxing Options
+  // --------------------
+
+  // セミコロン（automatic semi-colon insertion）
+  "asi": false,
+
+  // 比較を代入と間違えて使っちゃってるのを防ぐ
+  // trueだと三項演算子の結果を代入するのもひっかかるのでfalseにしたほうがよさげ
+  "boss": true,
+
+  // debugger文を許可するかどうか（いらなくない？）
+  "debug": false,
+
+  // （=== nullに加えて）、== null を許可する
+  "eqnull": false,
+
+  // ECMAScript5を許容するかどうか（よくわからないけど効かない、なぜ？？？）
+  // jshint 2.0 以降からES5がデフォルトなので不要
+  //"es5": true,
+
+  // ES.nextを許容するかどうか（よくわからないけど効かない、なぜ？？？）
+  "esnext": false,
+
+  // evalが使えるかどうか（falseで禁止）
+  "evil": false,
+
+  // 正規表現そのまま書いてあるのを許すかどうか（falseで禁止）
+  "expr": false,
+
+  // if の中で var 定義しちゃってて外でも使ってる場合を許すかどうか（falseで禁止）
+  "funcscope": false,
+
+  // グローバルで "use strict"を許すかどうか
+  "globalstrict": false,
+
+  // __iterator__ を許すかどうか
+  "iterator": false,
+
+  // ワンライナーで最後のセミコロンなしを許すかどうか（falseで禁止）
+  "lastsemic": false,
+
+  // returnなどで抜けるときにセミコロンなしを許すかどうか（falseで禁止）
+  "laxbreak": false,
+
+  // 頭カンマを許すかどうか（falseで禁止）
+  "laxcomma": false,
+
+  // ループ内で使う変数をあとで参照するのを許すかどうか（falseで禁止）
+  "loopfunc": false,
+
+  // 複数行の文字列を許すかどうか（falseで禁止）
+  "multistr": false,
+
+  // switchのcaseが1つのみである場合を許すかどうか（falseで禁止）
+  "onecase": false,
+
+  // __proto__ を許すかどうか
+  "proto": false,
+
+  // /[0-]/のようなエスケープされてないハイフンを許可するかどうか（falseで禁止）
+  "regexdash": false,
+
+  // "javascript:***" のURLを許可するかどうか（falseで禁止）
+  "scripturl": false,
+
+  // タブとスペースが共存してるのを許すかどうか（falseで禁止）
+  "smarttabs": false,
+
+  // すでに定義されているものを再度定義してもよいか（falseで禁止） 
+  "shadow": false,
+
+  // person['name'] を person.name で表現できるとき、[]を許可するかどうか（falseで禁止）
+  "sub": false,
+
+  // new function () { ... } や new Object のようなコンストラクタを許可するかどうか（falseで禁止）
+  "supernew": false,
+
+  // 例えばグローバルに定義してある関数のthisとかが"use strict"だと未定義になるのを許容するか
+  "validthis": true,
+
+  // --------------------
+  // Environments
+  // --------------------
+
+  // document, navigator オブジェクトがあっても許されるか
+  "browser": true,
+
+  // couchDB に関連するオブジェクトがあっても許されるか
+  // （使わないのでfalse）
+  "couch": false,
+
+  // alertとかconsole オブジェクトがあっても許されるか
+  "devel": true,
+
+  // Dojo Toolkit に関連するオブジェクトがあっても許されるか
+  // （使わないけどいざ使うときに困らないように）
+  "dojo": true,
+
+  // jQuery に関連するオブジェクトがあっても許されるか
+  "jquery": true,
+
+  // MooTools に関連するオブジェクトがあっても許されるか
+  "mootools": true,
+
+  // Node.js に関連するオブジェクトがあっても許されるか
+  "node": true,
+
+  // escape(), unescape() のような挙動が怪しいやつがあっても許されるか
+  "nonstandard": false,
+
+  // prototype.js に関連するオブジェクトがあっても許されるか
+  // （たぶんもう使わないのでfalse）
+  "prototypejs": false,
+
+  // Rhino に関連するオブジェクトがあっても許されるか
+  // Firefoxとかで使われてるJavaScriptエンジン
+  "rhino": false,
+
+  // Web Workers に関連するオブジェクトがあっても許されるか
+  "worker": true,
+
+  // Windows Script Host に関連するオブジェクトがあっても許されるか
+  // （書くときはエラー覚悟で書くとかならいいかなーくらい）
+  "wsh": false,
+
+  // --------------------
+  // Legacy
+  // --------------------
+
+  // アンダーバーから始まる名前を禁止するかどうか
+  // （たぶん普通に使うので禁止されると困るかも）
+  "nomen": false,
+
+  // 関数内に var は1つだけに制限するかどうか
+  // （書くの自分だけじゃないので、あるときついかも。。。）
+  "onevar": false,
+
+  // 最初のエラー出たら止めちゃうかどうか
+  // （効率悪すぎるので却下）
+  "passfail": false,
+
+  // ホワイトスペース、インデントを厳格にチェックするかどうか
+  // （これってソフトタブ、width=4で固定？っぽいのでそんなの却下）
+  "white": false
+}
