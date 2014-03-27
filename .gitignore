@@ -1,0 +1,20 @@
+# Mac
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+
+# css/sass
+*.sass-cache
+
+# node/npm
+node_modules
+
+# other (DB, Editor etc)
+.bundle
+db/*.sqlite3*
+log/*.log
+*.log
+*.swp
+*~
