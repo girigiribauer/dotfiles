@@ -28,7 +28,7 @@
   "latedef": true,
 
   // newする対象のFunctionは大文字から始めるべき
-  "newcap": true,
+  "newcap": false,
 
   // arguments.caller と arguments.callee を禁止する（廃止されるので）
   "noarg": true,
