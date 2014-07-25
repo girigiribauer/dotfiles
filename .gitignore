@@ -4,6 +4,9 @@
 .LSOverride
 ._*
 
+# Windows
+Thumbs.db
+
 # css/sass
 *.sass-cache
 
