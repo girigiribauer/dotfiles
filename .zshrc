@@ -50,6 +50,7 @@ export MANPATH=$MANPATH:/opt/local/man
 
 # LESS
 export LESS='-X -i -P -R ?f%f:(stdin). ?lb%lb?L/%L.. [?eEOF:?pb%pb\%..]'
+#export LESS='--tabs=4 --no-init --LONG-PROMPT --ignore-case'
 
 # HISTORY
 HISTFIE=~/.zsh_history
@@ -73,6 +74,9 @@ export PERL5LIB="$HOME/.perl-extlib/lib/perl5:$PERL5LIB"
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 
+# Haskell
+export PATH="$HOME/.cabal/bin:$PATH"
+
 # color settings
 source $HOME/.zsh/color.sh
 
@@ -85,3 +89,7 @@ source $HOME/.zsh/mapping.sh
 # tmux(Terminal Multiplexer) settings
 source $HOME/.zsh/tmux.sh
 
+# git
+function git_diff() {
+  git diff --no-ext-diff -w "$@" | vim -R -
+}
