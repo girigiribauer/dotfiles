@@ -13,6 +13,9 @@ Thumbs.db
 # node/npm
 node_modules
 
+# ruby
+Gemfile.lock
+
 # other (DB, Editor etc)
 .bundle
 db/*.sqlite3*
