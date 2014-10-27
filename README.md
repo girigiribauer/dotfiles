@@ -1,9 +1,16 @@
 dotfiles
 ========
 
-## 全体
-
 とりあえず最低限の記述のみを入れてます。まだまだ整理整頓はこれからです。
+
+## 使い方とか
+
+    cd /path/to
+    git clone git@github.com:girigiribauer/dotfiles.git
+    ln -s /path/to/dotfiles/.vimrc ~/.
+    ln -s /path/to/dotfiles/.vim ~/.
+
+みたいにシンボリックリンクを貼り貼りします。
 
 ## tmux
 
