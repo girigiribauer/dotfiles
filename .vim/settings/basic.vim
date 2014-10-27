@@ -19,7 +19,9 @@ set nobackup
 set history=1000
 
 " undo 用ファイルを作らず
-set noundofile
+if version >= 703
+  set noundofile
+endif
 
 " カーソルを行頭、行末で止まらないようにする
 set whichwrap=b,s,h,l,<,>,~,[,]
@@ -78,7 +80,11 @@ se nonumber
 
 " 行番号を相対的に表示する
 " これをオンにすると、set numberがオフになる
-set relativenumber
+if version >= 703
+  set relativenumber
+else
+  set number
+endif
 
 " モードラインをONにする
 " ファイルの上か下に書いてあるvim設定が有効になる

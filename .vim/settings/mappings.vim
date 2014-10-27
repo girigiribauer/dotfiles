@@ -5,11 +5,10 @@
 " <Leader>キーをデフォルトのバックスラッシュから変更する
 let mapleader = ","
 
-" ノーマルモードでコロンとセミコロンを入れ替える(Macのみ)
-if has('mac')
-  nnoremap ; :
-  nnoremap : ;
-endif
+" ノーマルモードでコロンとセミコロンを入れ替える
+" USキーボード用
+nnoremap ; :
+nnoremap : ;
 
 " 簡単にタブページの操作ができるようにする
 if v:version>=700

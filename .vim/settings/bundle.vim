@@ -2,6 +2,11 @@
 " プラグイン管理
 " ---------------------------------------------------------------------------- "
 
+" neobundle がなければ以下は実行しない$
+if !exists('#neobundle')
+  finish
+endif
+
 set nocompatible
 filetype off
 
