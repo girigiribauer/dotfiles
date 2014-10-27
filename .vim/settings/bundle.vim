@@ -50,6 +50,10 @@ NeoBundle 'hokaccha/vim-html5validator', {
       \ 'lazy': 1,
       \ 'filetypes' : ['html']
       \ }
+NeoBundle 'tpope/vim-markdown', {
+      \ 'lazy': 1,
+      \ 'filetypes' : ['markdown']
+      \ }
 NeoBundle 'stubbornella/csslint', {
       \ 'lazy': 1,
       \ 'filetypes' : ['css']
