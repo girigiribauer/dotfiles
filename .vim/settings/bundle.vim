@@ -71,7 +71,7 @@ NeoBundle 'pangloss/vim-javascript', {
       \ 'lazy': 1,
       \ 'filetypes' : ['javascript']
       \ }
-NeoBundle 'vim-scripts/vim-json-bundle', {
+NeoBundle 'elzr/vim-json', {
       \ 'lazy': 1,
       \ 'filetypes' : ['json']
       \ }
