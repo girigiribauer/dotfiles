@@ -34,3 +34,6 @@ source $HOME/.vim/settings/commands.vim
 " キーマッピング設定
 source $HOME/.vim/settings/mappings.vim
 
+" ネットワーク系
+source $HOME/.vim/settings/network.vim
+
