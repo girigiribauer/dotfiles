@@ -3,7 +3,7 @@
 " ---------------------------------------------------------------------------- "
 
 " neobundle がなければ以下は実行しない$
-if !exists('#neobundle')
+if glob('~/.vim/bundle/neobundle.vim') == ''
   finish
 endif
 
