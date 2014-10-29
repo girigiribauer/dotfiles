@@ -61,3 +61,5 @@ endif
 " 行末スペースを表示
 highlight SpecialKey cterm=underline ctermfg=red ctermbg=red
 
+" 行末、タブなどの代替表示文字
+set listchars=eol:↵,tab:>-,extends:<,trail:#

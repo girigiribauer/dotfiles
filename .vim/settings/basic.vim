@@ -29,9 +29,6 @@ set whichwrap=b,s,h,l,<,>,~,[,]
 " 表示されない文字を表示させる
 set list
 
-" 行末、タブなどの代替表示文字
-set listchars=eol:$,tab:>-,extends:<,trail:$
-
 " 他で書き換えられたら自動で読み直す
 set autoread
 
@@ -121,4 +118,19 @@ set shiftwidth=2
 
 " キーボード入力のタブ量、0で無効（tabstop などに従う、基本使わない）
 set softtabstop=0
+
+" 最後まで検索したら先頭へ戻る
+set wrapscan
+
+" 大文字小文字無視
+set ignorecase
+
+" 検索文字列に大文字が含まれている場合は区別して検索する
+set smartcase
+
+" インクリメンタルサーチ
+set incsearch
+
+" 検索文字をハイライト
+set hlsearch
 
