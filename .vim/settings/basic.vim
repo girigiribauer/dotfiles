@@ -60,7 +60,8 @@ set textwidth=0
 set scrolloff=5
 
 " OSのクリップボードを使用する
-set clipboard+=autoselect
+" fakeclip 導入したので unnamed に
+set clipboard=unnamed
 
 " 常に今のディレクトリを起点にする
 set autochdir
