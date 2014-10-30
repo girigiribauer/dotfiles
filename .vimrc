@@ -25,6 +25,9 @@ source $HOME/.vim/settings/statusline.vim
 " 差分表示
 source $HOME/.vim/settings/diff.vim
 
+" 補完、入力サポート系の設定
+source $HOME/.vim/settings/completion.vim
+
 " 表示、見た目
 source $HOME/.vim/settings/appearance.vim
 
