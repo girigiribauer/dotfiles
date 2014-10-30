@@ -69,3 +69,10 @@ highlight SpecialKey cterm=underline ctermfg=red ctermbg=red
 
 " 行末、タブなどの代替表示文字
 set listchars=eol:↵,tab:>-,extends:<,trail:#
+
+" QuickFixを自動的に開く
+augroup QuickfixSettings
+  autocmd! QuickfixSettings
+  autocmd QuickfixCmdPost * copen
+augroup END
+
