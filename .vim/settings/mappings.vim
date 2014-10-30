@@ -33,3 +33,9 @@ nnoremap <silent><Leader>j :tabnew .<CR>
 nnoremap <C-W>% :vsplit<CR>
 nnoremap <C-W>" :split<CR>
 
+"Escの2回押しでハイライト消去
+nnoremap <Esc><Esc> :set nohlsearch<CR>
+
+" カーソル下のキーワード(ctrl-r_ctrl_w)をヘルプでひく
+nnoremap <C-i><C-i> :help<Space><C-r><C-w><CR>
+
