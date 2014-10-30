@@ -21,7 +21,13 @@ if has("gui_macvim")
   let macvim_skip_colorscheme=1
 
   " MacVim 用の上書き設定
-  autocmd GUIEnter * call <SID>AppearanceMacVim()
+  augroup macvim
+    autocmd! macvim
+    autocmd GUIEnter * call <SID>AppearanceMacVim()
+  augroup END
+
+  " GUI が有効になったタイミングで必要最低限の設定上書き
+  " （できるだけ CLI に似せる）
   function! s:AppearanceMacVim()
     set transparency=20
     set background=dark
@@ -40,19 +46,19 @@ if has("syntax")
   " 下記関数をバッファ新規作成,読み込み時,ウィンドウ表示時に実行
   augroup invisible
     autocmd! invisible
-    autocmd BufNew,BufRead,BufWinEnter * call <SID>SOLSpaceHilight()
-    autocmd BufNew,BufRead,BufWinEnter * call <SID>JISX0208SpaceHilight()
+    autocmd BufNew,BufRead,BufWinEnter * call <SID>SOLSpaceHighlights()
+    autocmd BufNew,BufRead,BufWinEnter * call <SID>JISX0208SpaceHighlights()
   augroup END
 
   " 行頭のスペースの連続をハイライトさせる関数
   " Tab文字も区別されずにハイライトされる
-  function! s:SOLSpaceHilight()
+  function! s:SOLSpaceHighlights()
     syntax match SOLSpace "^\s\+" display containedin=ALL
     highlight SOLSpace term=underline ctermbg=red guibg=red
   endf
 
   " 全角スペースをハイライトさせる関数
-  function! s:JISX0208SpaceHilight()
+  function! s:JISX0208SpaceHighlights()
     syntax match JISX0208Space "　" display containedin=ALL
     highlight JISX0208Space term=underline ctermbg=red guibg=red
   endf
