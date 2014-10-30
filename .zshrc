@@ -23,6 +23,15 @@ fi
 # C-a, C-e, C-w とか使いたい
 bindkey -e
 
+# C-w でパス単位に削除したい
+# http://ikm.hatenablog.jp/entry/2014/07/31/213052
+tcsh-backward-delete-word() {
+  local WORDCHARS="${WORDCHARS:s#/#}"
+  zle backward-delete-word
+}
+zle -N tcsh-backward-delete-word
+bindkey "^W" tcsh-backward-delete-word
+
 # TERM
 # http://vim.wikia.com/wiki/256_colors_in_vim
 if [ -e /usr/share/terminfo/x/xterm-256color ]; then
