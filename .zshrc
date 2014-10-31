@@ -103,3 +103,7 @@ source $HOME/.zsh/tmux.sh
 function git_diff() {
   git diff --no-ext-diff -w "$@" | vim -R -
 }
+
+# alias
+alias mv='mv -i'
+
