@@ -67,6 +67,10 @@ NeoBundle 'hail2u/vim-css3-syntax', {
       \ 'lazy': 1,
       \ 'filetypes' : ['css']
       \ }
+NeoBundle 'cakebaker/scss-syntax.vim', {
+      \ 'lazy': 1,
+      \ 'filetypes' : ['scss']
+      \ }
 NeoBundle 'pangloss/vim-javascript', {
       \ 'lazy': 1,
       \ 'filetypes' : ['javascript']
