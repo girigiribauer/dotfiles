@@ -45,6 +45,8 @@ NeoBundle 'osyo-manga/vim-jplus'
 
 " utility
 NeoBundle 'kana/vim-fakeclip'
+NeoBundle 'Shougo/vimproc'
+NeoBundle 'thinca/vim-quickrun'
 
 " each filetype
 NeoBundle 'othree/html5.vim', {

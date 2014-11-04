@@ -128,6 +128,22 @@ vmap <Space>J <Plug>(jplus-input)
 " utility
 " ---------------------------------------------------------------------------- "
 
+" デフォルトの QuickRun 用キーバインドは使わない
+let g:quickrun_no_default_key_mappings = 1
+
+" QuickRun キーバインド
+nnoremap <Space>r :QuickRun<CR>
+
+" QuickRun 設定
+let g:quickrun_config = {
+      \   "_" : {
+      \       "outputter" : "multi:buffer:quickfix",
+      \       "outputter/buffer/split" : ":botright 10sp",
+      \       "runner": "vimproc",
+      \       "runner/vimproc/updatetime": 40
+      \   }
+      \}
+
 " ---------------------------------------------------------------------------- "
 " each filetypes
 " ---------------------------------------------------------------------------- "
