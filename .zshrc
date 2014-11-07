@@ -2,6 +2,12 @@
 # basic settings
 # ----------------------------------------
 
+# http://chneukirchen.org/blog/archive/2012/02/10-new-zsh-tricks-you-may-not-know.html
+# 見直すために、まずは man しやすい環境にする
+zman() {
+  PAGER="less -g -s '+/^       "$1"'" man zshall
+}
+
 # lang
 export LANG=ja_JP.UTF-8
 
