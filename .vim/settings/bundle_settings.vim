@@ -97,7 +97,11 @@ let g:syntastic_stl_format = '[%E{Err: %fe #%e}%B{, }%W{Warn: %fw #%w}]'
 " git, gist
 " ---------------------------------------------------------------------------- "
 
+" 各々のユーザー名
 let g:gista#github_user = 'girigiribauer'
+
+" Gist なので [unite] キーバインドに g で呼べるように
+nnoremap <silent> [unite]g :<C-u>Unite gista<CR>
 
 " ---------------------------------------------------------------------------- "
 " filer
