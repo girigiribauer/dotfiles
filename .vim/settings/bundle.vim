@@ -31,13 +31,12 @@ NeoBundle 'scrooloose/syntastic'
 "NeoBundle 'Shougo/neosnippet-snippets'
 
 " git, gist
+NeoBundle 'cohama/agit.vim'
 NeoBundle 'lambdalisue/vim-gista', {
       \ 'depends': [
       \ 'Shougo/unite.vim',
       \ 'tyru/open-browser.vim',
       \]}
-
-"NeoBundle 'cohama/agit.vim'
 
 " filer
 NeoBundle 'Shougo/vimfiler'
