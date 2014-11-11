@@ -116,3 +116,4 @@ function git_diff() {
 # alias
 alias mv='mv -i'
 
+alias agit='vim -c :Agit'
