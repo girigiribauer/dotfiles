@@ -56,6 +56,9 @@ au FileType unite inoremap <silent> <buffer> <expr> <C-l>
 au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
 au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
 
+" [unite] + t で :Unite tab
+nnoremap <silent> [unite]t :<C-u>Unite tab<CR>
+
 
 " ---------------------------------------------------------------------------- "
 " syntax
