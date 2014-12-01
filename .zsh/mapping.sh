@@ -38,4 +38,10 @@ function cdup() {
 zle -N cdup
 bindkey '^k' cdup
 
-
+# 画像サイズ
+# アプリケーションの有無のチェックはここを参考にした
+# http://lambdalisue.hatenablog.com/entry/2013/07/06/023040
+which identify > /dev/null 2>&1
+if [ $? -eq 0 ]; then
+  alias wh="identify -format '%f %w x %h\n'"
+fi
