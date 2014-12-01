@@ -153,6 +153,13 @@ let g:quickrun_config = {
       \   }
       \}
 
+" vim-rooter
+" http://rcmdnk.github.io/blog/2014/07/25/computer-vim/
+"if !empty(neobundle#get('vim-rooter'))
+"  let g:rooter_patterns = ['public', '.git/']
+"endif
+
+
 " ---------------------------------------------------------------------------- "
 " each filetypes
 " ---------------------------------------------------------------------------- "
