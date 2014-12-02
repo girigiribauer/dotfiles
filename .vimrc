@@ -2,6 +2,7 @@
 " vimrc entrypoint
 " ---------------------------------------------------------------------------- "
 
+set encoding=utf-8
 scriptencoding utf-8
 
 " 設定ファイルを探しにいく runtimepath ディレクトリの追加
