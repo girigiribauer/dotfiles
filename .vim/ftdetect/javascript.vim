@@ -3,4 +3,4 @@
 " ---------------------------------------------------------------------------- "
 
 " JavaScript の syntax check
-let g:syntastic_html_checkers = ['jshint']
+let g:syntastic_javascript_checkers = ['jshint']
