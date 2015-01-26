@@ -8,6 +8,9 @@ set wildmode=list:longest,full
 " neocomplete が自動で起動
 let g:neocomplete#enable_at_startup = 1
 
+" 補完が効く最小の文字数
+let g:neocomplete#min_keyword_length = 3
+
 " neosnippet のキーマッピング
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
