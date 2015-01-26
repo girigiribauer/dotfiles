@@ -26,9 +26,9 @@ NeoBundle 'Shougo/unite.vim'
 NeoBundle 'scrooloose/syntastic'
 
 " completion
-"NeoBundle 'Shougo/neocomplete'
-"NeoBundle 'Shougo/neosnippet'
-"NeoBundle 'Shougo/neosnippet-snippets'
+NeoBundle 'Shougo/neocomplete'
+NeoBundle 'Shougo/neosnippet'
+NeoBundle "honza/vim-snippets"
 
 " git, gist
 NeoBundle 'cohama/agit.vim'
