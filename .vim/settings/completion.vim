@@ -5,6 +5,9 @@
 " ファイル名の補完
 set wildmode=list:longest,full
 
+" 補完のポップアップウィンドウ設定
+set completeopt="menuone"
+
 " neocomplete が自動で起動
 let g:neocomplete#enable_at_startup = 1
 
