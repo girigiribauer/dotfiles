@@ -76,3 +76,20 @@ augroup QuickfixSettings
   autocmd QuickfixCmdPost * copen
 augroup END
 
+" 端末オプションによる点滅表示
+" :set termcap で確認可能
+" http://ttssh2.sourceforge.jp/manual/ja/usage/tips/vim.html
+"
+" 起動時 ブロック型の点滅カーソル
+let &t_ti.="\e[1 q"
+
+" 挿入モードに入る時 縦棒の点滅カーソル
+" （5: 低速, 6: 高速）
+let &t_SI.="\e[5 q"
+
+" 挿入モードを出る時 ブロック型の点滅カーソル
+let &t_EI.="\e[1 q"
+
+" 終了時 点滅カーソル終了
+let &t_te.="\e[0 q"
+
