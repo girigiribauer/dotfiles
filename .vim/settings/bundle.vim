@@ -28,7 +28,10 @@ NeoBundle 'scrooloose/syntastic'
 " completion
 NeoBundle 'Shougo/neocomplete'
 NeoBundle 'Shougo/neosnippet'
-NeoBundle "honza/vim-snippets"
+NeoBundle 'honza/vim-snippets'
+
+" diff
+NeoBundle 'vim-scripts/diffchar.vim'
 
 " git, gist
 NeoBundle 'cohama/agit.vim'
