@@ -48,6 +48,7 @@ NeoBundle 'Shougo/vimfiler'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'vim-scripts/matchit.zip'
 NeoBundle 'osyo-manga/vim-jplus'
+NeoBundle 'mattn/emmet-vim'
 
 " utility
 NeoBundle 'kana/vim-fakeclip'
