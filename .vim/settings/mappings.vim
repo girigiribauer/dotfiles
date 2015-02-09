@@ -39,3 +39,7 @@ nnoremap <Esc><Esc> :set nohlsearch<CR>
 " カーソル下のキーワード(ctrl-r_ctrl_w)をヘルプでひく
 nnoremap <C-i><C-i> :help<Space><C-r><C-w><CR>
 
+" 正規表現をできるだけ違和感なく使う
+" :h magic, :h /\v
+" http://qiita.com/m-yamashita/items/5755ca2717c8d5be57e4
+nnoremap / /\v
