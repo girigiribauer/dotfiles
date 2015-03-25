@@ -5,7 +5,7 @@
 # http://chneukirchen.org/blog/archive/2012/02/10-new-zsh-tricks-you-may-not-know.html
 # 見直すために、まずは man しやすい環境にする
 zman() {
-  PAGER="less -g -s '+/^       "$1"'" man zshall
+  PAGER="less -q -g -s '+/^       "$1"'" man zshall
 }
 
 # lang
@@ -21,8 +21,8 @@ PATH="/Applications/MacVim.app/Contents/MacOS:$PATH"
 export EDITOR=/usr/bin/vim
 if [ -f /Applications/MacVim.app/Contents/MacOS/Vim ]; then
   export EDITOR=/Applications/MacVim.app/Contents/MacOS/Vim
-  alias vi='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
-  alias vim='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
+  alias vi='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim -p "$@"'
+  alias vim='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim -p "$@"'
 fi
 
 # keybind (like emacs)
@@ -65,7 +65,7 @@ export MANPATH=/usr/local/opt/coreutils/libexec/gnuman:$MANPATH
 export MANPATH=$MANPATH:/opt/local/man
 
 # LESS
-export LESS='-X -i -P -R ?f%f:(stdin). ?lb%lb?L/%L.. [?eEOF:?pb%pb\%..]'
+export LESS='-X -i -P ?f%f:(stdin). ?lb%lb?L/%L.. [?eEOF:?pb%pb\%..]'
 #export LESS='--tabs=4 --no-init --LONG-PROMPT --ignore-case'
 
 # HISTORY
