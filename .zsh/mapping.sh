@@ -1,5 +1,6 @@
 # ----------------------------------------
 # keybind, alias settings
+# https://jonsuh.com/blog/bash-command-line-shortcuts/
 # ----------------------------------------
 
 # browse from CLI
@@ -7,9 +8,10 @@ alias chrome="open -a Google\ Chrome"
 alias firefox="open -a Firefox"
 alias safari="open -a Safari"
 alias finder="open -a Finder"
+alias o="open ."
 
 # ls -lah
-alias la="ls -lah"
+alias ll="ls -alh"
 
 # lessでエスケープシーケンスをちゃんと表示
 alias less="less -R"
@@ -45,3 +47,36 @@ which identify > /dev/null 2>&1
 if [ $? -eq 0 ]; then
   alias wh="identify -format '%f %w x %h\n'"
 fi
+
+
+# ----------------------------------------
+# Git Aliases
+# https://jonsuh.com/blog/git-command-line-shortcuts/
+# ----------------------------------------
+alias ga='git add'
+alias gaa='git add .'
+alias gaaa='git add -A'
+alias gb='git branch'
+alias gbd='git branch -d '
+alias gc='git commit'
+alias gca='git commit -a'
+alias gcm='git commit -m'
+alias gco='git checkout'
+alias gcob='git checkout -b'
+alias gcom='git checkout master'
+alias gd='git diff'
+alias gda='git diff HEAD'
+alias gi='git init'
+alias gl='git log'
+alias glg='git log --graph --oneline --decorate --all'
+alias gld='git log --pretty=format:"%h %ad %s" --date=short --all'
+alias gm='git merge --no-ff'
+alias gp='git pull'
+alias gss='git status -s'
+alias gst='git stash'
+alias gstl='git stash list'
+alias gstp='git stash pop'
+alias gstd='git stash drop'
+
+# Git log find by commit message
+function glf() { git log --all --grep="$1"; }
