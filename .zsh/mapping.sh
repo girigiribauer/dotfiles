@@ -10,8 +10,10 @@ alias safari="open -a Safari"
 alias finder="open -a Finder"
 alias o="open ."
 
-# ls -lah
+# ls
 alias ll="ls -alh"
+alias lll="ls -alh | less"
+alias ldir="ls -al | grep ^d"
 
 # lessでエスケープシーケンスをちゃんと表示
 alias less="less -R"
@@ -80,3 +82,12 @@ alias gstd='git stash drop'
 
 # Git log find by commit message
 function glf() { git log --all --grep="$1"; }
+
+# git config local
+function gituser() {
+git config user.name "girigiribauer"
+git config user.email "girigiribauer@gmail.com"
+}
+
+function notification() { echo "display notification \"$1\"" | osascript; }
+
