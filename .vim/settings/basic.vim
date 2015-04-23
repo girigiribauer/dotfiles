@@ -135,3 +135,6 @@ set incsearch
 " 検索文字をハイライト
 set hlsearch
 
+" タブページで開くときの最大ページ数
+set tabpagemax=50
+
