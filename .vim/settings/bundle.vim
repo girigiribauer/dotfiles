@@ -54,6 +54,7 @@ NeoBundle 'mattn/emmet-vim'
 NeoBundle 'kana/vim-fakeclip'
 NeoBundle 'Shougo/vimproc'
 NeoBundle 'thinca/vim-quickrun'
+NeoBundle 'junegunn/vim-easy-align'
 
 " each filetype
 NeoBundle 'othree/html5.vim', {
