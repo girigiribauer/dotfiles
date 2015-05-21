@@ -5,10 +5,9 @@ dotfiles
 
 ## 使い方とか
 
-    cd /path/to
     git clone git@github.com:girigiribauer/dotfiles.git
-    ln -s /path/to/dotfiles/.vimrc ~/.
-    ln -s /path/to/dotfiles/.vim ~/.
+    cd dotfiles
+    sh install.sh
 
 みたいにシンボリックリンクを貼り貼りします。
 
