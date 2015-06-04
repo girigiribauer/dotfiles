@@ -13,5 +13,6 @@ set laststatus=2
 
 " ステータスのところにファイル情報表示
 " rulerやrulerformatより優先される
-set statusline=%<[%n]%F%=\ %m%r%h%w%y%{'['.(&fenc!=''?&fenc:&enc).']['.(&bomb?'BOM':'NOBOM').']['.&ff.']'}\ %l,%c\ %P
+let ff_table = {'dos': 'CR+LF', 'unix': 'LF', 'mac': 'CR'}
+set statusline=%<[%n]%F%=\ %b(0x%B)\ %l,%c\ %p%%\ %m%r%h%w%y%{'['.(&fenc!=''?&fenc:&enc).']'}%{'['.ff_table[&ff].']'}%{'['.(&bomb?'BOM':'NOBOM').']'}
 
