@@ -56,39 +56,6 @@ NeoBundle 'Shougo/vimproc'
 NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'junegunn/vim-easy-align'
 
-" each filetype
-NeoBundle 'othree/html5.vim', {
-      \ 'lazy': 1,
-      \ 'filetypes' : ['html']
-      \ }
-NeoBundle 'hokaccha/vim-html5validator', {
-      \ 'lazy': 1,
-      \ 'filetypes' : ['html']
-      \ }
-NeoBundle 'tpope/vim-markdown', {
-      \ 'lazy': 1,
-      \ 'filetypes' : ['markdown']
-      \ }
-NeoBundle 'stubbornella/csslint', {
-      \ 'lazy': 1,
-      \ 'filetypes' : ['css']
-      \ }
-NeoBundle 'hail2u/vim-css3-syntax', {
-      \ 'lazy': 1,
-      \ 'filetypes' : ['css']
-      \ }
-NeoBundle 'cakebaker/scss-syntax.vim', {
-      \ 'lazy': 1,
-      \ 'filetypes' : ['scss']
-      \ }
-NeoBundle 'pangloss/vim-javascript', {
-      \ 'lazy': 1,
-      \ 'filetypes' : ['javascript']
-      \ }
-NeoBundle 'elzr/vim-json', {
-      \ 'lazy': 1,
-      \ 'filetypes' : ['json']
-      \ }
 
 call neobundle#end()
 filetype plugin indent on

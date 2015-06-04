@@ -1,12 +1,6 @@
 # ----------------------------------------
-# basic settings
+# basic variables
 # ----------------------------------------
-
-# http://chneukirchen.org/blog/archive/2012/02/10-new-zsh-tricks-you-may-not-know.html
-# 見直すために、まずは man しやすい環境にする
-zman() {
-  PAGER="less -q -g -s '+/^       "$1"'" man zshall
-}
 
 # lang
 export LANG=ja_JP.UTF-8
@@ -93,27 +87,26 @@ if which rbenv > /dev/null; then
   eval "$(rbenv init -)"
 fi
 
+# PHP
+export PATH="$PATH:/usr/local/Cellar/php56/5.6.6/bin"
+
 # Haskell
 export PATH="$HOME/.cabal/bin:$PATH"
 
 # color settings
-source $HOME/.zsh/color.sh
+. $HOME/.zsh/color.sh
 
 # completion settings
-source $HOME/.zsh/completion.sh
+. $HOME/.zsh/completion.sh
 
 # keybind, alias settings
-source $HOME/.zsh/mapping.sh
+. $HOME/.zsh/mapping.sh
 
 # tmux(Terminal Multiplexer) settings
-source $HOME/.zsh/tmux.sh
+. $HOME/.zsh/tmux.sh
 
 # git
 function git_diff() {
   git diff --no-ext-diff -w "$@" | vim -R -
 }
 
-# alias
-alias mv='mv -i'
-
-alias agit='vim -c :Agit'

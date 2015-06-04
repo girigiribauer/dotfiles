@@ -60,6 +60,7 @@ au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
 nnoremap <silent> [unite]t :<C-u>Unite tab<CR>
 
 
+
 " ---------------------------------------------------------------------------- "
 " syntax
 " ---------------------------------------------------------------------------- "
@@ -92,6 +93,16 @@ let g:syntastic_warning_symbol = 'w'
 let g:syntastic_stl_format = '[%E{Err: %fe #%e}%B{, }%W{Warn: %fw #%w}]'
 
 
+
+" ---------------------------------------------------------------------------- "
+" completion
+" ---------------------------------------------------------------------------- "
+
+" syntax 補完は邪魔になるので OFF
+call neocomplete#custom#source('syntax', 'disabled', 1)
+
+
+
 " ---------------------------------------------------------------------------- "
 " git, gist
 " ---------------------------------------------------------------------------- "
@@ -101,6 +112,8 @@ let g:gista#github_user = 'girigiribauer'
 
 " Gist なので [unite] キーバインドに g で呼べるように
 nnoremap <silent> [unite]g :<C-u>Unite gista<CR>
+
+
 
 " ---------------------------------------------------------------------------- "
 " filer
@@ -116,6 +129,7 @@ let g:vimfiler_safe_mode_by_default=0
 let g:vimfiler_edit_action='tabopen'
 
 
+
 " ---------------------------------------------------------------------------- "
 " expand
 " ---------------------------------------------------------------------------- "
@@ -127,6 +141,7 @@ vmap <leader>J <Plug>(jplus-getchar)
 " getchar() ではなくて input() を使用する場合
 nmap <Space>J <Plug>(jplus-input)
 vmap <Space>J <Plug>(jplus-input)
+
 
 
 " ---------------------------------------------------------------------------- "
@@ -160,10 +175,4 @@ vmap <Enter> <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
 
-
-" ---------------------------------------------------------------------------- "
-" each filetypes
-" ---------------------------------------------------------------------------- "
-
-let g:vim_json_syntax_conceal = 1
 

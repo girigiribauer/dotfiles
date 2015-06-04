@@ -1,7 +1,9 @@
 " ---------------------------------------------------------------------------- "
-" filetype検出時の追加設定
+" filetype がマッチした場合のみ以下実行
 " ---------------------------------------------------------------------------- "
 
-" .as を actionscript形式として認識する
-au BufRead,BufNewFile *.as set filetype=actionscript
-
+if exists('#neobundle')
+  NeoBundle 'cakebaker/scss-syntax.vim', {
+        \ 'lazy': 1
+        \ }
+endif

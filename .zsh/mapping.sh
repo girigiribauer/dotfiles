@@ -3,11 +3,12 @@
 # https://jonsuh.com/blog/bash-command-line-shortcuts/
 # ----------------------------------------
 
+# alias
+alias mv='mv -i'
+
+alias agit='vim -c :Agit'
+
 # browse from CLI
-alias chrome="open -a Google\ Chrome"
-alias firefox="open -a Firefox"
-alias safari="open -a Safari"
-alias finder="open -a Finder"
 alias o="open ."
 
 # ls
@@ -40,7 +41,7 @@ function cdup() {
   zle reset-prompt
 }
 zle -N cdup
-bindkey '^k' cdup
+bindkey '^K' cdup
 
 # 画像サイズ
 # アプリケーションの有無のチェックはここを参考にした
