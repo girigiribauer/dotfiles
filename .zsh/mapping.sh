@@ -12,6 +12,7 @@ alias agit='vim -c :Agit'
 alias o="open ."
 
 # ls
+alias ls="ls --color"
 alias ll="ls -alh"
 alias lll="ls -alh | less"
 alias ldir="ls -al | grep ^d"
@@ -20,7 +21,7 @@ alias ldir="ls -al | grep ^d"
 alias less="less -R"
 
 # cp (linux like)
-alias cp="gcp"
+#alias cp="gcp"
 
 # 移動したらすぐls -lah
 # ただしファイルなどが20より多かった場合は
