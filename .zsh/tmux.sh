@@ -20,5 +20,7 @@ if [ -z "$TMUX" -a -z "$STY" ]; then
 fi
 
 # tmuxinator
-. ~/.tmuxinator/tmuxinator.zsh
+if [ -e ~/.tmuxinator/tmuxinator.zsh ]; then
+  source ~/.tmuxinator/tmuxinator.zsh
+fi
 
