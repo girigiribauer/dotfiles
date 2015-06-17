@@ -128,6 +128,9 @@ let g:vimfiler_safe_mode_by_default=0
 " 通常openをtabpageでのopenにする
 let g:vimfiler_edit_action='tabopen'
 
+" デフォルトで無視するファイル名のパターン（すべて無視しない）
+let g:vimfiler_ignore_pattern=''
+
 
 
 " ---------------------------------------------------------------------------- "
