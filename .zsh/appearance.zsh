@@ -23,7 +23,7 @@ function prompt_hostname {
   then
     hostname="%B%F{yellow}[%n@%M]%f%b:"
   else
-    hostname="[%n@localhost]:"
+    hostname="%B[%n@localhost]%b:"
   fi
 
   echo $hostname

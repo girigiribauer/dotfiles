@@ -145,6 +145,8 @@ vmap <leader>J <Plug>(jplus-getchar)
 nmap <Space>J <Plug>(jplus-input)
 vmap <Space>J <Plug>(jplus-input)
 
+let g:user_emmet_leader_key = '<C-y>'
+
 
 
 " ---------------------------------------------------------------------------- "

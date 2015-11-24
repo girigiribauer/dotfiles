@@ -97,9 +97,8 @@ alias gcom="git checkout master"
 alias gd="git diff"
 alias gda="git diff HEAD"
 alias gi="git init"
-alias gl="git log"
-alias glg="git log --graph --oneline --decorate --all"
-alias gld="git log --pretty=format:'%h %ad %s' --date=short --all"
+# ref: http://blog.toshimaru.net/git-log-graph/
+alias gl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
 alias gm="git merge --no-ff"
 alias gp="git pull"
 alias gs="git status"
@@ -119,4 +118,6 @@ function gituser() {
   git config user.name "girigiribauer"
   git config user.email "girigiribauer@gmail.com"
 }
+
+
 
