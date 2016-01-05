@@ -18,7 +18,7 @@ export PAGER="less"
 export EDITOR="/usr/bin/vim"
 if [ -e "/Applications/MacVim.app" ]
 then
-  PATH="/Applications/MacVim.app/Contents/MacOS:$PATH"
+  export PATH="/Applications/MacVim.app/Contents/MacOS:$PATH"
   if [ -f "/Applications/MacVim.app/Contents/MacOS/Vim" ]
   then
     export EDITOR="/Applications/MacVim.app/Contents/MacOS/Vim"
@@ -52,6 +52,8 @@ export PATH="$PATH:/usr/local/bin"
 # MANPATH
 export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 
+# Homebrew cask
+export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
 
 # ---------------------------------------------------------------------------- #
