@@ -17,6 +17,9 @@ source "$HOME/.zsh/appearance.zsh"
 # キーマッピング
 source "$HOME/.zsh/mappings.zsh"
 
+# docker 関連
+source "$HOME/.zsh/docker.sh"
+
 # tmux（画面分割）
 source "$HOME/.zsh/tmux.zsh"
 
