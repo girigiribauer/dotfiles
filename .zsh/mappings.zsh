@@ -113,12 +113,6 @@ function glf() {
   git log --all --grep="$1";
 }
 
-# git config local
-function gituser() {
-  git config user.name "girigiribauer"
-  git config user.email "girigiribauer@gmail.com"
-}
-
 alias tig="tig --all"
 
 

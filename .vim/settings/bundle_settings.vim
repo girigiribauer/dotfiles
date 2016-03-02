@@ -108,7 +108,7 @@ call neocomplete#custom#source('syntax', 'disabled', 1)
 " ---------------------------------------------------------------------------- "
 
 " 各々のユーザー名
-let g:gista#github_user = 'girigiribauer'
+let g:gista#github_user=$GITHUB_USERNAME
 
 " Gist なので [unite] キーバインドに g で呼べるように
 nnoremap <silent> [unite]g :<C-u>Unite gista<CR>
