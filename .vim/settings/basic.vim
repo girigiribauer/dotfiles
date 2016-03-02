@@ -137,4 +137,3 @@ set hlsearch
 
 " タブページで開くときの最大ページ数
 set tabpagemax=50
-

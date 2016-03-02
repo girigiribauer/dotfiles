@@ -1,6 +1,12 @@
 # ---------------------------------------------------------------------------- #
-# tmux（画面分割）
+# tmux に関する設定
 # ---------------------------------------------------------------------------- #
+
+# tmux 初回起動時のみ設定
+if [ -z "${TMUX_STARTUP}" ]
+then
+  return
+fi
 
 # ターミナル起動時に自動で tmux も起動する
 # https://gist.github.com/yonchu/3935972#file-tmux_auto_running-sh
@@ -24,8 +30,7 @@ then
   fi
 fi
 
-# tmuxinator
-if [ -e ~/.tmuxinator/tmuxinator.zsh ]; then
-  source ~/.tmuxinator/tmuxinator.zsh
-fi
+# vagrant と virtualbox の同期をとる（異常終了時のため）
+vagrant global-status --prune > /dev/null 2>&1
 
+export TMUX_STARTUP=1

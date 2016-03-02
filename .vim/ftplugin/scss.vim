@@ -2,8 +2,3 @@
 " filetype がマッチした場合のみ以下実行
 " ---------------------------------------------------------------------------- "
 
-if exists('#neobundle')
-  NeoBundle 'cakebaker/scss-syntax.vim', {
-        \ 'lazy': 1
-        \ }
-endif

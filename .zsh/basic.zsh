@@ -78,12 +78,7 @@ export PERL5LIB="$HOME/.perl-extlib/lib/perl5:$PERL5LIB"
 # Ruby
 # ---------------------------------------------------------------------------- #
 
-#export RBENV_ROOT=/usr/local/var/rbenv
-#export PATH="$PATH:$HOME/.rbenv/bin"
-#if which rbenv > /dev/null
-#then
-#  eval "$(rbenv init -)"
-#fi
+export PATH="$HOME/.rbenv/shims:$PATH"
 
 
 
@@ -92,6 +87,16 @@ export PERL5LIB="$HOME/.perl-extlib/lib/perl5:$PERL5LIB"
 # ---------------------------------------------------------------------------- #
 
 export PATH="$PATH:/usr/local/Cellar/php56/5.6.6/bin"
+
+
+
+# ---------------------------------------------------------------------------- #
+# Golang
+# ---------------------------------------------------------------------------- #
+
+export GOPATH=$HOME/go
+export GOROOT=/usr/local/opt/go/libexec
+export PATH=$PATH:$GOPATH/bin:$GOROOT/bin
 
 
 

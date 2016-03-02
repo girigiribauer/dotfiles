@@ -1,6 +1,8 @@
 " ---------------------------------------------------------------------------- "
-" filetype検出時の追加設定
+" filetype がマッチした場合のみ以下実行
 " ---------------------------------------------------------------------------- "
 
-setlocal tabstop=4
-setlocal shiftwidth=4
+" whitespace
+setlocal noexpandtab
+setlocal tabstop=2
+setlocal shiftwidth=2

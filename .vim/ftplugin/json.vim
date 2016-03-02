@@ -2,12 +2,6 @@
 " filetype がマッチした場合のみ以下実行
 " ---------------------------------------------------------------------------- "
 
-if exists('#neobundle')
-  NeoBundle 'elzr/vim-json', {
-        \ 'lazy': 1
-        \ }
-endif
-
 " 不要なクオテーションを表示しない
 let g:vim_json_syntax_conceal = 1
 

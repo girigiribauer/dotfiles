@@ -2,24 +2,16 @@
 # zshrc entrypoint
 # ---------------------------------------------------------------------------- #
 
-# 基本的な設定
-source "$HOME/.zsh/basic.zsh"
-
-# 履歴管理
-source "$HOME/.zsh/history.zsh"
-
-# 補完周り
-source "$HOME/.zsh/completion.zsh"
-
-# 表示、見た目の設定
-source "$HOME/.zsh/appearance.zsh"
-
-# キーマッピング
-source "$HOME/.zsh/mappings.zsh"
-
-# docker 関連
-source "$HOME/.zsh/docker.sh"
-
-# tmux（画面分割）
-source "$HOME/.zsh/tmux.zsh"
+shellfiles=(
+'basic.zsh'
+'history.zsh'
+'completion.zsh'
+'appearance.zsh'
+'mappings.zsh'
+'vms.zsh'
+'tmux.zsh'
+)
+for shellfile in ${shellfiles[@]}; do
+  source "$HOME/.zsh/$shellfile"
+done
 

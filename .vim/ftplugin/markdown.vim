@@ -2,8 +2,7 @@
 " filetype がマッチした場合のみ以下実行
 " ---------------------------------------------------------------------------- "
 
-if exists('#neobundle')
-  NeoBundle 'tpope/vim-markdown', {
-        \ 'lazy': 1
-        \ }
-endif
+" whitespace
+setlocal noexpandtab
+setlocal tabstop=4
+setlocal shiftwidth=4

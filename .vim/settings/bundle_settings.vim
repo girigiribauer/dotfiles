@@ -2,7 +2,7 @@
 " 各種プラグインの共通設定
 " ---------------------------------------------------------------------------- "
 
-" neobundle がなければ以下は実行しない$
+" NeoBundle のプラグインが入っていなければ実行しない
 if !exists('#neobundle')
   finish
 endif
@@ -179,5 +179,4 @@ let g:quickrun_config = {
 vmap <Enter> <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
-
 

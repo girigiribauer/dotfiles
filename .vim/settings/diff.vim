@@ -23,10 +23,10 @@ if &diff
   set diffopt+=foldcolumn:3
 
   " diffchar.vim でワード単位の差分を自動表示
-  augroup enable_diffchar
+  augroup groupEnableDiffchar
     autocmd!
     autocmd VimEnter * execute '%SDChar'
-  augroup END
+  augroup end
 
   " diffchar.vim で単語単位を区切りにする
   let g:DiffUnit = "Word3"
