@@ -20,13 +20,14 @@ match goErr /\<err\>/
 " syntastic
 if $GOPATH != ''
   execute "set runtimepath+=".globpath($GOPATH, "src/github.com/golang/lint/misc/vim")
-  let g:syntastic_go_checkers = ['golint']
+  " go のチェック通してから golint に通す
+  let g:syntastic_go_checkers = ['go', 'golint']
 endif
 
 " whitespace
-setlocal noexpandtab
-setlocal tabstop=4
-setlocal shiftwidth=4
+setlocal expandtab
+setlocal tabstop=2
+setlocal shiftwidth=2
 
 " mapping
 nmap <Tab><Tab> <Plug>(go-doc)
