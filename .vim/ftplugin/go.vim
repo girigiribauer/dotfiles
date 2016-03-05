@@ -14,7 +14,7 @@ execute "set runtimepath+=".globpath($GOPATH, "src/github.com/nsf/gocode/vim")
 " syntastic check
 " go の通常の文法チェックに通してから golint に通す
 " go vet でよくありがちなミスにつながる箇所をチェック
-let g:syntastic_go_checkers = ['errcheck', 'golint', 'govet']
+let g:syntastic_go_checkers = ['go', 'golint', 'govet']
 
 " whitespace
 setlocal expandtab
