@@ -24,9 +24,6 @@ setlocal shiftwidth=2
 " mapping
 nmap <Tab><Tab> <Plug>(go-doc)
 
-" gocode の補完
-set completeopt=menu,preview
-
 " on saving
 let g:go_fmt_autosave = 1
 
