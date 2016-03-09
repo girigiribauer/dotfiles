@@ -229,3 +229,12 @@ filetypes  = 'scss'
 repository = 'cespare/vim-toml'
 filetypes  = 'toml'
 
+
+
+# ---------------------------------------------------------------------------- #
+# filetype yaml
+# ---------------------------------------------------------------------------- #
+
+[[plugins]]
+repository = 'avakhov/vim-yaml'
+filetypes  = 'yaml'
