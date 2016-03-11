@@ -27,6 +27,9 @@ function notification() {
   echo "display notification \"$1\"" | osascript;
 }
 
+# Mac 版の sed が二度と使われないよう封印
+alias sed=gsed
+
 
 
 # ---------------------------------------------------------------------------- #
