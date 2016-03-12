@@ -40,16 +40,3 @@ let g:neosnippet#snippets_directory = [
 let g:neosnippet#disable_runtime_snippets = {
 \   '_' : 1,
 \ }
-
-" 閉じ括弧、閉じクオートの補完
-" http://d.hatena.ne.jp/spiritloose/20061113/1163401194
-inoremap { {}<LEFT>
-inoremap [ []<LEFT>
-inoremap ( ()<LEFT>
-inoremap " ""<LEFT>
-inoremap ' ''<LEFT>
-vnoremap { "zdi^V{<C-R>z}<ESC>
-vnoremap [ "zdi^V[<C-R>z]<ESC>
-vnoremap ( "zdi^V(<C-R>z)<ESC>
-vnoremap " "zdi^V"<C-R>z^V"<ESC>
-vnoremap ' "zdi'<C-R>z'<ESC>
