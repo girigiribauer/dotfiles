@@ -121,12 +121,51 @@ alias tig="tig --all"
 
 
 # ---------------------------------------------------------------------------- #
-# dnsmasq に関するマッピング
-# http://linux.just4fun.biz/Linux%E7%92%B0%E5%A2%83%E8%A8%AD%E5%AE%9A/dnsmasq%E3%82%92DHCP%E3%82%B5%E3%83%BC%E3%83%90%E3%81%A8%E3%81%97%E3%81%A6%E4%BD%BF%E3%81%86%E5%A0%B4%E5%90%88%E3%81%AE%E6%9C%80%E5%B0%8F%E9%99%90%E3%81%AE%E8%A8%AD%E5%AE%9A%E4%BE%8B.html
+# Docker に関するマッピング
 # ---------------------------------------------------------------------------- #
 
-alias dnsstop "sudo launchctl unload /Library/LaunchDaemons/homebrew.mxcl.dnsmasq.plist"
-alias dnsstart "sudo launchctl load /Library/LaunchDaemons/homebrew.mxcl.dnsmasq.plist"
+# 停止済みのコンテナのみ削除
+function drm() {
+  if [ -n "$(docker ps -a -q -f 'status=exited' -f 'status=created')" ]; then
+    docker rm $(docker ps -a -q -f 'status=exited' -f 'status=created')
+  else
+    echo "No exited containers."
+  fi
+}
 
+# 名前のついてないイメージ削除
+# ref: http://blog.n-z.jp/blog/2013-12-24-docker-rm.html
+function drmi() {
+  if [ -n "$(docker images | awk '/^<none>/ { print $3 }')" ]; then
+    docker rmi $(docker images | awk '/^<none>/ { print $3 }')
+  else
+    echo "No <none> images."
+  fi
+}
 
+# 直近に利用したコンテナのID
+# ref: http://sssslide.com/speakerdeck.com/bmorearty/15-docker-tips-in-5-minutes
+alias dl='docker ps -l -q'
 
+# 引数があればそのコンテナに、無ければ直近のコンテナに接続
+# ref: https://unicorn.limited/jp/item/347
+function dlogin() {
+  if [ -n "$1" ]; then
+    cid=$1
+  else
+    cid=`dl`
+  fi
+  echo $cid
+  docker exec -it $cid /bin/bash
+}
+
+# その他エイリアス
+alias dps="docker ps -a"
+alias dim="docker images"
+alias drun="docker run"
+alias dcom="docker-compose"
+alias dex="docker exec"
+alias dstart="docker-machine start default && denv && echo 'set docker env'"
+alias dstop="docker-machine stop default"
+alias dpull="docker pull"
+alias dnet="docker network"
