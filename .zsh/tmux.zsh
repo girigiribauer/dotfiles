@@ -30,7 +30,6 @@ then
   fi
 fi
 
-# vagrant と virtualbox の同期をとる（異常終了時のため）
-vagrant global-status --prune > /dev/null 2>&1
+vagrant global-status > /dev/null 2>&1
 
 export TMUX_STARTUP=1
