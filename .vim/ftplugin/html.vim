@@ -12,11 +12,11 @@ augroup GroupValidateMethod
   autocmd!
   autocmd BufWritePre *.html call ValidateMethod()
   function! ValidateMethod()
-    if (search('-//W3C//DTD HTML 4.01')>0)
+    if (search('-//W3C//DTD HTML 4.01', 'n')>0)
       echomsg "html 4.01"
       let g:syntastic_html_validator_parser = 'html4tr'
 
-    elseif (search('-//W3C//DTD XHTML 1.0')>0)
+    elseif (search('-//W3C//DTD XHTML 1.0', 'n')>0)
       echomsg "XHTML 1.0"
       let g:syntastic_html_validator_parser = 'xml'
 
