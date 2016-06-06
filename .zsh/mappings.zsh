@@ -156,7 +156,7 @@ function dlogin() {
     cid=`dl`
   fi
   echo $cid
-  docker exec -it $cid /bin/bash
+  docker exec -it $cid /bin/sh
 }
 
 # その他エイリアス
