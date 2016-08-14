@@ -1,9 +1,0 @@
-#!/bin/sh
-
-# VM が立ち上がっているかどうかチェック
-vagrant=`vagrant global-status | grep running | awk '{ printf " [" $2 ":ON]" }'`
-
-if [ $(docker-machine status default) = "Running" ]; then
-  docker='[docker:ON]'
-fi
-echo "$docker $vagrant" | xargs
