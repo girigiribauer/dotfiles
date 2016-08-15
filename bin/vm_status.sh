@@ -1,10 +1,15 @@
 #!/bin/bash
 
+vagrant_configfile_raw="$HOME/.vagrant.d/data/machine-index/index"
+jq_filter='[ .machines | .[] | [.name, .state] | join(" ") ] | join("\\n")'
+
 # VM が立ち上がっているかどうかチェック
-vagrant_statuses=`cat ~/.vagrant.d/data/machine-index/index | jq '.machines | .[] | {key: .name, value: .state} | join(" ")' --raw-output`
-vagrant=`echo $vagrant_statuses | grep -e "running" | awk '{ printf " [" $1 ":ON]" }'`
+vagrant_statuses=`cat $vagrant_configfile_raw | jq "$jq_filter" --raw-output`
+vagrant=`echo -e $vagrant_statuses | grep "running" | awk '{ printf " [" $1 ":ON]" }'`
 
 if [ $(docker-machine status default) = "Running" ]; then
   docker='[docker:ON]'
 fi
-echo "$docker $vagrant"
+
+# xargs as trailing spaces
+echo "$docker $vagrant" | xargs
