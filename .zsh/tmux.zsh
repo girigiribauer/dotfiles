@@ -3,10 +3,11 @@
 # ---------------------------------------------------------------------------- #
 
 # tmux 初回起動時のみ設定
-if [ -z "${TMUX_STARTUP}" ]
-then
-  return
-fi
+#if [ -z "${TMUX_STARTUP}" ]
+#then
+#  export TMUX_STARTUP=1
+#  return
+#fi
 
 # ターミナル起動時に自動で tmux も起動する
 # https://gist.github.com/yonchu/3935972#file-tmux_auto_running-sh
@@ -29,7 +30,3 @@ then
     screen -rx || screen -D -RR
   fi
 fi
-
-vagrant global-status > /dev/null 2>&1
-
-export TMUX_STARTUP=1
