@@ -7,11 +7,12 @@ jq_filter='[ .machines | .[] | [.name, .state] | join(" ") ] | join("\\n")'
 vagrant_statuses=`cat $vagrant_configfile_raw | jq "$jq_filter" --raw-output`
 vagrant=`echo -e $vagrant_statuses | grep "running" | awk '{ printf " [" $1 ":ON]" }'`
 
-# TODO: もう docker-machine は使わないので起動中のコンテナを表示するようにする
-#if [ $(docker-machine status default) = "Running" ]; then
-#  docker='[docker:ON]'
-#fi
+# ソケットファイルを通じて docker サービスが稼働中か調べる
+docker_services=`curl --silent --unix-socket /var/run/docker.sock http:/info | tr -d "\n"`
 docker=''
+if [ "$docker_services" != "" ]; then
+  docker='[docker:ON]'
+fi
 
 # xargs as trailing spaces
 echo "$docker $vagrant" | xargs
