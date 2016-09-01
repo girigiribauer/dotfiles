@@ -11,6 +11,9 @@ HISTSIZE=100000
 # ファイル上の履歴サイズ
 SAVEHIST=100000
 
+# 履歴をインクリメンタルサーチする際の除外コマンド
+HISTIGNORE=pwd:ls:history
+
 # 同一ホストでの履歴の共有
 setopt share_history
 
