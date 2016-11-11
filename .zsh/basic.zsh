@@ -15,17 +15,8 @@ export SHELL="/bin/zsh"
 export PAGER="less"
 
 # EDITOR
-export EDITOR="/usr/bin/vim"
-if [ -e "/Applications/MacVim.app" ]
-then
-  export PATH="/Applications/MacVim.app/Contents/MacOS:$PATH"
-  if [ -f "/Applications/MacVim.app/Contents/MacOS/Vim" ]
-  then
-    export EDITOR="/Applications/MacVim.app/Contents/MacOS/Vim"
-    alias vi="env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim -p "
-    alias vim="env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim -p "
-  fi
-fi
+export EDITOR="/usr/bin/mvim -v"
+export PATH="/usr/bin/mvim:$PATH"
 
 # LESS
 export LESS="-X -i -P ?f%f:(stdin). ?lb%lb?L/%L.. [?eEOF:?pb%pb\%..]"
@@ -96,7 +87,7 @@ export PATH="$PATH:/usr/local/Cellar/php56/5.6.6/bin"
 
 export GOPATH=$HOME/go
 export GOROOT=/usr/local/opt/go/libexec
-export PATH=$PATH:$GOPATH/bin:$GOROOT/bin
+export PATH=$PATH:$GOPATH/bin
 
 
 

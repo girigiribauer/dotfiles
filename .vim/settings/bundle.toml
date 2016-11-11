@@ -112,9 +112,6 @@ repository = 'mattn/emmet-vim'
 # ---------------------------------------------------------------------------- #
 
 [[plugins]]
-repository = 'kana/vim-fakeclip'
-
-[[plugins]]
 repository = 'Shougo/vimproc'
 
 [[plugins]]

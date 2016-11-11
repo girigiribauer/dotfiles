@@ -30,6 +30,10 @@ function notification() {
 # Mac 版の sed が二度と使われないよう封印
 alias sed=gsed
 
+# Mac Sierra で Vim 上でヤンクしたものがクリップボードに入らない対処
+alias vi='reattach-to-user-namespace mvim -v -p'
+alias vim='reattach-to-user-namespace mvim -v -p'
+
 
 
 # ---------------------------------------------------------------------------- #
