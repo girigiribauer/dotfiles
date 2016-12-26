@@ -32,6 +32,9 @@
 [[plugins]]
 repository = 'Shougo/unite.vim'
 
+[[plugins]]
+repository = 'kana/vim-submode'
+
 
 
 # ---------------------------------------------------------------------------- #
