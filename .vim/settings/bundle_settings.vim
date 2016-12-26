@@ -104,6 +104,10 @@ let g:syntastic_warning_symbol = 'w'
 " テキストフォーマット
 let g:syntastic_stl_format = '[%E{Err: %fe #%e}%B{, }%W{Warn: %fw #%w}]'
 
+" 自動整形に関する設定
+let g:phpfmt_standard = 'PSR2'
+let g:phpfmt_autosave = 1
+
 
 
 " ---------------------------------------------------------------------------- "

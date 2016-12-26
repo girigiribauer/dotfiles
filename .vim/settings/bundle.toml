@@ -209,6 +209,14 @@ filetypes  = 'php'
 repository = 'violetyk/neocomplete-php.vim'
 filetypes  = 'php'
 
+[[plugins]]
+repository = 'beanworks/vim-phpfmt'
+filetypes  = 'php'
+
+[[plugins]]
+repository = 'flyinshadow/php_localvarcheck.vim'
+filetypes  = 'php'
+
 
 
 # ---------------------------------------------------------------------------- #
