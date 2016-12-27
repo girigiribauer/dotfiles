@@ -12,19 +12,15 @@ export LANG="ja_JP.UTF-8"
 export SHELL="/bin/zsh"
 
 # PAGER
-export PAGER="less"
+export PAGER="lv -c"
 
 # EDITOR
-export EDITOR="/usr/bin/mvim -v"
-export PATH="/usr/bin/mvim:$PATH"
+export EDITOR="/usr/local/bin/vim -v -p"
+export PATH="/usr/local/bin/vim:$PATH"
 
-# LESS
-export LESS="-X -i -P ?f%f:(stdin). ?lb%lb?L/%L.. [?eEOF:?pb%pb\%..]"
-
-# git
-function git_diff() {
-  git diff --no-ext-diff -w "$@" | vim -R -
-}
+# Mac Sierra で Vim 上でヤンクしたものがクリップボードに入らない対処
+alias vim='reattach-to-user-namespace vim $@'
+alias vi=vim
 
 
 

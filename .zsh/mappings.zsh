@@ -30,10 +30,6 @@ function notification() {
 # Mac 版の sed が二度と使われないよう封印
 alias sed=gsed
 
-# Mac Sierra で Vim 上でヤンクしたものがクリップボードに入らない対処
-alias vi='reattach-to-user-namespace mvim -v -p'
-alias vim='reattach-to-user-namespace mvim -v -p'
-
 
 
 # ---------------------------------------------------------------------------- #
@@ -43,11 +39,7 @@ alias vim='reattach-to-user-namespace mvim -v -p'
 # ls
 alias ls="ls --color"
 alias ll="ls -alh"
-alias lll="ls -alh | less"
-alias ldir="ls -al | grep ^d"
-
-# lessでエスケープシーケンスをちゃんと表示
-alias less="less -R"
+alias lll="ls -alh | lv"
 
 # 移動したらすぐls -lah
 # ただしファイルなどが20より多かった場合は
