@@ -91,24 +91,26 @@ alias gc="git commit"
 alias gca="git commit -a"
 alias gcm="git commit -m"
 alias gco="git checkout"
-alias gcob="git checkout -b"
 alias gcom="git checkout master"
+alias gcod="git checkout develop"
+alias gcob="git checkout -b"
 alias gd="git diff"
 alias gda="git diff HEAD"
 alias gi="git init"
-# ref: http://blog.toshimaru.net/git-log-graph/
-alias gl="git log --graph --all --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
-alias gm="git merge --no-ff"
+alias gl="git log --graph --all --pretty=format:'%Cred%h%Creset %Cgreen(%cI) -%C(yellow)%d%Creset %s %C(bold blue)<%an>%Creset' --abbrev-commit --date=rfc2822"
 alias gp="git pull"
 alias gs="git status"
-alias gss="git status -s"
 alias gst="git stash"
 alias gstl="git stash list"
 alias gstp="git stash pop"
 alias gstd="git stash drop"
-
-# Git log find by commit message
-function glf() {
+gz() {
+  git archive --format=zip -o $2 HEAD --worktree-attributes `git diff --diff-filter=AMCR --name-only $1 HEAD --`
+}
+gza() {
+  git archive --format=zip -o $1 master
+}
+glf() {
   git log --all --grep="$1";
 }
 
