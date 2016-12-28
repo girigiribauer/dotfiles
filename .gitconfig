@@ -1,0 +1,37 @@
+[core]
+  quotepath = false # for ja character files
+  precomposeunicode = true # for utf-8-mac(NFD)
+  bare = false
+  excludesfile = ~/.gitignore
+  editor = vim
+  pager = lv -c
+[clean]
+  requireforce = true
+[color]
+  branch = always
+  diff = always
+  grep = always
+  interactive = always
+  pager = true
+  showbranch = always
+  status = always
+  ui = always
+[diff]
+  external = git_diff_wrapper # for `git diff`
+  tool = vimdiff # for `git difftool`
+  algorithm = histogram
+[difftool]
+  prompt = false # for `git difftool`
+[merge]
+  ff = false
+  tool = vimdiff # for `git mergetool`
+[mergetool]
+  prompt = false # for `git mergetool`
+[pager]
+  diff = # for `git diff`
+[pull]
+  rebase = preserve
+[push]
+  default = current
+[include]
+  path = ~/.gitconfig.local
