@@ -19,7 +19,7 @@ export EDITOR="/usr/local/bin/vim -v -p"
 export PATH="/usr/local/bin/vim:$PATH"
 
 # Mac Sierra で Vim 上でヤンクしたものがクリップボードに入らない対処
-alias vim='reattach-to-user-namespace vim $@'
+alias vim='reattach-to-user-namespace vim -p $@'
 alias vi=vim
 
 
