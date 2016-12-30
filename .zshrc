@@ -8,7 +8,6 @@ shellfiles=(
 'completion.zsh'
 'appearance.zsh'
 'mappings.zsh'
-'vms.zsh'
 'tmux.zsh'
 )
 for shellfile in ${shellfiles[@]}; do
