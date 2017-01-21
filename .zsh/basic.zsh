@@ -12,14 +12,18 @@ export LANG="ja_JP.UTF-8"
 export SHELL="/bin/zsh"
 
 # PAGER
-export PAGER="lv -c"
+export PAGER="lv"
+
+alias lv="lv -c"
 
 # EDITOR
-export EDITOR="/usr/local/bin/vim -v -p"
+#export EDITOR="reattach-to-user-namespace vim -p $@"
+export EDITOR="vim -p $@"
 export PATH="/usr/local/bin/vim:$PATH"
 
 # Mac Sierra で Vim 上でヤンクしたものがクリップボードに入らない対処
-alias vim='reattach-to-user-namespace vim -p $@'
+#alias vim="reattach-to-user-namespace vim -p $@"
+alias vim="vim -p $@"
 alias vi=vim
 
 

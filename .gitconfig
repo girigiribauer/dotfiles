@@ -3,8 +3,8 @@
   precomposeunicode = true # for utf-8-mac(NFD)
   bare = false
   excludesfile = ~/.gitignore
-  editor = vim
-  pager = lv -c
+  editor = "reattach-to-user-namespace vim"
+  pager = "lv -c"
 [clean]
   requireforce = true
 [color]
