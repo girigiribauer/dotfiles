@@ -10,7 +10,6 @@ set t_Co=256
 
 " カラースキーマ定義
 colorscheme elflord
-"colorscheme molokai
 
 " 黒背景ベースに
 set background=dark
@@ -42,27 +41,25 @@ endif
 " ヴィジュアルモード選択時
 highlight Visual cterm=reverse guifg=NONE guibg=NONE
 
-if has("syntax")
-  " 下記関数をバッファ新規作成,読み込み時,ウィンドウ表示時に実行
-  augroup invisible
-    autocmd! invisible
-    autocmd BufNew,BufRead,BufWinEnter * call <SID>SOLSpaceHighlights()
-    autocmd BufNew,BufRead,BufWinEnter * call <SID>JISX0208SpaceHighlights()
-  augroup END
+" 下記関数をバッファ新規作成,読み込み時,ウィンドウ表示時に実行
+augroup appearance_settings
+  autocmd! appearance_settings
+  autocmd BufNew,BufRead,BufWinEnter * call <SID>SOLSpaceHighlights()
+  autocmd BufNew,BufRead,BufWinEnter * call <SID>JISX0208SpaceHighlights()
+augroup END
 
-  " 行頭のスペースの連続をハイライトさせる関数
-  " Tab文字も区別されずにハイライトされる
-  function! s:SOLSpaceHighlights()
-    syntax match SOLSpace "^\s\+" display containedin=ALL
-    highlight SOLSpace term=underline ctermbg=red guibg=red
-  endf
+" 行頭のスペースの連続をハイライトさせる関数
+" Tab文字も区別されずにハイライトされる
+function! s:SOLSpaceHighlights()
+  syntax match SOLSpace "^\s\+" display containedin=ALL
+  highlight SOLSpace term=underline ctermbg=red guibg=red
+endf
 
-  " 全角スペースをハイライトさせる関数
-  function! s:JISX0208SpaceHighlights()
-    syntax match JISX0208Space "　" display containedin=ALL
-    highlight JISX0208Space term=underline ctermbg=red guibg=red
-  endf
-endif
+" 全角スペースをハイライトさせる関数
+function! s:JISX0208SpaceHighlights()
+  syntax match JISX0208Space "　" display containedin=ALL
+  highlight JISX0208Space term=underline ctermbg=red guibg=red
+endf
 
 " 行末スペースを表示
 highlight SpecialKey cterm=underline ctermfg=red ctermbg=red
@@ -71,8 +68,8 @@ highlight SpecialKey cterm=underline ctermfg=red ctermbg=red
 set listchars=tab:>-,extends:<,trail:#
 
 " QuickFixを自動的に開く
-augroup QuickfixSettings
-  autocmd! QuickfixSettings
+augroup quickfix_settings
+  autocmd! quickfix_settings
   autocmd QuickfixCmdPost * copen
 augroup END
 
@@ -92,4 +89,3 @@ let &t_EI.="\e[1 q"
 
 " 終了時 点滅カーソル終了
 let &t_te.="\e[0 q"
-

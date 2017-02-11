@@ -19,9 +19,7 @@ set nobackup
 set history=1000
 
 " undo 用ファイルを作らず
-if version >= 703
-  set noundofile
-endif
+set noundofile
 
 " カーソルを行頭、行末で止まらないようにする
 set whichwrap=b,s,h,l,<,>,~,[,]
@@ -72,15 +70,13 @@ set autochdir
 " 長い行でかつ最後の行の場合、可能な限り中身を表示する
 set display+=lastline
 
-" 行番号の表示
-se nonumber
+" 現在の行番号の表示
+se number
 
 " 行番号を相対的に表示する
-" これをオンにすると、set numberがオフになる
-if version >= 703
+" これをオンにすると、現在行以外が相対行表示となる
+if exists('&relativenumber')
   set relativenumber
-else
-  set number
 endif
 
 " モードラインをONにする
@@ -136,3 +132,6 @@ set hlsearch
 
 " タブページで開くときの最大ページ数
 set tabpagemax=50
+
+" コマンドモード時に Command-V で貼り付けする際に余分な文字列をつけない
+set t_BE=

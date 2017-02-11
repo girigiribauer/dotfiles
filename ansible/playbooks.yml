@@ -1,0 +1,12 @@
+---
+- hosts: localhost
+  connection: local
+  roles:
+    - initial-configuration
+    - initial-packages
+    - initial-symlinks
+    - anyenv
+    - homebrew
+    - homebrew-cask
+    - iterm2
+    - preferences

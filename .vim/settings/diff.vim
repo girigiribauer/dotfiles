@@ -3,6 +3,7 @@
 " ---------------------------------------------------------------------------- "
 
 " 以下 diff mode のときのみ有効
+" vimdiff においても共通
 if &diff
   " 同期スクロール
   set scrollbind
@@ -21,14 +22,4 @@ if &diff
 
   " 折り畳みを少しだけ表示
   set diffopt+=foldcolumn:3
-
-  " diffchar.vim でワード単位の差分を自動表示
-  augroup groupEnableDiffchar
-    autocmd!
-    autocmd VimEnter * execute '%SDChar'
-  augroup end
-
-  " diffchar.vim で単語単位を区切りにする
-  let g:DiffUnit = "Word3"
 endif
-

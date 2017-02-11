@@ -1,0 +1,8 @@
+---
+- name: Homebrew パッケージインストール
+  homebrew:
+    name: "{{ item.name }}"
+    state: present
+    install_options: "{{ item.install_options | default('') }}"
+  with_items: "{{ homebrew }}"
+  tags: homebrew

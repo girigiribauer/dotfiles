@@ -1,0 +1,140 @@
+---
+- name: Dock を拡大する
+  osx_defaults:
+    domain: com.apple.dock
+    key: magnification
+    type: bool
+    value: true
+    state: present
+  tags: preferences
+
+- name: Dock を拡大する際のサイズ指定
+  osx_defaults:
+    domain: com.apple.dock
+    key: largesize
+    type: float
+    value: 128
+    state: present
+  tags: preferences
+
+- name: Dock のサイズ指定
+  osx_defaults:
+    domain: com.apple.dock
+    key: tilesize
+    type: float
+    value: 16
+    state: present
+  tags: preferences
+
+- name: Dock を自動的に隠す
+  osx_defaults:
+    domain: com.apple.dock
+    key: autohide
+    type: bool
+    value: true
+    state: present
+  tags: preferences
+
+- name: FileVault のステータス確認
+  shell: fdesetup isactive
+  register: filevault_status
+  changed_when: False
+  tags: preferences
+
+- name: FileVault を設定する
+  shell: fdesetup {{ "enable" if security.filevault else "disable" }}
+  when: (security.filevault is defined) and (filevault_status.stdout == "true" and security.filevault != True) or (filevault_status.stdout == "false" and security.filevault == True)
+  become: True
+  tags: preferences
+
+- name: Firewall のステータス確認
+  shell: defaults read /Library/Preferences/com.apple.alf globalstate
+  register: firewall_status
+  changed_when: False
+  tags: preferences
+
+- name: Firewall を設定する
+  shell: defaults write /Library/Preferences/com.apple.alf globalstate -int {{ "1" if security.firewall else "0" }}
+  when: (security.firewall is defined) and (firewall_status.stdout == 1 and security.firewall != True) or (firewall_status.stdout == 0 and security.firewall == True)
+  become: True
+  tags: preferences
+
+- name: スリープ解除にパスワード要求
+  osx_defaults:
+    domain: com.apple.screensaver
+    key: askForPassword
+    type: int
+    value: 1
+    state: present
+  tags: preferences
+
+- name: スリープ開始後からパスワード要求を行う
+  osx_defaults:
+    domain: com.apple.screensaver
+    key: askForPasswordDelay
+    type: float
+    value: 0
+    state: present
+  tags: preferences
+
+- name: IME でライブ変換を行わない
+  osx_defaults:
+    domain: com.apple.inputmethod.Kotoeri
+    key: JIMPrefLiveConversionKey
+    type: bool
+    value: false
+    state: present
+  tags: preferences
+
+- name: 言語設定
+  osx_defaults:
+    key: AppleLanguages
+    type: array
+    value: "{{ languages }}"
+  tags: preferences
+
+- name: 地域設定
+  osx_defaults:
+    key: AppleLocale
+    type: string
+    value: "{{ locale }}"
+  tags: preferences
+
+- name: トラックパッドのスクロール方向をナチュラルの逆に
+  osx_defaults:
+    key: com.apple.swipescrolldirection
+    type: bool
+    value: false
+    state: present
+  tags: preferences
+
+- name: Siri を出さない
+  osx_defaults:
+    domain: com.apple.Siri
+    key: StatusMenuVisible
+    type: bool
+    value: false
+    state: present
+  tags: preferences
+
+- name: ソフトウェアアップデートの自動チェックのステータス取得
+  shell: softwareupdate --schedule | awk -F'Automatic check is ' '{ print $2 }'
+  register: autoupdate_status
+  changed_when: False
+  become: True
+  tags: preferences
+
+- name: ソフトウェアアップデートの自動チェック設定
+  shell: softwareupdate --schedule "{{ "on" if autoupdate else "off" }}"
+  when: (autoupdate is defined) and (autoupdate_status.stdout == "on" and autoupdate == False) or (autoupdate_status.stdout == "off" and autoupdate == True)
+  become: True
+  tags: preferences
+
+  - name: .DS_Store を作らない設定
+  osx_defaults:
+    domain: com.apple.desktopservices
+    key: DSDontWriteNetworkStores
+    type: bool
+    value: "{{ no_dsstore }}"
+    state: present
+  tags: preferences

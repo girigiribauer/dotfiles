@@ -1,21 +1,23 @@
-#!/bin/sh
+#!/bin/bash
 
-path=$(cd "$(dirname "$0")" && pwd)
+# install Xcode
+sudo xcodebuild -license
 
-symlinks() {
-  name=$1
-  if test "$(readlink -f "$path/${name}")" != "$(readlink -f "$HOME/${name}")"
-  then
-    echo "ln -s $path/$name $HOME/$name --backup=t"
-    ln -s "${path}/${name}" "${HOME}/${name}" --backup=t
-  fi
-}
+# install Homebrew
+ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+brew doctor
 
-symlinks ".vimrc"
-symlinks ".vim"
-symlinks ".zshrc"
-symlinks ".zsh"
-symlinks ".gitignore"
-symlinks ".jshintrc"
-symlinks ".tmux.conf"
-symlinks ".gemrc"
+# install ansible, git
+brew install ansible 2> /dev/null
+brew install git 2> /dev/null
+
+# clone dotfiles
+git clone https://github.com/girigiribauer/dotfiles.git "$HOME/dotfiles"
+
+cd "$HOME/dotfiles" || exit 1
+
+# provisioning by ansible
+ansible-playbook playbooks.yml --ask-become-pass
+
+# restart shell (should be "end of file")
+exec "$SHELL" -l

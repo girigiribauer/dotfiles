@@ -1,0 +1,147 @@
+# vim:ft=yaml
+---
+computer_name: "mycomputer"
+permission: "022"
+languages:
+  - ja
+locale: ja_JP
+autoupdate: True
+no_dsstore: True
+security:
+  filevault: True
+  firewall: True
+symlinks:
+  - src: .eslintrc.json
+  - src: .gemrc
+  - src: .git
+  - src: .gitconfig
+  - src: .gitignore.global
+    dest: .gitignore
+  - src: .tmux
+  - src: .tmux.conf
+  - src: .vim
+  - src: .vimrc
+  - src: .zsh
+  - src: .zshrc
+  - src: bin
+profiles:
+  dropbox_path: ""
+  profiles_path: ""
+  symlinks:
+    - src: .ssh
+    - src: .gitconfig.local
+    - src: .zshrc.local
+rbenv:
+  - 2.4.0
+  - 2.1.10
+ndenv:
+  - 7.4.0
+  - 6.9.4
+phpenv:
+  - 7.1.1
+  - 5.6.30
+  - 5.5.38
+  - 5.4.45
+goenv:
+  - 1.7.5
+  - 1.6.4
+pyenv:
+  - 2.7.13
+  - 3.6.0
+
+homebrew:
+  # GNU packages
+  - name: xz
+  - name: binutils
+  - name: coreutils
+  - name: findutils
+  - name: autoconf
+  - name: automake
+  - name: libtool
+
+  # command line tools
+  - name: reattach-to-user-namespace
+  - name: lv
+  - name: vim
+    install_options: [with-lua, with-luajit, with-python3]
+  - name: tmux
+    install_options: [with-utf8proc]
+  - name: readline
+
+  # utils
+  - name: wget
+  - name: tig
+  - name: pt
+  - name: jq
+  - name: imagemagick
+  - name: nkf
+  - name: tree
+
+  # for PHP
+  - name: composer
+
+homebrew_cask:
+  # storage
+  - name: dropbox
+
+  # browser, internet terminal
+  - name: google-chrome
+  - name: firefox
+  - name: chatwork
+
+  # launcher
+  - name: alfred
+
+  # password manager
+  - name: 1password
+
+  # security
+  - name: avast
+
+  # virtualization
+  - name: virtualbox
+  - name: vagrant
+  - name: docker
+  - name: vmware-fusion
+
+  # network proxy
+  - name: charles
+
+  # development tools
+  - name: imageoptim
+  - name: macwinzipper
+
+  # presentation, capture
+  - name: keycastr
+  - name: skitch
+
+  # sns tools
+  - name: skype
+  - name: slack
+
+  # multimedia
+  - name: vlc
+  - name: sdformatter
+
+  # adobe
+  - name: adobe-reader
+  - name: adobe-creative-cloud
+  - name: adobe-photoshop-cc
+
+node_global_packages:
+  # css preprocessor (for independent use)
+  - name: sass
+  - name: compass
+
+  # lint, validator
+  - name: csslint
+  - name: sass-lint
+  - name: jshint
+  - name: eslint
+  - name: jsonlint
+  - name: tslint
+
+  # task runner
+  - name: gulp
+  - name: grunt
+  - name: webpack

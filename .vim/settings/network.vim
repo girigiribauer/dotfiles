@@ -7,4 +7,3 @@ let g:netrw_dirhistmax = 1000
 
 " ブックマークと履歴 (.netrwbook と .netrwhist) を保存するホームディレクトリ
 let g:netrw_home = $HOME
-

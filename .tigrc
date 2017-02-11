@@ -1,0 +1,2 @@
+# copy commit id
+bind generic v @bash -c "echo -n '%(commit)' | pbcopy"

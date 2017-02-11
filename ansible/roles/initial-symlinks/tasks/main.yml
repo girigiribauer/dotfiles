@@ -1,0 +1,8 @@
+---
+- name: シンボリックリンクを貼る
+  file:
+    src: "~/dotfiles/{{ item.src  }}"
+    dest: "~/{{ item.dest|default(item.src) }}"
+    state: link
+  with_items: "{{ symlinks }}"
+  tags: initial-symlinks

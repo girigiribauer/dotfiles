@@ -1,0 +1,225 @@
+---
+- name: phpenv 依存パッケージの事前インストール
+  homebrew:
+    name: libmcrypt
+    state: present
+  tags: anyenv
+
+- name: anyenv がインストールされているかチェック
+  stat:
+    path: ${ANYENV_ROOT}
+  register: anyenv_status
+  tags: anyenv
+
+- name: anyenv インストール
+  git:
+    repo: https://github.com/riywo/anyenv
+    dest: ${ANYENV_ROOT}
+  when: not anyenv_status.stat.exists
+  tags: anyenv
+
+- name: anyenv インストール後の初期設定
+  shell: eval "$(${ANYENV_ROOT}/bin/anyenv init -)"
+  changed_when: False
+  tags: anyenv
+
+- name: シェルを再起動して anyenv の設定を反映させる
+  shell: exec $SHELL -l
+  changed_when: False
+  tags: anyenv
+
+- name: rbenv がインストールされているかチェック
+  stat:
+    path: /usr/local/anyenv/envs/rbenv/
+  register: rbenv_status
+  tags: anyenv
+
+- name: rbenv インストール
+  shell: anyenv install rbenv
+  when: not rbenv_status.stat.exists
+  tags: anyenv
+
+- name: rbenv インストール後の設定再読み込み
+  shell: eval "$(anyenv init - $SHELL)"
+  when: not rbenv_status.stat.exists
+  tags: anyenv
+
+- name: rbenv のインストール済みバージョンの取得
+  shell: ls "${RBENV_ROOT}/versions"
+  register: rbenv_versions_status
+  changed_when: False
+  tags: anyenv
+
+- name: rbenv の必要バージョンインストール
+  shell: rbenv install "{{ item }}"
+  when: rbenv_versions_status.stdout.find("{{ item }}") == -1
+  with_items: "{{ rbenv }}"
+  tags: anyenv
+
+- name: rbenv の global のバージョンの取得
+  shell: rbenv global
+  register: rbenv_global_status
+  changed_when: False
+  tags: anyenv
+
+- name: インストール済みのバージョンを global で使用する
+  shell: rbenv global "{{ rbenv[0] }}"
+  when: rbenv | length > 0 and (rbenv_global_status.stdout.find("{{ rbenv[0] }}") == -1)
+  tags: anyenv
+
+- name: ndenv がインストールされているかチェック
+  stat:
+    path: "${ANYENV_ROOT}/envs/ndenv/"
+  register: ndenv_status
+  tags: anyenv
+
+- name: ndenv インストール
+  shell: anyenv install ndenv
+  when: not ndenv_status.stat.exists
+  tags: anyenv
+
+- name: ndenv インストール後の設定再読み込み
+  shell: eval "$(anyenv init - $SHELL)"
+  when: not ndenv_status.stat.exists
+  tags: anyenv
+
+- name: ndenv のインストール済みバージョンの取得
+  shell: ls "${NDENV_ROOT}/versions"
+  register: ndenv_versions_status
+  changed_when: False
+  tags: anyenv
+
+- name: ndenv の必要バージョンインストール
+  shell: ndenv install "{{ item }}"
+  when: ndenv_versions_status.stdout.find("{{ item }}") == -1
+  with_items: "{{ ndenv }}"
+  tags: anyenv
+
+- name: ndenv の global のバージョンの取得
+  shell: ndenv global
+  register: ndenv_global_status
+  changed_when: False
+  tags: anyenv
+
+- name: インストール済みのバージョンを global で使用する
+  shell: ndenv global "{{ ndenv[0] }}"
+  when: ndenv | length > 0 and (ndenv_global_status.stdout.find("{{ ndenv[0] }}") == -1)
+  tags: anyenv
+
+- name: phpenv がインストールされているかチェック
+  stat:
+    path: "${ANYENV_ROOT}/envs/phpenv/"
+  register: phpenv_status
+  tags: anyenv
+
+- name: phpenv インストール
+  shell: anyenv install phpenv
+  when: not phpenv_status.stat.exists
+  tags: anyenv
+
+- name: phpenv インストール後の設定再読み込み
+  shell: eval "$(anyenv init - $SHELL)"
+  when: not phpenv_status.stat.exists
+  tags: anyenv
+
+- name: phpenv のインストール済みバージョンの取得
+  shell: ls "${PHPENV_ROOT}/versions"
+  register: phpenv_versions_status
+  changed_when: False
+  tags: anyenv
+
+- name: phpenv の必要バージョンインストール
+  shell: phpenv install "{{ item }}"
+  when: phpenv_versions_status.stdout.find("{{ item }}") == -1
+  with_items: "{{ phpenv }}"
+  tags: anyenv
+
+- name: phpenv の global のバージョンの取得
+  shell: phpenv global
+  register: phpenv_global_status
+  changed_when: False
+  tags: anyenv
+
+- name: インストール済みのバージョンを global で使用する
+  shell: phpenv global "{{ phpenv[0] }}"
+  when: phpenv | length > 0 and (phpenv_global_status.stdout.find("{{ phpenv[0] }}") == -1)
+  tags: anyenv
+
+- name: goenv がインストールされているかチェック
+  stat:
+    path: "${ANYENV_ROOT}/envs/goenv/"
+  register: goenv_status
+  tags: anyenv
+
+- name: goenv インストール
+  shell: anyenv install goenv
+  when: not goenv_status.stat.exists
+  tags: anyenv
+
+- name: goenv インストール後の設定再読み込み
+  shell: eval "$(anyenv init - $SHELL)"
+  when: not goenv_status.stat.exists
+  tags: anyenv
+
+- name: goenv のインストール済みバージョンの取得
+  shell: ls "${GOENV_ROOT}/versions"
+  register: goenv_versions_status
+  changed_when: False
+  tags: anyenv
+
+- name: goenv の必要バージョンインストール
+  shell: goenv install "{{ item }}"
+  when: goenv_versions_status.stdout.find("{{ item }}") == -1
+  with_items: "{{ goenv }}"
+  tags: anyenv
+
+- name: goenv の global のバージョンの取得
+  shell: goenv global --unset 2> /dev/null
+  register: goenv_global_status
+  ignore_errors: True
+  changed_when: False
+  tags: anyenv
+
+- name: インストール済みのバージョンを global で使用する
+  shell: goenv global "{{ goenv[0] }}"
+  when: goenv | length > 0 and (goenv_global_status.stdout.find( '{{ goenv[0] }}' ) == -1)
+  tags: anyenv
+
+- name: pyenv がインストールされているかチェック
+  stat:
+    path: "${ANYENV_ROOT}/envs/pyenv/"
+  register: pyenv_status
+  tags: anyenv
+
+- name: pyenv インストール
+  shell: anyenv install pyenv
+  when: not pyenv_status.stat.exists
+  tags: anyenv
+
+- name: pyenv インストール後の設定再読み込み
+  shell: eval "$(anyenv init - $SHELL)"
+  when: not pyenv_status.stat.exists
+  tags: anyenv
+
+- name: pyenv のインストール済みバージョンの取得
+  shell: ls "${PYENV_ROOT}/versions"
+  register: pyenv_versions_status
+  changed_when: False
+  tags: anyenv
+
+- name: pyenv の必要バージョンインストール
+  shell: pyenv install "{{ item }}"
+  when: pyenv_versions_status.stdout.find("{{ item }}") == -1
+  with_items: "{{ pyenv }}"
+  tags: anyenv
+
+- name: pyenv の global のバージョンの取得
+  shell: pyenv global
+  register: pyenv_global_status
+  changed_when: False
+  tags: anyenv
+
+- name: インストール済みのバージョンを global で使用する
+  shell: pyenv global "{{ pyenv[0] }}"
+  when: pyenv | length > 0 and (pyenv_global_status.stdout.find("{{ pyenv[0] }}") == -1)
+  tags: anyenv

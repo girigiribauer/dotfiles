@@ -10,17 +10,14 @@ scriptencoding utf-8
 " Windowsだと入ってないので念のため追加する
 set runtimepath^=$HOME/.vim
 
+" プラグイン管理
+source $HOME/.vim/settings/bundles.vim
+
 " 文字コードや改行コードなど、日本語に関わる設定
 source $HOME/.vim/settings/encoding.vim
 
-" プラグイン管理
-source $HOME/.vim/settings/bundle.vim
-
 " 基本的な設定いろいろ
 source $HOME/.vim/settings/basic.vim
-
-" 各種プラグインの共通設定
-source $HOME/.vim/settings/bundle_settings.vim
 
 " ステータスラインの設定
 source $HOME/.vim/settings/statusline.vim
@@ -34,12 +31,13 @@ source $HOME/.vim/settings/completion.vim
 " 表示、見た目
 source $HOME/.vim/settings/appearance.vim
 
-" コマンド追加
-source $HOME/.vim/settings/commands.vim
-
 " キーマッピング設定
 source $HOME/.vim/settings/mappings.vim
 
 " ネットワーク系
 source $HOME/.vim/settings/network.vim
 
+" 個人設定用ファイルが存在していれば読み込み
+if filereadable($HOME . "/.vimrc.local")
+  source $HOME/.vimrc.local
+endif

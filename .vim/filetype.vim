@@ -1,13 +1,27 @@
 " ---------------------------------------------------------------------------- "
-" filetype が有効になった時点で読み込み
+" filetype の決定のみ行い、 filetype ごとの設定は ftplugin 以下に書く
 " ---------------------------------------------------------------------------- "
 
-" .as を actionscript形式として認識する
-au BufRead,BufNewFile *.as set filetype=actionscript
+" .as を ActionScript 形式として認識する
+autocmd BufRead,BufNewFile *.as set filetype=actionscript
 
-" .md .mkd を markdown形式として認識する
-au BufRead,BufNewFile *.{md,mkd} set filetype=markdown
+" .md .mkd を Markdown 形式として認識する
+autocmd BufRead,BufNewFile *.{md,mkd} set filetype=markdown
 
-" .toml を toml形式として認識する
-au BufRead,BufNewFile *.toml set filetype=toml
+" .toml を TOML 形式として認識する
+autocmd BufRead,BufNewFile *.toml set filetype=toml
 
+" .ts を TypeScript 形式として認識する
+autocmd BufRead,BufNewFile *.ts set filetype=typescript
+
+" .ejs を HTML 形式として認識する
+autocmd BufRead,BufNewFile *.ejs set filetype=html
+
+" .plist を xml 形式として認識する
+autocmd BufRead,BufNewFile *.plist set filetype=xml
+
+" .tmux.conf を tmux 形式として認識する
+autocmd BufRead,BufNewFile .tmux.conf set filetype=tmux
+
+" nginx.conf を nginx 形式として認識する
+autocmd BufRead,BufNewFile nginx.conf set filetype=nginx

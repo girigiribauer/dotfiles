@@ -52,6 +52,13 @@ function chpwd() {
   fi
 }
 
+# 日付
+function print_date() {
+  zle -U `date "+%y%m%d"`
+}
+zle -N print_date
+bindkey "^Xd" print_date
+
 
 
 # ---------------------------------------------------------------------------- #

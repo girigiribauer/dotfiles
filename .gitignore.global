@@ -7,9 +7,6 @@
 # Windows
 Thumbs.db
 
-# tmux
-.tmux/
-
 # css/sass
 *.sass-cache
 

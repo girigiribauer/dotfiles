@@ -2,6 +2,8 @@
 " filetype がマッチした場合のみ以下実行
 " ---------------------------------------------------------------------------- "
 
-" 不要なクオテーションを表示しない
-let g:vim_json_syntax_conceal = 1
+" syntastic
+let g:syntastic_jsonlint_checkers = ['jsonlint']
 
+" クオテーションは常に表示（表示/非表示が毎回切り替わって困るのでオフ）
+let g:vim_json_syntax_conceal = 0

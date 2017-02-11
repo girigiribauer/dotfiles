@@ -19,4 +19,3 @@ if [ -e "$HOME/.zshrc.profiles" ]
 then
   source "$HOME/.zshrc.profiles"
 fi
-

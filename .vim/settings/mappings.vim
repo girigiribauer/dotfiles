@@ -2,19 +2,23 @@
 " キーマッピング設定
 " ---------------------------------------------------------------------------- "
 
-" <Leader>キーをデフォルトのバックスラッシュから変更する
-let mapleader = ","
+" 普通に開いてroot権限で保存したいとき
+command! Sudow :w !sudo tee >/dev/null %
+
+" vimrc設定ファイルの再読み込み
+command! Reload :source ~/.vimrc
+
+" <Leader> をスペースにする
+let mapleader = "\<Space>"
 
 " ノーマルモード、ビジュアルモードなどでコロンとセミコロンを入れ替える
 noremap ; :
 noremap : ;
 
 " 簡単にタブページの操作ができるようにする
-if v:version>=700
-  nnoremap <C-H> :tabprevious<CR>
-  nnoremap <C-L> :tabnext<CR>
-  nnoremap <C-N> :tabnew<Space>
-endif
+nnoremap <C-H> :tabprevious<CR>
+nnoremap <C-L> :tabnext<CR>
+nnoremap <C-N> :tabnew<Space>
 
 " ヤンクしたものを連続ペーストする(C-pで)
 vnoremap <silent> <C-p> "0p<CR>
@@ -36,7 +40,8 @@ nnoremap <C-W>" :split<CR>
 "Escの2回押しでハイライト消去
 nnoremap <Esc><Esc> :set nohlsearch<CR>
 
-" カーソル下のキーワード(ctrl-r_ctrl_w)をヘルプでひく
+" カーソル下のキーワードをヘルプでひく
+" c_<C-R>_<C-W> でコマンドモード時にカーソル上のものを挿入する
 nnoremap <C-i><C-i> :help<Space><C-r><C-w><CR>
 
 " 正規表現をできるだけ違和感なく使う

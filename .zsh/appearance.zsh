@@ -30,5 +30,5 @@ function prompt_hostname {
 }
 
 PROMPT="`prompt_hostname`%d%# "
+PROMPT2="`prompt_hostname`%d%# "
 SPROMPT="%r is correct? [n,y,a,e]: "
-
