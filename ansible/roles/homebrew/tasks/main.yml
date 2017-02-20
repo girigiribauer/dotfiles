@@ -1,4 +1,12 @@
 ---
+- name: tap が必要なパッケージを brew tap する
+  homebrew_tap:
+    name: "{{ item.tap }}"
+    state: present
+  when: item.tap is defined
+  with_items: "{{ homebrew }}"
+  tags: homebrew
+
 - name: Homebrew パッケージインストール
   homebrew:
     name: "{{ item.name }}"

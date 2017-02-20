@@ -224,6 +224,22 @@ hook_add = '''
 [[plugins]]
 repo = 'osyo-manga/vim-precious'
 depends = ['Shougo/context_filetype.vim']
+hook_add = '''
+  let g:context_filetype#filetypes = {
+        \ 'typescript' : [
+        \   {
+        \     'start' : 'template:\s*`',
+        \     'end' : '\s*`',
+        \     'filetype' : 'html',
+        \   },
+        \   {
+        \     'start' : 'styles:\s*[\s*`',
+        \     'end' : '\s*`\s*]',
+        \     'filetype' : 'css',
+        \   }
+        \ ],
+        \}
+'''
 
 [[plugins]]
 repo = 'Shougo/context_filetype.vim'
@@ -404,7 +420,8 @@ hook_add = '''
 #      \}
 #'''
 
-
+[[plugins]]
+repo = 'editorconfig/editorconfig-vim'
 
 
 
@@ -575,6 +592,7 @@ on_ft = 'toml'
 [[plugins]]
 repo = 'leafgarland/typescript-vim'
 on_ft = 'typescript'
+
 
 
 # ---------------------------------------------------------------------------- #

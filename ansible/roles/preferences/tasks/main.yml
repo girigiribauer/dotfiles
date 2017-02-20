@@ -130,7 +130,7 @@
   become: True
   tags: preferences
 
-  - name: .DS_Store を作らない設定
+- name: .DS_Store を作らない設定
   osx_defaults:
     domain: com.apple.desktopservices
     key: DSDontWriteNetworkStores

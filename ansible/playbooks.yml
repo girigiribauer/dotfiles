@@ -8,5 +8,7 @@
     - anyenv
     - homebrew
     - homebrew-cask
+    - macappstore
     - iterm2
+    - profiles
     - preferences

@@ -1,36 +1,60 @@
-# vim:ft=yaml
+# vi:ft=yaml
 ---
+
+# computer name here
 computer_name: "mycomputer"
+
+# basic permission (for multiuser setting)
 permission: "022"
+
+# language setting (first one is using)
 languages:
   - ja
+  - en
+
+# locale setting (ex: ja_JP, en_JP ...)
 locale: ja_JP
+
+# autoupdate MacAppStore
 autoupdate: True
+
+# no .DS_Store
 no_dsstore: True
+
+# security settings
 security:
   filevault: True
   firewall: True
+
+# symlink targets (key: src, dest(optional))
 symlinks:
+  - src: .editorconfig
   - src: .eslintrc.json
   - src: .gemrc
-  - src: .git
   - src: .gitconfig
   - src: .gitignore.global
     dest: .gitignore
   - src: .tmux
   - src: .tmux.conf
+  - src: .tslintrc.json
   - src: .vim
   - src: .vimrc
   - src: .zsh
   - src: .zshrc
   - src: bin
+
+# profiles settings
 profiles:
-  dropbox_path: ""
-  profiles_path: ""
+  src: "~/Dropbox/profiles/"
+  dest: "~/profiles/"
   symlinks:
     - src: .ssh
+    - src: .config
     - src: .gitconfig.local
     - src: .zshrc.local
+  fonts: "~/profiles/fonts/"
+
+# anyenv versions
 rbenv:
   - 2.4.0
   - 2.1.10
@@ -49,6 +73,23 @@ pyenv:
   - 2.7.13
   - 3.6.0
 
+# MacAppStore by mas-cli
+macappstore:
+  - name: Xcode
+    id: 497799835
+  - name: 1Password
+    id: 443987910
+  - name: Skitch
+    id: 425955336
+  - name: Alfred
+    id: 405843582
+  - name: Slack
+    id: 803453959
+  - name: Keynote
+    id: 409183694
+
+# Homebrew packages
+# exclude: git, ansible, mas, zsh
 homebrew:
   # GNU packages
   - name: xz
@@ -76,10 +117,15 @@ homebrew:
   - name: imagemagick
   - name: nkf
   - name: tree
+  - name: massren
+    tap: laurent22/massren
+  - name: terminal-notifier
 
   # for PHP
   - name: composer
 
+# Homebrew Cask packages
+# exclude: iterm2
 homebrew_cask:
   # storage
   - name: dropbox
@@ -91,9 +137,6 @@ homebrew_cask:
 
   # launcher
   - name: alfred
-
-  # password manager
-  - name: 1password
 
   # security
   - name: avast
@@ -128,10 +171,12 @@ homebrew_cask:
   - name: adobe-creative-cloud
   - name: adobe-photoshop-cc
 
-node_global_packages:
-  # css preprocessor (for independent use)
-  - name: sass
-  - name: compass
+# npm global packages (depend from node)
+npm:
+  # task runner
+  - name: webpack
+  - name: gulp
+  - name: grunt
 
   # lint, validator
   - name: csslint
@@ -141,7 +186,6 @@ node_global_packages:
   - name: jsonlint
   - name: tslint
 
-  # task runner
-  - name: gulp
-  - name: grunt
-  - name: webpack
+  # css preprocessor
+  - name: sass
+  - name: compass

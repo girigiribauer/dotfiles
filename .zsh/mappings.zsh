@@ -174,3 +174,12 @@ alias dex="docker exec"
 #alias dstop="docker-machine stop default"
 alias dpull="docker pull"
 alias dnet="docker network"
+
+
+
+# ---------------------------------------------------------------------------- #
+# その他マッピング
+# ---------------------------------------------------------------------------- #
+
+# massren コマンドの名前が覚えられない気がする
+alias rename=massren

@@ -1,0 +1,30 @@
+---
+- name: profiles 関連ディレクトリの存在チェック
+  stat:
+    path: "{{ profiles.src  }}"
+  register: profiles_diretory_status
+  tags: profiles
+
+- name: profiles 関連ディレクトリのシンボリックリンク
+  file:
+    src: "{{ profiles.src  }}"
+    dest: "{{ profiles.dest|default('~/profiles/') }}"
+    state: link
+  when: profiles_directory_status.stat.exists
+  tags: profiles
+
+- name: profiles 関連ディレクトリを起点にしたシンボリックリンクを貼る
+  file:
+    src: "{{ profiles.dest }}{{ item.src  }}"
+    dest: "~/{{ item.dest|default(item.src) }}"
+    state: link
+  with_items: "{{ profiles.symlinks }}"
+  when: profiles_directory_status.stat.exists
+  tags: profiles
+
+- name: フォントのコピー
+  shell: cp -f "{{ profiles.fonts  }}*" ~/Library/Fonts/.
+  args:
+    creates: ~/Library/Fonts/Ricty-Bold.ttf
+  when: profiles_directory_status.stat.exists
+  tags: profiles

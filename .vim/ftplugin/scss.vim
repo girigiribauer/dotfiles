@@ -4,6 +4,7 @@
 
 " syntastic
 let g:syntastic_scss_checkers = ['sass_lint']
+let g:syntastic_scss_sass_lint_args = '-v -c ~/.sass-lint.yml'
 
 " surround.vim
 " VSt のあとのプロンプトに media query を入力して @include を入力しやすく

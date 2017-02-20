@@ -1,0 +1,6 @@
+---
+- name: macappstore パッケージインストール
+  shell: mas install {{ item.id }}
+  when: "mas list | grep {{ item.id }}"
+  with_items: "{{ macappstore }}"
+  tags: macappstore
