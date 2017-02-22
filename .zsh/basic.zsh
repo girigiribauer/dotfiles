@@ -15,6 +15,9 @@ export SHELL="/bin/zsh"
 export PAGER="lv"
 alias lv="lv -c"
 
+# Vim で <C-S> <C-Q> の割り当てを開放する
+stty -ixon -ixoff
+
 
 
 # ---------------------------------------------------------------------------- #

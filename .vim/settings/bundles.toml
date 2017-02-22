@@ -19,6 +19,12 @@ hook_add = '''
 [[plugins]]
 repo = 'Shougo/unite.vim'
 depends = ['Shougo/denite.nvim']
+hook_add = '''
+  " esc キー2回で終了する
+  autocmd FileType unite nnoremap <silent> <buffer> <ESC><ESC> q
+  autocmd FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>q
+'''
+
 
 [[plugins]]
 repo = 'Shougo/denite.nvim'
@@ -305,8 +311,13 @@ hook_add = '''
         \ '~/.vim/snippets'
         \ ]
 
-  " denite source 用キーマッピング
-  nnoremap <silent> [denite]s :<C-u>DeniteProjectDir -default-action=expand unite:neosnippet<CR>
+  " denite からの snippet 展開は未対応なため、 unite から呼ぶ
+  imap <C-s> <Plug>(neosnippet_start_unite_snippet)
+  nmap <C-s> i<Plug>(neosnippet_start_unite_snippet)
+
+  " snippets ファイル自体の incremental search
+  inoremap <C-s><C-s> <Esc>:<C-u>Unite -start-insert -default-action=tabswitch neosnippet/user<CR>
+  nnoremap <C-s><C-s> :<C-u>Unite -start-insert -default-action=tabswitch neosnippet/user<CR>
 '''
 
 
@@ -368,7 +379,7 @@ hook_add = '''
 repo = 'tpope/vim-surround'
 hook_add = '''
   " Enter は改行で分割する
-let g:surround_{char2nr("\<CR>")} = "\n\t\r\n"
+  let g:surround_{char2nr("\<CR>")} = "\n\t\r\n"
 '''
 
 [[plugins]]
@@ -397,8 +408,9 @@ hook_add = '''
   nmap ga <Plug>(EasyAlign)
 '''
 
-# [[plugins]]
-# repo = 'Shougo/vimproc'
+[[plugins]]
+repo = 'Shougo/vimproc'
+build = 'make'
 
 # [[plugins]]
 # repo = 'thinca/vim-quickrun'
@@ -591,6 +603,10 @@ on_ft = 'toml'
 
 [[plugins]]
 repo = 'leafgarland/typescript-vim'
+on_ft = 'typescript'
+
+[[plugins]]
+repo = 'Quramy/tsuquyomi'
 on_ft = 'typescript'
 
 
