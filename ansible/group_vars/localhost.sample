@@ -34,7 +34,7 @@ symlinks:
   - src: .gitconfig
   - src: .gitignore.global
     dest: .gitignore
-  - src: .tmux
+  - src: .sass-lint.yml
   - src: .tmux.conf
   - src: .tslintrc.json
   - src: .vim
