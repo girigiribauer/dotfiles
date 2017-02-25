@@ -45,7 +45,7 @@ alias lll="ls -alh | lv"
 # ただしファイルなどが20より多かった場合は
 # lsで簡易表示
 function chpwd() {
-  if [ 20 -gt `ls -1 | wc -l` ]; then
+  if [ 20 -gt $(ls -1 | wc -l) ]; then
     ls -lah
   else
     ls
@@ -71,8 +71,8 @@ alias mv="mv -i"
 # C-kで上移動
 # 副作用として現在のカーソル位置から左側の文字削除が使えなくなる
 function cdup() {
-  echo
   cd ..
+  echo ""
   zle reset-prompt
 }
 zle -N cdup
