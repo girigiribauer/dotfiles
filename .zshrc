@@ -15,7 +15,7 @@ for shellfile in ${shellfiles[@]}; do
 done
 
 # 個人設定ファイルがあれば読み込み
-if [ -e "$HOME/.zshrc.profiles" ]
+if [ -e "$HOME/.zshrc.local" ]
 then
-  source "$HOME/.zshrc.profiles"
+  source "$HOME/.zshrc.local"
 fi
