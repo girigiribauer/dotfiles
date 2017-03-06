@@ -121,7 +121,7 @@ glf() {
   git log --all --grep="$1";
 }
 
-alias tig="tig --all"
+#alias tig="tig --all"
 
 
 
