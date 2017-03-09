@@ -60,8 +60,8 @@ set scrolloff=5
 " OSのクリップボードを使用する
 set clipboard=unnamed
 
-" 常に今のディレクトリを起点にする
-set autochdir
+" 開いたディレクトリを起点とする（on だと他プラグインに影響してしまう）
+set noautochdir
 
 " Ctrl+cをinsert modeの強制終了ではなく、通常終了に置き換える
 " 強制終了なくなると、100aとか打った時やばいと思ったので一旦消しとく
