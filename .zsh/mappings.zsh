@@ -91,26 +91,20 @@ alias ....="cd ../../.."
 
 alias ga="git add"
 alias gaa="git add ."
-alias gaaa="git add -A"
 alias gb="git branch --all"
 alias gbd="git branch -d "
 alias gc="git commit"
 alias gca="git commit -a"
-alias gcm="git commit -m"
 alias gco="git checkout"
 alias gcom="git checkout master"
 alias gcod="git checkout develop"
 alias gcob="git checkout -b"
 alias gd="git diff"
-alias gda="git diff HEAD"
-alias gi="git init"
 alias gl="git log --graph --all --pretty=format:'%Cred%h%Creset %Cgreen(%cI) -%C(yellow)%d%Creset %s %C(bold blue)<%an>%Creset' --abbrev-commit --date=rfc2822"
 alias gp="git pull"
 alias gs="git status"
 alias gst="git stash"
-alias gstl="git stash list"
-alias gstp="git stash pop"
-alias gstd="git stash drop"
+alias gf="git fetch"
 gz() {
   git archive --format=zip -o $2 HEAD --worktree-attributes `git diff --diff-filter=AMCR --name-only $1 HEAD --`
 }
@@ -120,8 +114,6 @@ gza() {
 glf() {
   git log --all --grep="$1";
 }
-
-#alias tig="tig --all"
 
 
 
