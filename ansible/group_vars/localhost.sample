@@ -31,6 +31,7 @@ symlinks:
   - src: .editorconfig
   - src: .eslintrc.json
   - src: .gemrc
+  - src: .git_template
   - src: .gitconfig
   - src: .gitignore.global
     dest: .gitignore
