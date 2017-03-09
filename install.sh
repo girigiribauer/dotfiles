@@ -28,7 +28,7 @@ then
   xcode-select --install
 else
   echo "skip install..."
-  sleep 0.1
+  sleep 0.3
 fi
 echo ""
 
@@ -44,7 +44,7 @@ then
   brew doctor
 else
   echo "skip install..."
-  sleep 0.1
+  sleep 0.3
 fi
 echo ""
 
@@ -59,7 +59,7 @@ then
   brew install ansible 2> /dev/null
 else
   echo "skip install..."
-  sleep 0.1
+  sleep 0.3
 fi
 echo ""
 
@@ -75,7 +75,7 @@ then
   git clone "${dotfiles_url}" "${dotfiles_dir}"
 else
   echo "skip git clone..."
-  sleep 0.1
+  sleep 0.3
 fi
 echo ""
 
