@@ -1,2 +1,6 @@
 # copy commit id
-bind generic v @bash -c "echo -n '%(commit)' | pbcopy"
+bind main C @bash -c "echo -n '%(commit)' | pbcopy"
+
+# Cursor navigation
+bind generic <C-F> move-page-down
+bind generic <C-B> move-page-up
