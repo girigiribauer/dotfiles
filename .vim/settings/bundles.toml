@@ -86,10 +86,21 @@ hook_add = '''
 
   " ファイルの除外設定
   call denite#custom#source(
-        \ 'buffer,file_rec',
+        \ 'file_rec,file_rec/git',
         \ 'matchers',
         \ ['matcher_fuzzy', 'matcher_ignore_globs']
         \)
+  call denite#custom#filter(
+        \ 'matcher_ignore_globs',
+        \ 'ignore_globs',
+        \ [
+        \ '*~', '*.o', '*.exe', '*.bak',
+        \ '.DS_Store', '*.pyc', '*.sw[po]', '*.class',
+        \ '.hg/', '.git/', '.bzr/', '.svn/',
+        \ 'node_modules/', 'bower_components/', 'tmp/', 'log/', 'vendor/ruby',
+        \ '.idea/', 'dist/',
+        \ 'tags', 'tags-*'
+        \])
 
   "call denite#custom#var(
   "      \ 'file_rec',
@@ -100,8 +111,9 @@ hook_add = '''
   " source 用キーマッピング
   nnoremap <silent> [denite]b :<C-u>DeniteProjectDir -default-action=tabswitch buffer<CR>
   nnoremap <silent> [denite]ff :<C-u>DeniteProjectDir -default-action=tabswitch file_rec<CR>
-  nnoremap <silent> [denite]fk :<C-u>DeniteProjectDir -default-action=tabswitch file_rec:..<CR>
-  nnoremap <silent> [denite]ft :<C-u>DeniteProjectDir -default-action=tabswitch file_rec:/<CR>
+  nnoremap <silent> [denite]fg :<C-u>DeniteProjectDir -default-action=tabswitch file_rec/git<CR>
+  "nnoremap <silent> [denite]fk :<C-u>DeniteProjectDir -default-action=tabswitch file_rec:..<CR>
+  "nnoremap <silent> [denite]ft :<C-u>DeniteProjectDir -default-action=tabswitch file_rec:/<CR>
   nnoremap <silent> [denite]fh :<C-u>DeniteProjectDir -default-action=tabswitch file_rec:$HOME<CR>
 
   "========== source: directory_rec =========="
@@ -132,13 +144,13 @@ hook_add = '''
 
   " source 用キーマッピング
   nnoremap <silent> [denite]l :<C-u>DeniteProjectDir line<CR>
-  nnoremap <silent> [denite]gg :<C-u>DeniteProjectDir grep -buffer-name=search-buffer-denite<CR>
+  nnoremap <silent> [denite]gg :<C-u>DeniteProjectDir grep -buffer-name=search-buffer-denite -default-action=tabswitch<CR>
   " 検索結果のファイルを表示したあと、検索結果に復帰する
-  nnoremap <silent> [denite]gr :<C-u>DeniteProjectDir -resume -buffer-name=search-buffer-denite<CR>
+  nnoremap <silent> [denite]gr :<C-u>DeniteProjectDir -resume -buffer-name=search-buffer-denite -default-action=tabswitch<CR>
   " 検索結果のファイルを表示したあと、次の該当箇所に直接移動する
-  nnoremap <silent> [denite]gn :<C-u>DeniteProjectDir -resume -buffer-name=search-buffer-denite -select=+1 -immediately<CR>
+  nnoremap <silent> [denite]gn :<C-u>DeniteProjectDir -resume -buffer-name=search-buffer-denite -select=+1 -immediately -statusline=false<CR>
   " 検索結果のファイルを表示したあと、前の該当箇所に直接移動する
-  nnoremap <silent> [denite]gp :<C-u>DeniteProjectDir -resume -buffer-name=search-buffer-denite -select=-1 -immediately<CR>
+  nnoremap <silent> [denite]gp :<C-u>DeniteProjectDir -resume -buffer-name=search-buffer-denite -select=-1 -immediately -statusline=false<CR>
 '''
 
 [[plugins]]
