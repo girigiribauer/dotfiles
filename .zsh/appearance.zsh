@@ -1,19 +1,11 @@
 # ---------------------------------------------------------------------------- #
-# 表示、見た目の設定
+# $HOME/.zsh/appearance.zsh
 # ---------------------------------------------------------------------------- #
 
-# TERM
-# http://vim.wikia.com/wiki/256_colors_in_vim
-if [ -e "/usr/share/terminfo/x/xterm-256color" ]
-then
-  export TERM="xterm-256color"
-else
-  export TERM="xterm-color"
-fi
+export TERM="screen-256color"
 
-# カレントディレクトリの表示
-# http://news.mynavi.jp/column/zsh/002/
-# https://gist.github.com/otiai10/8034038
+# ref: http://news.mynavi.jp/column/zsh/002/
+# ref: https://gist.github.com/otiai10/8034038
 setopt prompt_subst
 
 function prompt_hostname {

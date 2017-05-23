@@ -1,5 +1,5 @@
 # ---------------------------------------------------------------------------- #
-# zshrc entrypoint
+# $HOME/.zshrc (entrypoint)
 # ---------------------------------------------------------------------------- #
 
 shellfiles=(
@@ -14,7 +14,6 @@ for shellfile in ${shellfiles[@]}; do
   source "$HOME/.zsh/$shellfile"
 done
 
-# 個人設定ファイルがあれば読み込み
 if [ -e "$HOME/.zshrc.local" ]
 then
   source "$HOME/.zshrc.local"

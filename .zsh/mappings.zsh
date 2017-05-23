@@ -1,49 +1,19 @@
 # ---------------------------------------------------------------------------- #
-# キーマッピング
-# もろもろ参考
-# https://jonsuh.com/blog/bash-command-line-shortcuts/
+# $HOME/.zsh/mappings.zsh
 # ---------------------------------------------------------------------------- #
 
-# which はパスが通っているものを全部出す
 alias which="which -a"
 
-# browse from CLI
 alias o="open ."
 
-# C-w の区切り単位をパス単位に変更
-# http://stackoverflow.com/questions/444951/zsh-stop-backward-kill-word-on-directory-delimiter
-autoload -U select-word-style
-select-word-style bash
-
-# 画像サイズ
-# アプリケーションの有無のチェックはここを参考にした
-# http://lambdalisue.hatenablog.com/entry/2013/07/06/023040
-which identify > /dev/null 2>&1
-if [ $? -eq 0 ]; then
-  alias size="identify -format '%f %w x %h\n'"
-fi
-
-function notification() {
-  echo "display notification \"$1\"" | osascript;
-}
-
-# Mac 版の sed が二度と使われないよう封印
 alias sed=gsed
-
-
-
-# ---------------------------------------------------------------------------- #
-# 表示に関するマッピング
-# ---------------------------------------------------------------------------- #
 
 # ls
 alias ls="ls --color"
 alias ll="ls -alh"
 alias lll="ls -alh | lv"
 
-# 移動したらすぐls -lah
-# ただしファイルなどが20より多かった場合は
-# lsで簡易表示
+# show files after change directory
 function chpwd() {
   if [ 20 -gt $(ls -1 | wc -l) ]; then
     ls -lah
@@ -52,24 +22,17 @@ function chpwd() {
   fi
 }
 
-# 日付
+# <C-X> -> D: 6digits date
 function print_date() {
   zle -U `date "+%y%m%d"`
 }
 zle -N print_date
 bindkey "^Xd" print_date
 
-
-
-# ---------------------------------------------------------------------------- #
-# 移動に関するマッピング
-# ---------------------------------------------------------------------------- #
-
-# ファイル移動の結果上書きしてしまうケースは警告出す
+# prompt before overwrite
 alias mv="mv -i"
 
-# C-kで上移動
-# 副作用として現在のカーソル位置から左側の文字削除が使えなくなる
+# <C-K>: cd ..
 function cdup() {
   cd ..
   echo ""
@@ -78,17 +41,11 @@ function cdup() {
 zle -N cdup
 bindkey "^K" cdup
 
-# 上位階層への移動
 alias ...="cd ../.."
 alias ....="cd ../../.."
 
-
-
-# ---------------------------------------------------------------------------- #
-# Git に関するマッピング
-# https://jonsuh.com/blog/git-command-line-shortcuts/
-# ---------------------------------------------------------------------------- #
-
+# Git
+# see: https://jonsuh.com/blog/git-command-line-shortcuts/
 alias ga="git add"
 alias gaa="git add ."
 alias gb="git branch --all"
@@ -115,13 +72,7 @@ glf() {
   git log --all --grep="$1";
 }
 
-
-
-# ---------------------------------------------------------------------------- #
-# Docker に関するマッピング
-# ---------------------------------------------------------------------------- #
-
-# 停止済みのコンテナのみ削除
+# Docker
 function drm() {
   if [ -n "$(docker ps -a -q -f 'status=exited' -f 'status=created')" ]; then
     docker rm $(docker ps -a -q -f 'status=exited' -f 'status=created')
@@ -130,7 +81,6 @@ function drm() {
   fi
 }
 
-# 名前のついてないイメージ削除
 # ref: http://blog.n-z.jp/blog/2013-12-24-docker-rm.html
 function drmi() {
   if [ -n "$(docker images | awk '/^<none>/ { print $3 }')" ]; then
@@ -140,11 +90,9 @@ function drmi() {
   fi
 }
 
-# 直近に利用したコンテナのID
 # ref: http://sssslide.com/speakerdeck.com/bmorearty/15-docker-tips-in-5-minutes
 alias dl='docker ps -l -q'
 
-# 引数があればそのコンテナに、無ければ直近のコンテナに接続
 # ref: https://unicorn.limited/jp/item/347
 function dlogin() {
   if [ -n "$1" ]; then
@@ -156,22 +104,10 @@ function dlogin() {
   docker exec -it $cid /bin/sh
 }
 
-# その他エイリアス
 alias dps="docker ps -a"
 alias dim="docker images"
 alias drun="docker run"
 alias dcom="docker-compose"
 alias dex="docker exec"
-#alias dstart="docker-machine start default && denv && echo 'set docker env'"
-#alias dstop="docker-machine stop default"
 alias dpull="docker pull"
 alias dnet="docker network"
-
-
-
-# ---------------------------------------------------------------------------- #
-# その他マッピング
-# ---------------------------------------------------------------------------- #
-
-# massren コマンドの名前が覚えられない気がする
-alias rename=massren
