@@ -1,6 +1,9 @@
 " ---------------------------------------------------------------------------- "
-" filetype がマッチした場合のみ以下実行
+" $HOME/.vim/ftplugin/vim.vim
 " ---------------------------------------------------------------------------- "
+
+" syntastic
+let g:syntastic_vim_checkers = ['vimlint']
 
 " whitespace
 setlocal expandtab

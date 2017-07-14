@@ -1,18 +1,12 @@
 " ---------------------------------------------------------------------------- "
-" ステータスラインの設定
+" $HOME/.vim/settings/statusline.vim
 " ---------------------------------------------------------------------------- "
 
-" 入力途中のコマンドをステータス行に表示
 set showcmd
 
-" -- INSERT -- などのメッセージを表示 (showmode)
 set showmode
 
-" ステータスラインを常に表示
 set laststatus=2
 
-" ステータスのところにファイル情報表示
-" rulerやrulerformatより優先される
-let ff_table = {'dos': 'CR+LF', 'unix': 'LF', 'mac': 'CR'}
-set statusline=%<[%n]%F%=\ %b(0x%B)\ %l,%c\ %p%%\ %m%r%h%w%y%{'['.(&fenc!=''?&fenc:&enc).']'}%{'['.ff_table[&ff].']'}%{'['.(&bomb?'BOM':'NOBOM').']'}
-
+let g:statusline_fileformats = {'dos': 'CR+LF', 'unix': 'LF', 'mac': 'CR'}
+set statusline=%<[%n]%F%=\ %b(0x%B)\ %l,%c\ %p%%\ %m%r%h%w%y%{'['.(&fenc!=''?&fenc:&enc).']'}%{'['.statusline_fileformats[&ff].']'}%{'['.(&bomb?'BOM':'NOBOM').']'}

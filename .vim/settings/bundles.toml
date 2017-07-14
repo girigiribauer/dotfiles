@@ -1,5 +1,5 @@
 # ---------------------------------------------------------------------------- #
-# plugins for dein.vim
+# $HOME/.vim/settings/bundles.toml
 # ---------------------------------------------------------------------------- #
 
 [[plugins]]
@@ -13,230 +13,45 @@ hook_add = '''
 
 
 # ---------------------------------------------------------------------------- #
-# interface
-# ---------------------------------------------------------------------------- #
-
-[[plugins]]
-repo = 'Shougo/unite.vim'
-depends = ['Shougo/denite.nvim']
-hook_add = '''
-  " esc キー2回で終了する
-  autocmd FileType unite nnoremap <silent> <buffer> <ESC><ESC> q
-  autocmd FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>q
-'''
-
-
-[[plugins]]
-repo = 'Shougo/denite.nvim'
-hook_add = '''
-  noremap [denite] <Nop>
-  nmap <Space> [denite]
-
-  "========== common settings =========="
-
-  " 除外ファイルを指定する
-  call denite#custom#filter(
-        \ 'matcher_ignore_globs',
-        \ 'ignore_globs',
-        \ [
-        \   '*~', '*.o', '*.exe', '*.bak',
-        \   '*.pyc', '*.sw[po]', '*.class',
-        \   'tags', 'tags-*',
-        \   '.*',
-        \   '*.jpg', '*.gif', '*.png'
-        \ ]
-        \)
-
-  " 自動で Denite 用ウィンドウの高さ調整する
-  call denite#custom#option(
-        \ 'default',
-        \ 'auto_resize',
-        \ 'true'
-        \)
-
-  " 行単位の移動を <C-N>, <C-P> に
-  call denite#custom#map(
-        \ 'insert',
-        \ '<C-N>',
-        \ '<denite:move_to_next_line>',
-        \ 'noremap nowait'
-        \)
-  call denite#custom#map(
-        \ 'insert',
-        \ '<C-P>',
-        \ '<denite:move_to_previous_line>',
-        \ 'noremap nowait'
-        \)
-
-  " Esc キーで insert モードの時は normal に、 normal モードの時は終了する
-  call denite#custom#map(
-        \ 'insert',
-        \ '<Esc>',
-        \ '<denite:enter_mode:normal>',
-        \ 'noremap nowait'
-        \ )
-  call denite#custom#map(
-        \ 'normal',
-        \ '<Esc>',
-        \ '<denite:quit>',
-        \ 'noremap nowait'
-        \)
-
-  "========== source: buffer,file_rec =========="
-
-  " ファイルの除外設定
-  call denite#custom#source(
-        \ 'file_rec,file_rec/git',
-        \ 'matchers',
-        \ ['matcher_fuzzy', 'matcher_ignore_globs']
-        \)
-  call denite#custom#filter(
-        \ 'matcher_ignore_globs',
-        \ 'ignore_globs',
-        \ [
-        \ '*~', '*.o', '*.exe', '*.bak',
-        \ '.DS_Store', '*.pyc', '*.sw[po]', '*.class',
-        \ '.hg/', '.git/', '.bzr/', '.svn/',
-        \ 'node_modules/', 'bower_components/', 'tmp/', 'log/', 'vendor/ruby',
-        \ '.idea/', 'dist/',
-        \ 'tags', 'tags-*'
-        \])
-
-  "call denite#custom#var(
-  "      \ 'file_rec',
-  "      \ 'command',
-  "      \ ['pt', '--follow', '--nocolor', '--nogroup', '--hidden', '-g', '']
-  "      \)
-
-  " source 用キーマッピング
-  nnoremap <silent> [denite]b :<C-u>DeniteProjectDir -default-action=tabswitch buffer<CR>
-  nnoremap <silent> [denite]ff :<C-u>DeniteProjectDir -default-action=tabswitch file_rec<CR>
-  nnoremap <silent> [denite]fg :<C-u>DeniteProjectDir -default-action=tabswitch file_rec/git<CR>
-  "nnoremap <silent> [denite]fk :<C-u>DeniteProjectDir -default-action=tabswitch file_rec:..<CR>
-  "nnoremap <silent> [denite]ft :<C-u>DeniteProjectDir -default-action=tabswitch file_rec:/<CR>
-  nnoremap <silent> [denite]fh :<C-u>DeniteProjectDir -default-action=tabswitch file_rec:$HOME<CR>
-
-  "========== source: directory_rec =========="
-
-  " 各 source のショートカット割り当て
-  nnoremap <silent> [denite]dd :<C-u>DeniteProjectDir -default-action=action__path:tabopen directory_rec file_rec<CR>
-  nnoremap <silent> [denite]dt :<C-u>DeniteProjectDir -default-action=cd directory_rec:/<CR>
-  nnoremap <silent> [denite]dh :<C-u>DeniteProjectDir -default-action=action__path directory_rec:$HOME<CR>
-
-  "========== source: line,grep =========="
-
-  " grep は外部コマンドの pt を用いる
-  call denite#custom#var(
-        \ 'grep',
-        \ 'command',
-        \ ['pt', '--nogroup', '--nocolor', '--smart-case', '--hidden']
-        \)
-  call denite#custom#var(
-        \ 'grep',
-        \ 'default_opts',
-        \ []
-        \)
-  call denite#custom#var(
-        \ 'grep',
-        \ 'recursive_opts',
-        \ []
-        \)
-
-  " source 用キーマッピング
-  nnoremap <silent> [denite]l :<C-u>DeniteProjectDir line<CR>
-  nnoremap <silent> [denite]gg :<C-u>DeniteProjectDir grep -buffer-name=search-buffer-denite -default-action=tabswitch<CR>
-  " 検索結果のファイルを表示したあと、検索結果に復帰する
-  nnoremap <silent> [denite]gr :<C-u>DeniteProjectDir -resume -buffer-name=search-buffer-denite -default-action=tabswitch<CR>
-  " 検索結果のファイルを表示したあと、次の該当箇所に直接移動する
-  nnoremap <silent> [denite]gn :<C-u>DeniteProjectDir -resume -buffer-name=search-buffer-denite -select=+1 -immediately -statusline=false<CR>
-  " 検索結果のファイルを表示したあと、前の該当箇所に直接移動する
-  nnoremap <silent> [denite]gp :<C-u>DeniteProjectDir -resume -buffer-name=search-buffer-denite -select=-1 -immediately -statusline=false<CR>
-'''
-
-[[plugins]]
-repo = 'kana/vim-submode'
-hook_add = '''
-  call submode#enter_with('winsize', 'n', '', '<C-w>>', '<C-w>>')
-  call submode#enter_with('winsize', 'n', '', '<C-w><', '<C-w><')
-  call submode#enter_with('winsize', 'n', '', '<C-w>+', '<C-w>+')
-  call submode#enter_with('winsize', 'n', '', '<C-w>-', '<C-w>-')
-  call submode#map('winsize', 'n', '', '>', '<C-w>>')
-  call submode#map('winsize', 'n', '', '<', '<C-w><')
-  call submode#map('winsize', 'n', '', '+', '<C-w>+')
-  call submode#map('winsize', 'n', '', '-', '<C-w>-')
-'''
-
-
-
-# ---------------------------------------------------------------------------- #
-# denite/unite sources
-# ---------------------------------------------------------------------------- #
-
-[[plugins]]
-repo = 'Shougo/neoyank.vim'
-depends = ['Shougo/denite.nvim']
-hook_add = '''
-  " denite source 用キーマッピング
-  nnoremap <silent> [denite]y :<C-u>DeniteProjectDir -default-action=paste neoyank<CR>
-'''
-
-
-
-# ---------------------------------------------------------------------------- #
 # syntax
 # ---------------------------------------------------------------------------- #
 
 [[plugins]]
 repo = 'scrooloose/syntastic'
 hook_add = '''
-  " 開いた時にチェックしない
   let g:syntastic_check_on_open = 0
 
-  " 保存して終了などのときは動作しないようにする
-  " （popup だけ残っちゃったりするので off に）
   let g:syntastic_check_on_wq = 0
 
-  " 複数のチェッカーを有効にして集計表示する
   let g:syntastic_aggregate_errors = 1
 
-  " 集計表示の際にチェッカー名を表示する
   let g:syntastic_id_checkers = 1
 
-  " 今いる行のエラーを echo する
   let g:syntastic_echo_current_error = 1
 
-  " エラー箇所の表示をオンに
   let g:syntastic_enable_signs = 1
 
-  " エラーのときのアイコン
-  let g:syntastic_error_symbol = "\u2717"
-  let g:syntastic_style_error_symbol = "\u2717"
+  let g:syntastic_error_symbol = ">>"
+  let g:syntastic_style_error_symbol = ">>"
 
-  " 警告のときのアイコン
-  let g:syntastic_warning_symbol = "\u26A0"
-  let g:syntastic_style_warning_symbol = "\u26A0"
+  let g:syntastic_warning_symbol = ">"
+  let g:syntastic_style_warning_symbol = ">"
 
-  " エラー箇所のハイライト
   let g:syntastic_enable_highlighting = 1
 
-  " チェック時に一番最初のエラーに自動的に移動しない
   let g:syntastic_auto_jump = 0
 
-  " 自動でロケーションリストを開閉する
   let g:syntastic_auto_loc_list = 1
 
-  " ロケーションリストの高さ
   let g:syntastic_loc_list_height = 8
 
-  " すべてのファイルのチェックを初期状態で有効に
   let g:syntastic_mode_map = {
         \ 'mode': 'active',
         \ 'active_filetypes': [],
         \ 'passive_filetypes': []
         \}
 
-  " 標準のテキストフォーマット
-  let g:syntastic_stl_format = "[%E{Err: %fe #%e}%B{, }%W{Warn: %fw #%w}]"
+  let g:syntastic_stl_format = "[%E{e: %fe #%e}%B{, }%W{w: %fw #%w}]"
 '''
 
 [[plugins]]
@@ -268,68 +83,43 @@ repo = 'pearofducks/ansible-vim'
 
 
 # ---------------------------------------------------------------------------- #
-# completion
+# expand
 # ---------------------------------------------------------------------------- #
 
 [[plugins]]
-repo = 'Shougo/neco-syntax'
-depends = ['Shougo/neocomplete']
-
-[[plugins]]
-repo = 'Shougo/neocomplete'
+repo = 'tpope/vim-surround'
 hook_add = '''
-  " neocomplete が自動で起動
-  let g:neocomplete#enable_at_startup = 1
-
-  " smartcase を使う
-  let g:neocomplete#enable_smart_case = 1
-
-  " syntax は候補が多いので3文字以上で有効
-  let g:neocomplete#sources#syntax#min_keyword_length = 3
+  let g:surround_{char2nr("\<CR>")} = "\n\t\r\n"
 '''
 
 [[plugins]]
-repo = 'honza/vim-snippets'
-depends = ['Shougo/neosnippet']
+repo = 'vim-scripts/matchit.zip'
 
 [[plugins]]
-repo = 'Shougo/neosnippet'
-depends = ['Shougo/denite.nvim']
+repo = 'osyo-manga/vim-jplus'
 hook_add = '''
-  " neosnippet-snippets は使わない
-  let g:neosnippet#disable_runtime_snippets = {
-        \   '_' : 1,
-        \ }
+  nmap <Space>J <Plug>(jplus-input)
+  vmap <Space>J <Plug>(jplus-input)
+'''
 
-  " neosnippet のキーマッピング
-  imap <C-k> <Plug>(neosnippet_expand_or_jump)
-  smap <C-k> <Plug>(neosnippet_expand_or_jump)
-  xmap <C-k> <Plug>(neosnippet_expand_target)
 
-  " tabキー拡張
-  imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-  \ "\<Plug>(neosnippet_expand_or_jump)"
-  \: pumvisible() ? "\<C-n>" : "\<TAB>"
-  smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-  \ "\<Plug>(neosnippet_expand_or_jump)"
-  \: "\<TAB>"
 
-  " snipmate 用の snippet ファイルも使えるように
-  let g:neosnippet#enable_snipmate_compatibility = 1
+# ---------------------------------------------------------------------------- #
+# interface
+# ---------------------------------------------------------------------------- #
 
-  " snippet 用のディレクトリ
-  let g:neosnippet#snippets_directory = [
-        \ '$HOME/.vim/bundles/repos/github.com/honza/vim-snippets/snippets',
-        \ '~/.vim/snippets'
-        \ ]
-
-  " denite からの snippet 展開は未対応なため、 unite から呼ぶ
-  imap <C-s> <Plug>(neosnippet_start_unite_snippet)
-  nmap <C-s> i<Plug>(neosnippet_start_unite_snippet)
-
-  " snippets ファイル自体の incremental search
-  inoremap <C-s><C-s> <Esc>:<C-u>Unite -start-insert -default-action=tabswitch neosnippet/user<CR>
-  nnoremap <C-s><C-s> :<C-u>Unite -start-insert -default-action=tabswitch neosnippet/user<CR>
+[[plugins]]
+repo = 'kana/vim-submode'
+hook_add = '''
+  " window resize
+  call submode#enter_with('winsize', 'n', '', '<C-w>>', '<C-w>>')
+  call submode#enter_with('winsize', 'n', '', '<C-w><', '<C-w><')
+  call submode#enter_with('winsize', 'n', '', '<C-w>+', '<C-w>+')
+  call submode#enter_with('winsize', 'n', '', '<C-w>-', '<C-w>-')
+  call submode#map('winsize', 'n', '', '>', '<C-w>>')
+  call submode#map('winsize', 'n', '', '<', '<C-w><')
+  call submode#map('winsize', 'n', '', '+', '<C-w>+')
+  call submode#map('winsize', 'n', '', '-', '<C-w>-')
 '''
 
 
@@ -341,25 +131,8 @@ hook_add = '''
 [[plugins]]
 repo = 'rickhowe/diffchar.vim'
 hook_add = '''
-  " diffchar.vim で単語単位を区切りにする
   let g:DiffUnit = "Word3"
-'''
-
-
-
-# ---------------------------------------------------------------------------- #
-# git, gist
-# ---------------------------------------------------------------------------- #
-
-[[plugins]]
-repo = 'lambdalisue/vim-gista'
-hook_add = '''
-  " 各々のユーザー名
-  let g:gista#github_user = $GIT_COMMITTER_NAME
-
-  " Gist なので [unite] キーバインドに g で呼べるように
-  " Unite 周りはあとで見直す
-  " nnoremap <silent> [unite]g :<C-u>Unite gista<CR>
+  let g:DiffUpdate = 1
 '''
 
 
@@ -371,38 +144,9 @@ hook_add = '''
 [[plugins]]
 repo = 'cocopon/vaffle.vim'
 hook_add = '''
-  " working directory を自動で変える(設定しなくても :set autochdir が優先？)
-  let g:vaffle_auto_cd = 1
-
-  " ドットからはじまるファイルも初期表示
+  let g:vaffle_auto_cd = 0
   let g:vaffle_show_hidden_files = 1
-
-  " Vaffle 用キーマッピング
   nnoremap <silent> <Space>v :Vaffle<CR>
-'''
-
-
-
-# ---------------------------------------------------------------------------- #
-# expand
-# ---------------------------------------------------------------------------- #
-
-[[plugins]]
-repo = 'tpope/vim-surround'
-hook_add = '''
-  " Enter は改行で分割する
-  let g:surround_{char2nr("\<CR>")} = "\n\t\r\n"
-'''
-
-[[plugins]]
-repo = 'vim-scripts/matchit.zip'
-
-[[plugins]]
-repo = 'osyo-manga/vim-jplus'
-hook_add = '''
-  " あとに続けて join 用文字列を入力して結合する
-  nmap <Space>J <Plug>(jplus-input)
-  vmap <Space>J <Plug>(jplus-input)
 '''
 
 
@@ -421,222 +165,248 @@ hook_add = '''
 '''
 
 [[plugins]]
-repo = 'Shougo/vimproc'
-build = 'make'
-
-# [[plugins]]
-# repo = 'thinca/vim-quickrun'
-# hook_add = '''
-#" デフォルトの QuickRun 用キーバインドは使わない
-#let g:quickrun_no_default_key_mappings = 1
-#
-#" QuickRun キーバインド
-#nnoremap <Space>r :QuickRun<CR>
-#
-#" QuickRun 設定
-#let g:quickrun_config = {
-#      \   "_" : {
-#      \       "outputter" : "multi:buffer:quickfix",
-#      \       "outputter/buffer/split" : ":botright 10sp",
-#      \       "runner": "vimproc",
-#      \       "runner/vimproc/updatetime": 40
-#      \   }
-#      \}
-#'''
-
-[[plugins]]
 repo = 'editorconfig/editorconfig-vim'
 
 
 
 # ---------------------------------------------------------------------------- #
-# filetype css, scss
+# git, gist
 # ---------------------------------------------------------------------------- #
 
 [[plugins]]
-repo = 'stubbornella/csslint'
-on_ft = ['css', 'scss']
-
-[[plugins]]
-repo = 'hail2u/vim-css3-syntax'
-on_ft = ['css', 'scss']
-
-[[plugins]]
-repo = 'cakebaker/scss-syntax.vim'
-filetypes = 'scss'
-
-
-
-# ---------------------------------------------------------------------------- #
-# filetype go
-# ---------------------------------------------------------------------------- #
-
-[[plugins]]
-repo = 'fatih/vim-go'
-on_ft = 'go'
-
-[[plugins]]
-repo = 'vim-jp/vim-go-extra'
-on_ft = 'go'
-
-
-
-# ---------------------------------------------------------------------------- #
-# filetype html
-# ---------------------------------------------------------------------------- #
-
-[[plugins]]
-repo = 'othree/html5.vim'
-on_ft = 'html'
-
-[[plugins]]
-repo = 'mattn/emmet-vim'
-on_ft = 'html'
+repo = 'lambdalisue/vim-gista'
 hook_add = '''
-  " emmet 用キーバインド
-  let g:user_emmet_leader_key = '<C-y>'
+  " set .vimrc.local
+  let g:gista#github_user = $GIT_COMMITTER_NAME
+
+  " TODO: improve
+  " nnoremap <silent> [unite]g :<C-u>Unite gista<CR>
 '''
 
-[[plugins]]
-repo = 'hokaccha/vim-html5validator'
-on_ft = 'html'
-
 
 
 # ---------------------------------------------------------------------------- #
-# filetype javascript
+# incremental search interface
 # ---------------------------------------------------------------------------- #
-
-[[plugins]]
-repo = 'othree/yajs.vim'
-on_ft = 'javascript'
-
-[[plugins]]
-repo = 'jiangmiao/simple-javascript-indenter'
-on_ft = 'javascript'
-hook_add = '''
-  " brief モードを ON にする
-  " OFF になっていると例えば丸括弧内の鉤括弧を 2 shiftwidth 分とカウントする
-  let g:SimpleJsIndenter_BriefMode = 1
-
-  " switch/case 文のインデントレベルを通常に
-  " -1 にすると switch と case が同インデントになる
-  let g:SimpleJsIndenter_CaseIndentLevel = 0
-'''
-
-[[plugins]]
-repo = 'othree/es.next.syntax.vim'
-on_ft = 'javascript'
-
-[[plugins]]
-repo = 'othree/javascript-libraries-syntax.vim'
-on_ft = 'javascript'
-
-
-
-# ---------------------------------------------------------------------------- #
-# filetype json
-# ---------------------------------------------------------------------------- #
-
-[[plugins]]
-repo = 'elzr/vim-json'
-on_ft = 'json'
-
-
-
-# ---------------------------------------------------------------------------- #
-# filetype markdown
-# ---------------------------------------------------------------------------- #
-
-[[plugins]]
-repo = 'tpope/vim-markdown'
-on_ft = 'markdown'
-
-[[plugins]]
-repo = 'rhysd/vim-gfm-syntax'
-on_ft = 'markdown'
-on_event = 'BufRead'
-
-
-
-# ---------------------------------------------------------------------------- #
-# filetype php
-# ---------------------------------------------------------------------------- #
-
-[[plugins]]
-repo = '2072/PHP-Indenting-for-VIm'
-on_ft = 'php'
 
 # [[plugins]]
-# repo = 'violetyk/neocomplete-php.vim'
-# on_ft = 'php'
+# repo = 'Shougo/unite.vim'
+# depends = ['Shougo/denite.nvim']
+# hook_add = '''
+#   autocmd FileType unite nnoremap <silent> <buffer> <ESC><ESC> q
+#   autocmd FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>q
+# '''
 
 [[plugins]]
-repo = 'beanworks/vim-phpfmt'
-on_ft = 'php'
+repo = 'nixprime/cpsm'
+build = 'env PY3=ON ./install.sh'
+
+[[plugins]]
+repo = 'Shougo/denite.nvim'
+depends = ['nixprime/cpsm']
 hook_add = '''
-  " 自動整形に関する設定
-  let g:phpfmt_standard = 'PSR2'
-  let g:phpfmt_autosave = 1
+  noremap [denite] <Nop>
+  nmap <Space> [denite]
+
+  "call denite#custom#filter(
+  "      \ 'matcher_ignore_globs',
+  "      \ 'ignore_globs',
+  "      \ [
+  "      \   'node_modules/', 'bower_components/', 'tmp/', 'log/',
+  "      \   '.*'
+  "      \ ]
+  "      \)
+
+  "call denite#custom#option(
+  "      \ 'default',
+  "      \ 'auto_resize',
+  "      \ 'true'
+  "      \)
+
+  "call denite#custom#map(
+  "      \ 'insert',
+  "      \ '<C-N>',
+  "      \ '<denite:move_to_next_line>',
+  "      \ 'noremap nowait'
+  "      \)
+  "call denite#custom#map(
+  "      \ 'insert',
+  "      \ '<C-P>',
+  "      \ '<denite:move_to_previous_line>',
+  "      \ 'noremap nowait'
+  "      \)
+
+  "call denite#custom#map(
+  "      \ 'insert',
+  "      \ '<Esc>',
+  "      \ '<denite:enter_mode:normal>',
+  "      \ 'noremap nowait'
+  "      \ )
+  "call denite#custom#map(
+  "      \ 'normal',
+  "      \ '<Esc>',
+  "      \ '<denite:quit>',
+  "      \ 'noremap nowait'
+  "      \)
+
+  "========== source: buffer,file_rec =========="
+
+  call denite#custom#source(
+        \ 'file_rec,file_rec/git',
+        \ 'matchers',
+        \ ['matcher_cpsm', 'matcher_ignore_globs']
+        \)
+
+  call denite#custom#var(
+        \ 'directory_rec',
+        \ 'command',
+        \ ['Vaffle'])
+
+  "call denite#custom#var(
+  "      \ 'file_rec',
+  "      \ 'command',
+  "      \ ['pt', '--follow', '--nocolor', '--nogroup', '--hidden', '-g', '']
+  "      \)
+
+  nnoremap <silent> [denite]b :<C-u>Denite buffer<CR>
+  nnoremap <silent> [denite]f :<C-u>Denite file_rec<CR>
+  "nnoremap <silent> [denite]fr :<C-u>DeniteProjectDir -path='./' -resume -buffer-name=denite-file -default-action=tabswitch<CR>
+  "nnoremap <silent> [denite]fn :<C-u>DeniteProjectDir -path='./' -resume  -buffer-name=denite-file -select=+1 -immediately -statusline=false<CR>
+  "nnoremap <silent> [denite]fp :<C-u>DeniteProjectDir -path='./' -resume -buffer-name=denite-file -select=-1 -immediately -statusline=false<CR>
+
+  "nnoremap <silent> [denite]fg :<C-u>DeniteProjectDir -path='./' -default-action=tabswitch file_rec/git<CR>
+  ""nnoremap <silent> [denite]fk :<C-u>DeniteProjectDir -path='./' -default-action=tabswitch file_rec:..<CR>
+  ""nnoremap <silent> [denite]ft :<C-u>DeniteProjectDir -path='./' -default-action=tabswitch file_rec:/<CR>
+  "nnoremap <silent> [denite]fh :<C-u>DeniteProjectDir -path='./' -default-action=tabswitch file_rec:$HOME<CR>
+
+  "========== source: directory_rec =========="
+
+  "nnoremap <silent> [denite]dd :<C-u>DeniteProjectDir -path='./' -default-action=open directory_rec<CR>
+  "nnoremap <silent> [denite]dt :<C-u>DeniteProjectDir -path='./' -default-action=cd directory_rec:/<CR>
+  "nnoremap <silent> [denite]dh :<C-u>DeniteProjectDir -path='./' -default-action=action__path directory_rec:$HOME<CR>
+
+  "========== source: line,grep =========="
+
+  "call denite#custom#var(
+  "      \ 'grep',
+  "      \ 'command',
+  "      \ ['pt', '--nogroup', '--nocolor', '--smart-case', '--hidden']
+  "      \)
+  "call denite#custom#var(
+  "      \ 'grep',
+  "      \ 'default_opts',
+  "      \ []
+  "      \)
+  "call denite#custom#var(
+  "      \ 'grep',
+  "      \ 'recursive_opts',
+  "      \ []
+  "      \)
+  call denite#custom#source(
+        \ 'grep',
+        \ 'matchers',
+        \ ['matcher_cpsm', 'matcher_ignore_globs']
+        \)
+
+  nnoremap <silent> [denite]l :<C-u>Denite line<CR>
+  nnoremap <silent> [denite]g :<C-u>Denite grep<CR>
+  "nnoremap <silent> [denite]gr :<C-u>DeniteProjectDir -path='./' -resume -buffer-name=denite-grep -default-action=tabswitch<CR>
+  "nnoremap <silent> [denite]gn :<C-u>DeniteProjectDir -path='./' -resume -buffer-name=denite-grep -select=+1 -immediately -statusline=false<CR>
+  "nnoremap <silent> [denite]gp :<C-u>DeniteProjectDir -path='./' -resume -buffer-name=denite-grep -select=-1 -immediately -statusline=false<CR>
 '''
 
-[[plugins]]
-repo = 'flyinshadow/php_localvarcheck.vim'
-on_ft = 'php'
-hook_add = '''
-  let g:php_localvarcheck_global = 1
-'''
 
 
-
-# ---------------------------------------------------------------------------- #
-# filetype tmux
-# ---------------------------------------------------------------------------- #
-
-[[plugins]]
-repo = 'tmux-plugins/vim-tmux'
-on_ft = 'tmux'
-
-
-
-# ---------------------------------------------------------------------------- #
-# filetype toml
-# ---------------------------------------------------------------------------- #
-
-[[plugins]]
-repo = 'cespare/vim-toml'
-on_ft = 'toml'
-
-
-
-# ---------------------------------------------------------------------------- #
-# filetype typescript
-# ---------------------------------------------------------------------------- #
-
-[[plugins]]
-repo = 'leafgarland/typescript-vim'
-on_ft = 'typescript'
-
-[[plugins]]
-repo = 'Quramy/tsuquyomi'
-on_ft = 'typescript'
-
-
-
-# ---------------------------------------------------------------------------- #
-# filetype yaml
-# ---------------------------------------------------------------------------- #
-
-[[plugins]]
-repo = 'darfink/vim-plist'
-on_ft = 'xml'
-
-
-
-# ---------------------------------------------------------------------------- #
-# filetype yaml
-# ---------------------------------------------------------------------------- #
-
-[[plugins]]
-repo = 'avakhov/vim-yaml'
-on_ft = 'yaml'
+# # ---------------------------------------------------------------------------- #
+# # denite/unite sources
+# # ---------------------------------------------------------------------------- #
+# 
+# [[plugins]]
+# repo = 'Shougo/neoyank.vim'
+# depends = ['Shougo/denite.nvim']
+# hook_add = '''
+#   " denite source 用キーマッピング
+#   nnoremap <silent> [denite]y :<C-u>DeniteProjectDir -default-action=paste neoyank<CR>
+# '''
+# 
+# 
+# 
+# # ---------------------------------------------------------------------------- #
+# # completion
+# # ---------------------------------------------------------------------------- #
+# 
+# [[plugins]]
+# repo = 'Shougo/neco-syntax'
+# depends = ['Shougo/neocomplete']
+# 
+# [[plugins]]
+# repo = 'Shougo/neocomplete'
+# hook_add = '''
+#   " neocomplete が自動で起動
+#   let g:neocomplete#enable_at_startup = 1
+# 
+#   " smartcase を使う
+#   let g:neocomplete#enable_smart_case = 1
+# 
+#   " syntax は候補が多いので3文字以上で有効
+#   let g:neocomplete#sources#syntax#min_keyword_length = 3
+# 
+#   " auto omni completion
+#   let g:neocomplete#force_omni_input_patterns = {
+#         \ 'css': '[^.]\:*\w*',
+#         \ 'scss': '\h\w*\|[^. \t]\.\w*',
+#         \ 'go': '[^. \t]\.\w*',
+#         \ 'typescript': '[^. \t]\.\%(\h\w*\)\?',
+#         \ 'javascript': '[^. \t]\.\%(\h\w*\)\?',
+#         \}
+# '''
+# 
+# [[plugins]]
+# repo = 'honza/vim-snippets'
+# depends = ['Shougo/neosnippet']
+# 
+# [[plugins]]
+# repo = 'Shougo/neosnippet'
+# depends = ['Shougo/denite.nvim']
+# hook_add = '''
+#   " neosnippet-snippets は使わない
+#   let g:neosnippet#disable_runtime_snippets = {
+#         \   '_' : 1,
+#         \ }
+# 
+#   " neosnippet のキーマッピング
+#   imap <C-k> <Plug>(neosnippet_expand_or_jump)
+#   smap <C-k> <Plug>(neosnippet_expand_or_jump)
+#   xmap <C-k> <Plug>(neosnippet_expand_target)
+# 
+#   " tabキー拡張
+#   imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+#   \ "\<Plug>(neosnippet_expand_or_jump)"
+#   \: pumvisible() ? "\<C-n>" : "\<TAB>"
+#   smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+#   \ "\<Plug>(neosnippet_expand_or_jump)"
+#   \: "\<TAB>"
+# 
+#   " snipmate 用の snippet ファイルも使えるように
+#   let g:neosnippet#enable_snipmate_compatibility = 1
+# 
+#   " snippet 用のディレクトリ
+#   let g:neosnippet#snippets_directory = [
+#         "\ '$HOME/.vim/bundles/repos/github.com/honza/vim-snippets/snippets',
+#         \ '~/.vim/snippets'
+#         \ ]
+# 
+#   " denite からの snippet 展開は未対応なため、 unite から呼ぶ
+#   imap <C-s> <Plug>(neosnippet_start_unite_snippet)
+#   nmap <C-s> i<Plug>(neosnippet_start_unite_snippet)
+# 
+#   " snippets ファイル自体の incremental search
+#   inoremap <C-s><C-s> <Esc>:<C-u>Unite -start-insert -default-action=tabswitch neosnippet/user<CR>
+#   nnoremap <C-s><C-s> :<C-u>Unite -start-insert -default-action=tabswitch neosnippet/user<CR>
+#   nnoremap <silent> [denite]ss :<C-u>Unite -start-insert -default-action=tabswitch neosnippet/user<CR>
+#   nnoremap <silent> [denite]se :<C-u>Unite -start-insert -default-action=tabswitch neosnippet/runtime<CR>
+# '''
+# 
+# # [[plugins]]
+# # repo = 'Shougo/neosnippet-snippets'
+# # depends = ['Shougo/neosnippet']

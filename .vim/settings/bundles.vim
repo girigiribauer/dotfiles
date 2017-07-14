@@ -2,7 +2,7 @@
 " $HOME/.vim/settings/bundles.vim
 " ---------------------------------------------------------------------------- "
 
-" dein.vim の初期設定
+" plugin manager settings
 if &compatible
   set nocompatible
 endif
@@ -13,6 +13,7 @@ if dein#load_state('$HOME/.vim/bundles')
   call dein#begin('$HOME/.vim/bundles')
 
   call dein#load_toml('$HOME/.vim/settings/bundles.toml', {'lazy': 0})
+  call dein#load_toml('$HOME/.vim/settings/bundles-filetypes.toml', {'lazy': 0})
 
   call dein#end()
   call dein#save_state()

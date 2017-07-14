@@ -1,5 +1,5 @@
 " ---------------------------------------------------------------------------- "
-" filetype がマッチした場合のみ以下実行
+" $HOME/.vim/ftplugin/markdown.vim
 " ---------------------------------------------------------------------------- "
 
 " whitespace
@@ -7,6 +7,6 @@ setlocal noexpandtab
 setlocal tabstop=4
 setlocal shiftwidth=4
 
-" underscore などが意図しないハイライトを起こすのでオフに
+" off highlight underscore
 highlight link markdownItalic LineNr
 highlight link markdownBold LineNr

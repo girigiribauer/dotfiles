@@ -1,5 +1,5 @@
 " ---------------------------------------------------------------------------- "
-" filetype がマッチした場合のみ以下実行
+" $HOME/.vim/ftplugin/html.vim
 " ---------------------------------------------------------------------------- "
 
 " syntastic
@@ -7,7 +7,6 @@ let g:syntastic_html_checkers = ['validator']
 let g:syntastic_html_validator_parser = 'html5'
 let g:syntastic_html_validator_api = 'http://validator.w3.org/nu/'
 
-" DOCTYPE 内のテキストでバリデーション方法変更
 augroup GroupValidateMethod
   autocmd!
   autocmd BufWritePre *.html call ValidateMethod()
