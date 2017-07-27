@@ -2,13 +2,8 @@
 - hosts: localhost
   connection: local
   roles:
-    - initial-configuration
-    - initial-packages
-    - initial-symlinks
+    - initial
+    - preferences
     - anyenv
     - homebrew
-    - homebrew-cask
     - macappstore
-    - iterm2
-    - profiles
-    - preferences

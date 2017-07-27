@@ -1,5 +1,5 @@
 ---
-- name: tap が必要なパッケージを brew tap する
+- name: brew tap
   homebrew_tap:
     name: "{{ item.tap }}"
     state: present
@@ -7,10 +7,24 @@
   with_items: "{{ homebrew }}"
   tags: homebrew
 
-- name: Homebrew パッケージインストール
+- name: install Homebrew packages
   homebrew:
     name: "{{ item.name }}"
     state: present
     install_options: "{{ item.install_options | default('') }}"
   with_items: "{{ homebrew }}"
+  tags: homebrew
+
+- name: install Homebrew Cask
+  homebrew_tap:
+    name: caskroom/cask
+    state: present
+  tags: homebrew
+
+- name: install Homebrew Cask packages
+  homebrew_cask:
+    name: "{{ item.name }}"
+    state: present
+    install_options: "{{ item.install_options | default('') }}"
+  with_items: "{{ homebrew_cask }}"
   tags: homebrew
