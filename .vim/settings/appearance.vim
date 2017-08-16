@@ -59,6 +59,7 @@ augroup appearance_settings
 augroup END
 
 set listchars=tab:>-,extends:<,trail:#
+highlight SpecialKey term=underline ctermfg=white ctermbg=red guifg=white guibg=red
 
 highlight clear NonText
 
