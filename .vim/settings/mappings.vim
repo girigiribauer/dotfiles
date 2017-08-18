@@ -38,3 +38,6 @@ nnoremap <C-i><C-i> K
 nnoremap / /\v
 
 nnoremap Q <Nop>
+
+" set autochdir
+nnoremap <Leader>c :set autochdir<CR>
