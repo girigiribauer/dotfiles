@@ -161,6 +161,7 @@ on_ft = 'typescript'
 
 [[plugins]]
 repo = 'Quramy/tsuquyomi'
+depends = ['Shougo/vimproc.vim']
 on_ft = 'typescript'
 
 

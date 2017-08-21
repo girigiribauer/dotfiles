@@ -218,7 +218,7 @@
   tags: anyenv
 
 - name: install pyenv versions (2/2)
-  shell: pyenv install "{{ item }}"
+  shell: env PYTHON_CONFIGURE_OPTS="--enable-framework" pyenv install "{{ item }}"
   when: pyenv_versions_status.stdout.find("{{ item }}") == -1
   with_items: "{{ pyenv.versions }}"
   tags: anyenv

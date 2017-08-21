@@ -19,10 +19,13 @@ stty -ixon -ixoff
 # use wildcard
 unsetopt nomatch
 
+# for XDG base directory specification
 export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_DATA_HOME="$HOME/.local/share"
 
 export EDITOR="nvim -p $@"
-export PATH="/usr/local/bin/vim:$PATH"
+export PATH="/usr/local/bin/nvim:$PATH"
 
 # tabopen always
 alias nvim="nvim -p $@"

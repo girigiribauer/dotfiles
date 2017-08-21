@@ -2,14 +2,6 @@
 # $HOME/.vim/settings/bundles.toml
 # ---------------------------------------------------------------------------- #
 
-[[plugins]]
-repo = 'Shougo/dein.vim'
-hook_add = '''
-  command! DeinInstall call dein#install()
-  command! DeinUpdate call dein#update()
-  command! DeinClean call map(dein#check_clean(), "delete(v:val, 'rf')")
-'''
-
 
 
 # ---------------------------------------------------------------------------- #
@@ -79,6 +71,20 @@ repo = 'Shougo/context_filetype.vim'
 
 [[plugins]]
 repo = 'pearofducks/ansible-vim'
+
+
+
+# ---------------------------------------------------------------------------- #
+# completion
+# ---------------------------------------------------------------------------- #
+
+[[plugins]]
+repo = 'Shougo/deoplete.nvim'
+depends = ['Shougo/context_filetype.vim']
+if = '''has("nvim")'''
+hook_add = '''
+  let g:deoplete#enable_at_startup = 1
+'''
 
 
 
@@ -167,6 +173,10 @@ hook_add = '''
 [[plugins]]
 repo = 'editorconfig/editorconfig-vim'
 
+[[plugins]]
+repo = 'Shougo/vimproc.vim'
+build = 'make'
+
 
 
 # ---------------------------------------------------------------------------- #
@@ -189,14 +199,6 @@ hook_add = '''
 # incremental search interface
 # ---------------------------------------------------------------------------- #
 
-# [[plugins]]
-# repo = 'Shougo/unite.vim'
-# depends = ['Shougo/denite.nvim']
-# hook_add = '''
-#   autocmd FileType unite nnoremap <silent> <buffer> <ESC><ESC> q
-#   autocmd FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>q
-# '''
-
 [[plugins]]
 repo = 'nixprime/cpsm'
 build = 'env PY3=ON ./install.sh'
@@ -208,205 +210,145 @@ hook_add = '''
   noremap [denite] <Nop>
   nmap <Space> [denite]
 
-  "call denite#custom#filter(
-  "      \ 'matcher_ignore_globs',
-  "      \ 'ignore_globs',
-  "      \ [
-  "      \   'node_modules/', 'bower_components/', 'tmp/', 'log/',
-  "      \   '.*'
-  "      \ ]
-  "      \)
+  "========== denite settings =========="
 
-  "call denite#custom#option(
-  "      \ 'default',
-  "      \ 'auto_resize',
-  "      \ 'true'
-  "      \)
+  call denite#custom#filter(
+        \ 'matcher_ignore_globs',
+        \ 'ignore_globs',
+        \ [
+        \   'node_modules/', 'bower_components/', 'tmp/', 'log/',
+        \   '.git', '.gitignore'
+        \ ]
+        \)
 
-  "call denite#custom#map(
-  "      \ 'insert',
-  "      \ '<C-N>',
-  "      \ '<denite:move_to_next_line>',
-  "      \ 'noremap nowait'
-  "      \)
-  "call denite#custom#map(
-  "      \ 'insert',
-  "      \ '<C-P>',
-  "      \ '<denite:move_to_previous_line>',
-  "      \ 'noremap nowait'
-  "      \)
+  call denite#custom#option(
+        \ 'default',
+        \ 'auto_resize',
+        \ 'true'
+        \)
 
-  "call denite#custom#map(
-  "      \ 'insert',
-  "      \ '<Esc>',
-  "      \ '<denite:enter_mode:normal>',
-  "      \ 'noremap nowait'
-  "      \ )
-  "call denite#custom#map(
-  "      \ 'normal',
-  "      \ '<Esc>',
-  "      \ '<denite:quit>',
-  "      \ 'noremap nowait'
-  "      \)
+  call denite#custom#map(
+        \ 'insert',
+        \ '<C-N>',
+        \ '<denite:move_to_next_line>',
+        \ 'noremap nowait'
+        \)
 
-  "========== source: buffer,file_rec =========="
+  call denite#custom#map(
+        \ 'insert',
+        \ '<C-P>',
+        \ '<denite:move_to_previous_line>',
+        \ 'noremap nowait'
+        \)
+
+  call denite#custom#map(
+        \ 'insert',
+        \ '<Esc>',
+        \ '<denite:enter_mode:normal>',
+        \ 'noremap nowait'
+        \ )
+
+  call denite#custom#map(
+        \ 'normal',
+        \ '<Esc>',
+        \ '<denite:quit>',
+        \ 'noremap nowait'
+        \)
+
+  "========== source: buffer =========="
+
+  nnoremap <silent> [denite]b :<C-u>Denite buffer<CR>
+
+  "========== source: file_rec =========="
 
   call denite#custom#source(
-        \ 'file_rec,file_rec/git',
+        \ 'file_rec',
         \ 'matchers',
         \ ['matcher_cpsm', 'matcher_ignore_globs']
         \)
 
   call denite#custom#var(
-        \ 'directory_rec',
+        \ 'file_rec',
         \ 'command',
-        \ ['Vaffle'])
+        \ ['pt', '--follow', '--nocolor', '--nogroup', '--hidden', '-g', '']
+        \)
 
-  "call denite#custom#var(
-  "      \ 'file_rec',
-  "      \ 'command',
-  "      \ ['pt', '--follow', '--nocolor', '--nogroup', '--hidden', '-g', '']
-  "      \)
-
-  nnoremap <silent> [denite]b :<C-u>Denite buffer<CR>
   nnoremap <silent> [denite]f :<C-u>Denite file_rec<CR>
   "nnoremap <silent> [denite]fr :<C-u>DeniteProjectDir -path='./' -resume -buffer-name=denite-file -default-action=tabswitch<CR>
   "nnoremap <silent> [denite]fn :<C-u>DeniteProjectDir -path='./' -resume  -buffer-name=denite-file -select=+1 -immediately -statusline=false<CR>
   "nnoremap <silent> [denite]fp :<C-u>DeniteProjectDir -path='./' -resume -buffer-name=denite-file -select=-1 -immediately -statusline=false<CR>
 
   "nnoremap <silent> [denite]fg :<C-u>DeniteProjectDir -path='./' -default-action=tabswitch file_rec/git<CR>
-  ""nnoremap <silent> [denite]fk :<C-u>DeniteProjectDir -path='./' -default-action=tabswitch file_rec:..<CR>
-  ""nnoremap <silent> [denite]ft :<C-u>DeniteProjectDir -path='./' -default-action=tabswitch file_rec:/<CR>
+  "nnoremap <silent> [denite]fk :<C-u>DeniteProjectDir -path='./' -default-action=tabswitch file_rec:..<CR>
+  "nnoremap <silent> [denite]ft :<C-u>DeniteProjectDir -path='./' -default-action=tabswitch file_rec:/<CR>
   "nnoremap <silent> [denite]fh :<C-u>DeniteProjectDir -path='./' -default-action=tabswitch file_rec:$HOME<CR>
 
   "========== source: directory_rec =========="
 
-  "nnoremap <silent> [denite]dd :<C-u>DeniteProjectDir -path='./' -default-action=open directory_rec<CR>
-  "nnoremap <silent> [denite]dt :<C-u>DeniteProjectDir -path='./' -default-action=cd directory_rec:/<CR>
-  "nnoremap <silent> [denite]dh :<C-u>DeniteProjectDir -path='./' -default-action=action__path directory_rec:$HOME<CR>
+  call denite#custom#source(
+        \ 'directory_rec',
+        \ 'matchers',
+        \ ['matcher_cpsm', 'matcher_ignore_globs']
+        \)
 
-  "========== source: line,grep =========="
+  nnoremap <silent> [denite]d :<C-u>Denite -default-action=open directory_rec<CR>
 
-  "call denite#custom#var(
-  "      \ 'grep',
-  "      \ 'command',
-  "      \ ['pt', '--nogroup', '--nocolor', '--smart-case', '--hidden']
-  "      \)
-  "call denite#custom#var(
-  "      \ 'grep',
-  "      \ 'default_opts',
-  "      \ []
-  "      \)
-  "call denite#custom#var(
-  "      \ 'grep',
-  "      \ 'recursive_opts',
-  "      \ []
-  "      \)
+  "========== source: grep =========="
+
+  call denite#custom#var(
+        \ 'grep',
+        \ 'command',
+        \ ['pt', '--nogroup', '--nocolor', '--smart-case', '--hidden']
+        \)
+
+  call denite#custom#var(
+        \ 'grep',
+        \ 'default_opts',
+        \ []
+        \)
+
+  call denite#custom#var(
+        \ 'grep',
+        \ 'recursive_opts',
+        \ []
+        \)
+
   call denite#custom#source(
         \ 'grep',
         \ 'matchers',
         \ ['matcher_cpsm', 'matcher_ignore_globs']
         \)
 
-  nnoremap <silent> [denite]l :<C-u>Denite line<CR>
   nnoremap <silent> [denite]g :<C-u>Denite grep<CR>
   "nnoremap <silent> [denite]gr :<C-u>DeniteProjectDir -path='./' -resume -buffer-name=denite-grep -default-action=tabswitch<CR>
   "nnoremap <silent> [denite]gn :<C-u>DeniteProjectDir -path='./' -resume -buffer-name=denite-grep -select=+1 -immediately -statusline=false<CR>
   "nnoremap <silent> [denite]gp :<C-u>DeniteProjectDir -path='./' -resume -buffer-name=denite-grep -select=-1 -immediately -statusline=false<CR>
+
+  "========== source: line =========="
+
+  nnoremap <silent> [denite]l :<C-u>Denite line<CR>
+
 '''
 
 
 
-# # ---------------------------------------------------------------------------- #
-# # denite/unite sources
-# # ---------------------------------------------------------------------------- #
-# 
-# [[plugins]]
-# repo = 'Shougo/neoyank.vim'
-# depends = ['Shougo/denite.nvim']
-# hook_add = '''
-#   " denite source 用キーマッピング
-#   nnoremap <silent> [denite]y :<C-u>DeniteProjectDir -default-action=paste neoyank<CR>
-# '''
-# 
-# 
-# 
-# # ---------------------------------------------------------------------------- #
-# # completion
-# # ---------------------------------------------------------------------------- #
-# 
-# [[plugins]]
-# repo = 'Shougo/neco-syntax'
-# depends = ['Shougo/neocomplete']
-# 
-# [[plugins]]
-# repo = 'Shougo/neocomplete'
-# hook_add = '''
-#   " neocomplete が自動で起動
-#   let g:neocomplete#enable_at_startup = 1
-# 
-#   " smartcase を使う
-#   let g:neocomplete#enable_smart_case = 1
-# 
-#   " syntax は候補が多いので3文字以上で有効
-#   let g:neocomplete#sources#syntax#min_keyword_length = 3
-# 
-#   " auto omni completion
-#   let g:neocomplete#force_omni_input_patterns = {
-#         \ 'css': '[^.]\:*\w*',
-#         \ 'scss': '\h\w*\|[^. \t]\.\w*',
-#         \ 'go': '[^. \t]\.\w*',
-#         \ 'typescript': '[^. \t]\.\%(\h\w*\)\?',
-#         \ 'javascript': '[^. \t]\.\%(\h\w*\)\?',
-#         \}
-# '''
-# 
-# [[plugins]]
-# repo = 'honza/vim-snippets'
-# depends = ['Shougo/neosnippet']
-# 
-# [[plugins]]
-# repo = 'Shougo/neosnippet'
-# depends = ['Shougo/denite.nvim']
-# hook_add = '''
-#   " neosnippet-snippets は使わない
-#   let g:neosnippet#disable_runtime_snippets = {
-#         \   '_' : 1,
-#         \ }
-# 
-#   " neosnippet のキーマッピング
-#   imap <C-k> <Plug>(neosnippet_expand_or_jump)
-#   smap <C-k> <Plug>(neosnippet_expand_or_jump)
-#   xmap <C-k> <Plug>(neosnippet_expand_target)
-# 
-#   " tabキー拡張
-#   imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-#   \ "\<Plug>(neosnippet_expand_or_jump)"
-#   \: pumvisible() ? "\<C-n>" : "\<TAB>"
-#   smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-#   \ "\<Plug>(neosnippet_expand_or_jump)"
-#   \: "\<TAB>"
-# 
-#   " snipmate 用の snippet ファイルも使えるように
-#   let g:neosnippet#enable_snipmate_compatibility = 1
-# 
-#   " snippet 用のディレクトリ
-#   let g:neosnippet#snippets_directory = [
-#         "\ '$HOME/.vim/bundles/repos/github.com/honza/vim-snippets/snippets',
-#         \ '~/.vim/snippets'
-#         \ ]
-# 
-#   " denite からの snippet 展開は未対応なため、 unite から呼ぶ
-#   imap <C-s> <Plug>(neosnippet_start_unite_snippet)
-#   nmap <C-s> i<Plug>(neosnippet_start_unite_snippet)
-# 
-#   " snippets ファイル自体の incremental search
-#   inoremap <C-s><C-s> <Esc>:<C-u>Unite -start-insert -default-action=tabswitch neosnippet/user<CR>
-#   nnoremap <C-s><C-s> :<C-u>Unite -start-insert -default-action=tabswitch neosnippet/user<CR>
-#   nnoremap <silent> [denite]ss :<C-u>Unite -start-insert -default-action=tabswitch neosnippet/user<CR>
-#   nnoremap <silent> [denite]se :<C-u>Unite -start-insert -default-action=tabswitch neosnippet/runtime<CR>
-# '''
-# 
-# # [[plugins]]
-# # repo = 'Shougo/neosnippet-snippets'
-# # depends = ['Shougo/neosnippet']
+# ---------------------------------------------------------------------------- #
+# denite/unite additional sources
+# ---------------------------------------------------------------------------- #
+
+[[plugins]]
+repo = 'junegunn/vim-emoji'
+
+[[plugins]]
+repo = 'pocari/vim-denite-emoji'
+depends = ['junegunn/vim-emoji', 'Shougo/denite.nvim']
+hook_add = '''
+  nnoremap <silent> [denite]e :<C-u>Denite emoji<CR>
+'''
+
+[[plugins]]
+repo = 'Shougo/neoyank.vim'
+depends = ['Shougo/denite.nvim']
+hook_add = '''
+  nnoremap <silent> [denite]y :<C-u>Denite neoyank<CR>
+'''
