@@ -44,8 +44,14 @@ bindkey "^K" cdup
 alias ...="cd ../.."
 alias ....="cd ../../.."
 
+
+
+# ---------------------------------------------------------------------------- #
 # Git
-# see: https://jonsuh.com/blog/git-command-line-shortcuts/
+# ---------------------------------------------------------------------------- #
+
+# ref: https://jonsuh.com/blog/git-command-line-shortcuts/
+alias g="git"
 alias ga="git add"
 alias gaa="git add ."
 alias gb="git branch --all"
@@ -56,58 +62,39 @@ alias gco="git checkout"
 alias gcom="git checkout master"
 alias gcod="git checkout develop"
 alias gcob="git checkout -b"
+alias gre="git rebase -i"
 alias gd="git diff"
 alias gl="git log --graph --all --pretty=format:'%Cred%h%Creset %Cgreen(%cI) -%C(yellow)%d%Creset %s %C(bold blue)<%an>%Creset' --abbrev-commit --date=rfc2822"
 alias gp="git pull"
 alias gs="git status"
 alias gst="git stash"
 alias gf="git fetch"
-gz() {
-  git archive --format=zip -o $2 HEAD --worktree-attributes `git diff --diff-filter=AMCR --name-only $1 HEAD --`
-}
-gza() {
-  git archive --format=zip -o $1 master
-}
-glf() {
-  git log --all --grep="$1";
-}
 
+
+
+# ---------------------------------------------------------------------------- #
 # Docker
-function drm() {
-  if [ -n "$(docker ps -a -q -f 'status=exited' -f 'status=created')" ]; then
-    docker rm $(docker ps -a -q -f 'status=exited' -f 'status=created')
-  else
-    echo "No exited containers."
-  fi
-}
+# ---------------------------------------------------------------------------- #
 
-# ref: http://blog.n-z.jp/blog/2013-12-24-docker-rm.html
-function drmi() {
-  if [ -n "$(docker images | awk '/^<none>/ { print $3 }')" ]; then
-    docker rmi $(docker images | awk '/^<none>/ { print $3 }')
-  else
-    echo "No <none> images."
-  fi
-}
+alias d="docker"
+alias dc="docker container" # override original dc command
+alias dls='docker container ls'
+alias di="docker image"
+alias dn="docker network"
+alias dv="docker volume"
+alias dcom="docker-compose"
 
-# ref: http://sssslide.com/speakerdeck.com/bmorearty/15-docker-tips-in-5-minutes
-alias dl='docker ps -l -q'
+alias drun="docker run"
+alias dex="docker exec"
+alias dpull="docker pull"
 
 # ref: https://unicorn.limited/jp/item/347
-function dlogin() {
+function din() {
   if [ -n "$1" ]; then
     cid=$1
   else
-    cid=`dl`
+    cid=$(docker container ls -l -q)
   fi
   echo $cid
   docker exec -it $cid /bin/sh
 }
-
-alias dps="docker ps -a"
-alias dim="docker images"
-alias drun="docker run"
-alias dcom="docker-compose"
-alias dex="docker exec"
-alias dpull="docker pull"
-alias dnet="docker network"
