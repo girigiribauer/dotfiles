@@ -4,3 +4,7 @@ bind main C @bash -c "echo -n '%(commit)' | pbcopy"
 # Cursor navigation
 bind generic <C-F> move-page-down
 bind generic <C-B> move-page-up
+
+# graphical rebase
+bind main B !git rebase -i %(commit)
+bind diff B !git rebase -i %(commit)
