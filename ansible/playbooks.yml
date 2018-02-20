@@ -2,8 +2,9 @@
 - hosts: localhost
   connection: local
   roles:
-    - initial
-    - preferences
+    - system_preferences
+    - symlinks
+    - fish_shell
     - anyenv
     - homebrew
     - macappstore

@@ -1,18 +1,46 @@
 dotfiles
 ========
 
-**work in progress...**
+OSX setup bootstrap
+
+1. Open Terminal.app & exec initialize.sh
+2. Edit environmental files
+3. Provisioning by Ansible
 
 
 
-## step.1
+## 1. Open Terminal.app & exec initialize.sh
 
-Open Terminal.app (Applications -> Utilities -> Terminal.app)
+Applications -> Utilities -> Terminal.app
+
+(on home directory)
+
+```sh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/girigiribauer/dotfiles/master/initialize.sh)"
+```
+
+`initialize.sh` is for provisioning script.
+
+* Install Xcode, Homebrew, Ansible, Git
+* clone dotfiles repo
 
 
 
-## step.2
+## 2. Edit environmental files
 
-Copy and paste it.
+* dotfiles/ansible/playbooks.yml (copy from playbooks.yml.sample)
+* dotfiles/ansible/group_vars/localhost (copy from localhost.sample)
 
-	sh -c "$(curl -fsSL https://raw.githubusercontent.com/girigiribauer/dotfiles/master/install.sh)"
+`playbooks.yml` is Ansible playbook.
+For more details. <http://docs.ansible.com/ansible/latest/playbooks.html>
+
+`group_vars/localhost` is Ansible environmental variables.
+For more details. <http://docs.ansible.com/ansible/latest/intro_inventory.html>
+
+
+
+## 3. Provisioning by Ansible
+
+```sh
+ansible-playbook playbooks.yml --ask-become-pass
+```
