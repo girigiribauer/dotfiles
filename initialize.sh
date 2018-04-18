@@ -60,7 +60,8 @@ check_clt=$(xcode-select -p 2>&1 >/dev/null)
 
 if [ "$check_clt" ]
 then
-  read -r "Wait for installing? [y/n]" choice
+  printf "%s" "Wait for installing? [y/n]"
+  read -r choice
   case $choice in
     [Yy]* )
       xcode-select --install
