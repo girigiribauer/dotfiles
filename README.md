@@ -11,18 +11,20 @@ OSX setup bootstrap
 
 ## 1. Open Terminal.app & exec initialize.sh
 
-Applications -> Utilities -> Terminal.app
+* Install Xcode, Homebrew, Ansible, Git
+* clone dotfiles repository
 
-(on home directory)
+Applications -> Utilities -> Terminal.app
 
 ```sh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/girigiribauer/dotfiles/master/initialize.sh)"
 ```
 
-`initialize.sh` is for provisioning script.
+or override $dotfilesdir (default: "\$HOME/dotfiles")
 
-* Install Xcode, Homebrew, Ansible, Git
-* clone dotfiles repo
+```sh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/girigiribauer/dotfiles/master/initialize.sh)" -d [dotfilesdir]
+```
 
 
 
