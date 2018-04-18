@@ -67,9 +67,11 @@ then
       xcode-select --install
       while [ "$check_clt" ]
       do
-        sleep 10;
+        sleep 5;
+        echo "installing..."
         check_clt=$(xcode-select -p 2>&1 >/dev/null)
       done
+      echo "installed!"
       ;;
     [Nn]* )
       skip "skip install..."
