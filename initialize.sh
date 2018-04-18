@@ -10,7 +10,7 @@
 # 5. clone dotfiles repository
 # ---------------------------------------------------------------------------- #
 
-dotfilesdir="$HOME"/dotfiles
+dotfilesdir=${DOTFILES:-"$HOME"/dotfiles}
 
 heading()
 {
@@ -25,34 +25,9 @@ skip()
   sleep 0.3
 }
 
-usage()
-{
-  cat <<EOF
-Usage: sh initialize.sh [OPTION]
-
-Available values for OPTION include:
-  -d [directory]  dotfiles directory (default: "\$HOME/dotfiles")
-  -h              show help
-EOF
-
-  exit 0
-}
-
 
 
 # Main script
-
-while getopts d:h OPT
-do
-  case $OPT in
-    d)  dotfilesdir="$OPTARG"
-      ;;
-    h)  usage
-      ;;
-  esac
-done
-
-
 
 heading "1. install Xcode CommandLineTools"
 
