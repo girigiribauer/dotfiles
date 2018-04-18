@@ -20,10 +20,10 @@ Applications -> Utilities -> Terminal.app
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/girigiribauer/dotfiles/master/initialize.sh)"
 ```
 
-or override $dotfilesdir (default: "\$HOME/dotfiles")
+or override $DOTFILES (default: "\$HOME/dotfiles")
 
 ```sh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/girigiribauer/dotfiles/master/initialize.sh)" -d [dotfilesdir]
+sh -c "DOTFILES=/path/to/yourdir; $(curl -fsSL https://raw.githubusercontent.com/girigiribauer/dotfiles/master/initialize.sh)"
 ```
 
 
