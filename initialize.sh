@@ -61,7 +61,7 @@ fi
 
 heading "2. install Homebrew"
 
-if [ "$(which brew > /dev/null 2>&1)" ]
+if [ -z "$(which brew)" ]
 then
   /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
   brew update
@@ -73,7 +73,7 @@ fi
 
 heading "3. install Ansible (from Homebrew)"
 
-if [ "$(command -v ansible > /dev/null 2>&1)" ]
+if [ -z "$(which ansible)" ]
 then
   brew install ansible 2> /dev/null
 else
@@ -84,7 +84,7 @@ fi
 
 heading "4. install Git (from Homebrew)"
 
-if [ "$(command -v git > /dev/null 2>&1)" ]
+if [ -z "$(which git)" ]
 then
   brew install ansible 2> /dev/null
 else
