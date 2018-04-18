@@ -29,3 +29,5 @@ then
   source "$HOME/google-cloud-sdk/completion.zsh.inc"
 fi
 export PATH="$HOME/.local/bin/luna-studio:$PATH"
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
