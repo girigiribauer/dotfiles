@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # ---------------------------------------------------------------------------- #
 # dotfiles initialize.sh
@@ -38,6 +38,8 @@ EOF
   exit 0
 }
 
+
+
 # Main script
 
 while getopts d:h OPT
@@ -50,15 +52,37 @@ do
   esac
 done
 
+
+
 heading "1. install Xcode CommandLineTools"
-if [ ! -d "/Library/Developer/CommandLineTools" ]
+
+check_clt=$(xcode-select -p 2>&1 >/dev/null)
+
+if [ -z "$check_clt" ]
 then
-  xcode-select --install
+  read -r "Wait for installing? [y/n]" choice
+  case $choice in
+    [Yy]* )
+      xcode-select --install
+      while [ -z "$check_clt" ]
+      do
+        sleep 10;
+        check_clt=$(xcode-select -p 2>&1 >/dev/null)
+      done
+      ;;
+    [Nn]* )
+      skip "skip install..."
+      ;;
+    * ) echo "Please answer [YyNn].";;
+  esac
 else
   skip "skip install..."
 fi
 
+
+
 heading "2. install Homebrew"
+
 if [ "$(which brew > /dev/null 2>&1)" ]
 then
   /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
@@ -67,7 +91,10 @@ else
   skip "skip install..."
 fi
 
+
+
 heading "3. install Ansible (from Homebrew)"
+
 if [ "$(command -v ansible > /dev/null 2>&1)" ]
 then
   brew install ansible 2> /dev/null
@@ -75,7 +102,10 @@ else
   skip "skip install..."
 fi
 
+
+
 heading "4. install Git (from Homebrew)"
+
 if [ "$(command -v git > /dev/null 2>&1)" ]
 then
   brew install ansible 2> /dev/null
@@ -83,7 +113,10 @@ else
   skip "skip install..."
 fi
 
+
+
 heading "5. clone dotfiles repository"
+
 if [ ! -d "$dotfilesdir" ]
 then
   git clone https://github.com/girigiribauer/dotfiles.git "$dotfilesdir"
