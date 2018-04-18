@@ -58,13 +58,13 @@ heading "1. install Xcode CommandLineTools"
 
 check_clt=$(xcode-select -p 2>&1 >/dev/null)
 
-if [ -z "$check_clt" ]
+if [ "$check_clt" ]
 then
   read -r "Wait for installing? [y/n]" choice
   case $choice in
     [Yy]* )
       xcode-select --install
-      while [ -z "$check_clt" ]
+      while [ "$check_clt" ]
       do
         sleep 10;
         check_clt=$(xcode-select -p 2>&1 >/dev/null)
