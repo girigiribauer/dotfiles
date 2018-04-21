@@ -1,0 +1,33 @@
+---
+
+- name: install ndenv (1/2)
+  stat:
+    path: "${ANYENV_ROOT}/envs/ndenv/"
+  register: ndenv_status
+
+- name: install ndenv (2/2)
+  shell: anyenv install ndenv
+  when: not ndenv_status.stat.exists
+
+- name: initial settings ndenv
+  shell: eval "$(anyenv init - $SHELL)"
+  when: not ndenv_status.stat.exists
+
+- name: install ndenv versions (1/2)
+  shell: ls "${NDENV_ROOT}/versions"
+  register: ndenv_versions_status
+  changed_when: False
+
+- name: install ndenv versions (2/2)
+  shell: ndenv install "{{ item }}"
+  when: ndenv_versions_status.stdout.find("{{ item }}") == "-1"
+  with_items: "{{ ndenv.versions }}"
+
+- name: set global node (1/2)
+  shell: ndenv global
+  register: ndenv_global_status
+  changed_when: False
+
+- name: set global node (2/2)
+  shell: ndenv global "{{ ndenv.global }}"
+  when: ndenv | length > 0 and (ndenv_global_status.stdout.find("{{ ndenv.global }}") == "-1")

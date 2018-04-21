@@ -1,0 +1,9 @@
+---
+
+- name: bluetooth
+  osx_defaults:
+    domain: com.apple.Bluetooth
+    key: ControllerPowerState
+    type: int
+    value: "{{ 1 if bluetooth.enabled else 0 }}"
+    state: present

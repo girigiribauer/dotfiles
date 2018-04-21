@@ -1,0 +1,14 @@
+---
+
+- name: install dependency packages for anyenv
+  homebrew:
+    name: libmcrypt
+    state: present
+
+- name: get composer
+  get_url:
+    url: https://getcomposer.org/installer
+    dest: /tmp/composer-setup.php
+
+- name: install composer
+  shell: chdir=/tmp php composer-setup.php --install-dir=/bin --filename=composer

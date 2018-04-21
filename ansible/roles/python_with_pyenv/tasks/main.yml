@@ -1,0 +1,35 @@
+---
+
+- name: install pyenv (1/2)
+  stat:
+    path: "${ANYENV_ROOT}/envs/pyenv/"
+  register: pyenv_status
+
+- name: install pyenv (2/2)
+  shell: anyenv install pyenv
+  when: not pyenv_status.stat.exists
+
+- name: initial settings pyenv
+  shell: eval "$(anyenv init - $SHELL)"
+  when: not pyenv_status.stat.exists
+
+- name: install pyenv versions (1/2)
+  shell: ls "${PYENV_ROOT}/versions"
+  register: pyenv_versions_status
+  changed_when: False
+
+- name: install pyenv versions (2/2)
+  shell: env PYTHON_CONFIGURE_OPTS="--enable-framework" pyenv install "{{ item }}"
+  when: pyenv_versions_status.stdout.find("{{ item }}") == "-1"
+  with_items: "{{ pyenv.versions }}"
+
+- name: set global python (1/2)
+  shell: pyenv global
+  register: pyenv_global_status
+  changed_when: False
+
+- name: set global python (2/2)
+  shell: pyenv global "{{ pyenv.global_python2 }}" "{{ pyenv.global_python3 }}"
+  when: pyenv | length > 0 and
+        (pyenv_global_status.stdout.find("{{ pyenv.global_python2 }}") == "-1") and
+        (pyenv_global_status.stdout.find("{{ pyenv.global_python3 }}") == "-1")

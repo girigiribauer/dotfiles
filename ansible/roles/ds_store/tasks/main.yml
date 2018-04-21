@@ -1,0 +1,9 @@
+---
+
+- name: ds_store disabled
+  osx_defaults:
+    domain: com.apple.desktopservices
+    key: DSDontWriteNetworkStores
+    type: bool
+    value: "{{ ds_store.disabled }}"
+    state: present

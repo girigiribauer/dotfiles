@@ -1,0 +1,21 @@
+---
+
+- name: touchbar function keys
+  osx_defaults:
+    domain: com.apple.touchbar.agent
+    key: PresentationModeGlobal
+    type: string
+    value: "{{ functionKeys if keyboard.touchbar_function_keys else '' }}"
+    state: "{{ present if keyboard.touchbar_function_keys else absent }}"
+  ignore_errors: True # TODO: touchbar のない端末だと動かないので条件分岐
+
+- name: input sources
+  meta: noop # TODO: 日本語入力の設定を自動化する
+
+- name: Japanese input method live conversion
+  osx_defaults:
+    domain: com.apple.inputmethod.Kotoeri
+    key: JIMPrefLiveConversionKey
+    type: bool
+    value: "{{ keyboard.live_conversion }}"
+    state: present

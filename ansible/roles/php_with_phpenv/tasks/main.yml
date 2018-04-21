@@ -1,0 +1,33 @@
+---
+
+- name: install phpenv (1/2)
+  stat:
+    path: "${ANYENV_ROOT}/envs/phpenv/"
+  register: phpenv_status
+
+- name: install phpenv (2/2)
+  shell: anyenv install phpenv
+  when: not phpenv_status.stat.exists
+
+- name: initial settings phpenv
+  shell: eval "$(anyenv init - $SHELL)"
+  when: not phpenv_status.stat.exists
+
+- name: install phpenv versions (1/2)
+  shell: ls "${PHPENV_ROOT}/versions"
+  register: phpenv_versions_status
+  changed_when: False
+
+- name: install phpenv versions (2/2)
+  shell: phpenv install "{{ item }}"
+  when: phpenv_versions_status.stdout.find("{{ item }}") == "-1"
+  with_items: "{{ phpenv.versions }}"
+
+- name: set global php (1/2)
+  shell: phpenv global
+  register: phpenv_global_status
+  changed_when: False
+
+- name: set global php (2/2)
+  shell: phpenv global "{{ phpenv.global }}"
+  when: phpenv | length > 0 and (phpenv_global_status.stdout.find("{{ phpenv.global }}") == "-1")

@@ -1,0 +1,33 @@
+---
+
+- name: set computername (1/2)
+  shell: scutil --get ComputerName
+  register: computername_status
+  changed_when: False
+
+- name: set computername (2/2)
+  shell: scutil --set ComputerName "{{ sharing.computer_name }}"
+  when: computername_status.stdout != sharing.computer_name
+  become: True
+
+- name: set hostname (1/2)
+  shell: scutil --get HostName
+  register: hostname_status
+  ignore_errors: True
+  changed_when: False
+
+- name: set hostname (2/2)
+  shell: scutil --set HostName "{{ sharing.computer_name }}"
+  when: hostname_status.stdout != sharing.computer_name
+  become: True
+
+- name: set localhostname (1/2)
+  shell: scutil --get LocalHostName
+  register: localhostname_status
+  ignore_errors: True
+  changed_when: False
+
+- name: set localhostname (2/2)
+  shell: scutil --set LocalHostName "{{ sharing.computer_name }}"
+  when: localhostname_status.stdout != sharing.computer_name
+  become: True

@@ -1,0 +1,34 @@
+---
+
+- name: install goenv (1/2)
+  stat:
+    path: "${ANYENV_ROOT}/envs/goenv/"
+  register: goenv_status
+
+- name: install goenv (2/2)
+  shell: anyenv install goenv
+  when: not goenv_status.stat.exists
+
+- name: initial settings goenv
+  shell: eval "$(anyenv init - $SHELL)"
+  when: not goenv_status.stat.exists
+
+- name: install goenv versions (1/2)
+  shell: ls "${GOENV_ROOT}/versions"
+  register: goenv_versions_status
+  changed_when: False
+
+- name: install goenv versions (2/2)
+  shell: goenv install "{{ item }}"
+  when: goenv_versions_status.stdout.find("{{ item }}") == "-1"
+  with_items: "{{ goenv.versions }}"
+
+- name: set global go (1/2)
+  shell: goenv global --unset 2> /dev/null
+  register: goenv_global_status
+  ignore_errors: True
+  changed_when: False
+
+- name: set global go (2/2)
+  shell: goenv global "{{ goenv.global }}"
+  when: goenv | length > 0 and (goenv_global_status.stdout.find( '{{ goenv.global }}' ) == "-1")

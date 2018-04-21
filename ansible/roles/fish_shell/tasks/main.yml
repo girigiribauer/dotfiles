@@ -1,18 +1,16 @@
 ---
+
 - name: install fish
   homebrew:
     name: fish
     state: present
-  tags: fish_shell
 
 - name: change default shell (1/2)
   shell: echo $SHELL
   register: current_shell_status
   ignore_errors: True
   changed_when: False
-  tags: fish_shell
 
 - name: change default shell (2/2)
   shell: chsh -s /bin/fish
   when: current_shell_status.stdout != "/bin/fish"
-  tags: fish_shell

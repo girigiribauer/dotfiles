@@ -1,0 +1,13 @@
+---
+
+- name: languages
+  osx_defaults:
+    key: AppleLanguages
+    type: array
+    value: "{{ language_and_region.languages }}"
+
+- name: locale
+  osx_defaults:
+    key: AppleLocale
+    type: string
+    value: "{{ language_and_region.locale }}"
