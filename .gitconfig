@@ -18,7 +18,7 @@
   status = always
   ui = always
 [diff]
-  external = git_diff_wrapper # for `git diff`
+  external = "d() { vimdiff "$2" "$5"; }; d"
   tool = vimdiff # for `git difftool`
   algorithm = histogram
 [difftool]
