@@ -1,29 +1,46 @@
 # vi:ft=yaml
 ---
 
-# computer name here
-computer_name: "mycomputer"
+desktop_and_screen_saver:
+  screensaver_idle_time: 0
 
-# language setting (first one is using)
-languages:
-  - ja
-  - en
+dock:
+  size: 16
+  zoom: True
+  autohide: True
 
-# locale setting (ex: ja_JP, en_JP ...)
-locale: ja_JP
+language_and_region:
+  languages:
+    - en
+    - ja
+  locale: en_JP
 
-# autoupdate MacAppStore
-autoupdate: True
-
-# no .DS_Store
-no_dsstore: True
-
-# security settings
-security:
+security_and_privacy:
+  ask_for_password: True
+  ask_for_password_delay: 0
   filevault: True
-  firewall: True
 
-# symlink targets (key: src, dest(optional))
+keyboard:
+  touchbar_function_keys: True
+  keyboard_layout: US
+  input_sources: ja
+  live_conversion: False
+
+trackpad:
+  swipescrolldirection: False
+
+bluetooth:
+  enabled: False
+
+sharing:
+  computer_name: "mycomputer"
+
+users:
+  enabled_guestusers: False
+
+ds_store:
+  disabled: True
+
 symlinks:
   - { src: .editorconfig }
   - { src: .eslintrc.json }
@@ -31,28 +48,27 @@ symlinks:
   - { src: .git_template }
   - { src: .gitconfig }
   - { src: .gitignore.global, dest: .gitignore }
-  - { src: .sass-lint.yml }
   - { src: .tmux.conf }
   - { src: .tslintrc.json }
   - { src: .vim }
   - { src: .vimrc }
   - { src: .zsh }
   - { src: .zshrc }
-  - { src: bin }
 
-# anyenv versions
 rbenv:
   global: 2.4.0
   versions:
     - 2.4.0
     - 2.1.10
+
 ndenv:
-  global: 8.2.1
+  global: 9.11.1
   versions:
-    - 8.2.1
-    - 7.10.1
-    - 6.9.4
-    - 4.8.0
+    - 9.11.1
+    - 8.11.1
+    - 6.14.1
+    - 4.9.1
+
 phpenv:
   global: 7.1.1
   versions:
@@ -60,12 +76,14 @@ phpenv:
     - 5.6.30
     - 5.5.38
     - 5.4.45
+
 goenv:
   global: 1.8.3
   versions:
     - 1.8.3
     - 1.7
     - 1.6
+
 pyenv:
   global_python2: 2.7.13
   global_python3: 3.6.0
@@ -73,19 +91,9 @@ pyenv:
     - 2.7.13
     - 3.6.0
 
-# MacAppStore by mas-cli
-macappstore:
-  - { name: 1Password, id: 443987910 }
-  - { name: Alfred,    id: 405843582 }
-  - { name: Keynote,   id: 409183694 }
-  - { name: Skitch,    id: 425955336 }
-  - { name: Slack,     id: 803453959 }
-  - { name: Xcode,     id: 497799835 }
-
-# Homebrew packages
-# exclude: git, ansible, mas, zsh
 homebrew:
-  # GNU packages, libraries
+  # GNU packages and libraries
+
   - { name: autoconf }
   - { name: automake }
   - { name: binutils }
@@ -95,7 +103,8 @@ homebrew:
   - { name: xz }
   - { name: boost } # for github.com/nixprime/cpsm
 
-  # command line tools
+  # development tools
+
   - { name: cmake }
   - { name: jq }
   - { name: lv }
@@ -104,86 +113,120 @@ homebrew:
   - { name: pt }
   - { name: readline }
   - { name: reattach-to-user-namespace }
-  - { name: tmux, install_options: [with-utf8proc] }
   - { name: tree }
   - { name: wget }
+  - { name: imagemagick }
+  - { name: awscli }
 
-  # editor
+  # editor and terminal
+
+  - { name: tmux, install_options: [with-utf8proc] }
   - { name: neovim }
   - { name: vim, install_options: [with-lua, with-luajit, with-python3] }
 
-  # Git tools
+  # git utils
+
   - { name: tig }
 
-  # visual tools
-  - { name: imagemagick }
+  # Docker
 
-  # PHP package manager
-  - { name: composer }
+  - { name: docker }
 
-# Homebrew Cask packages
-# already installed:
-# - { name: iterm2 }
+  # Static site generator
+
+  - { name: hugo }
+
 homebrew_cask:
   # security
+
   - { name: avast }
 
-  # browser, internet terminal
+  # browser
+
   - { name: google-chrome }
   - { name: firefox }
 
   # launcher
+
   - { name: alfred }
 
   # storage
+
   - { name: dropbox }
+  - { name: google-drive-file-stream }
 
   # virtualization
+
   - { name: docker }
   - { name: vagrant }
   - { name: virtualbox }
   - { name: vmware-fusion }
 
   # development tools
+
   - { name: charles }
   - { name: imageoptim }
   - { name: macwinzipper }
 
   # adobe
+
   - { name: adobe-creative-cloud }
   - { name: adobe-photoshop-cc }
   - { name: adobe-reader }
 
+  # google-cloud-sdk
+
+  - { name: google-cloud-sdk }
+
   # sns tools
+
   - { name: chatwork }
   - { name: skype }
 
   # capture
+
   - { name: skitch }
 
   # multimedia
+
   - { name: sdformatter }
   - { name: vlc }
 
   # presentation
+
   - { name: keycastr }
 
-# npm global packages
+macappstore:
+  - { name: Slack, id: 803453959 }
+  - { name: 1Password, id: 443987910 }
+  - { name: Alfred, id: 405843582 }
+  - { name: Keynote, id: 409183694 }
+  - { name: Skitch, id: 425955336 }
+  - { name: Xcode, id: 497799835 }
+
 npm:
   # language, preprocessor
+
+  - { name: typescript }
   - { name: compass }
   - { name: sass }
-  - { name: typescript }
+
+  # framework cli
+
+  - { name: create-react-app }
+  - { name: "@angular/cli" }
+  - { name: "@vue/cli" }
 
   # task runner
-  - { name: grunt }
-  - { name: gulp }
+
   - { name: webpack }
+  - { name: gulp }
+  - { name: grunt }
 
   # lint, validator
-  - { name: csslint }
+
   - { name: eslint }
-  - { name: jshint }
-  - { name: jsonlint }
-  - { name: sass-lint }
   - { name: tslint }
+  - { name: jsonlint }
+  - { name: csslint }
+  - { name: sass-lint }

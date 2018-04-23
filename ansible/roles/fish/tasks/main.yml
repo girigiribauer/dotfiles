@@ -14,3 +14,4 @@
 - name: change default shell (2/2)
   shell: chsh -s /bin/fish
   when: current_shell_status.stdout != "/bin/fish"
+  become: True

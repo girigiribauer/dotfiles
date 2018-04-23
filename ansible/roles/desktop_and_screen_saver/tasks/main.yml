@@ -4,5 +4,5 @@
     domain: com.apple.screensaver
     key: idleTime
     type: int
-    value: "{{ descktop_and_screen_saver.screensaver_idle_time }}"
+    value: "{{ desktop_and_screen_saver.screensaver_idle_time }}"
     state: present

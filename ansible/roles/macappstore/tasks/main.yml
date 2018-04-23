@@ -1,6 +1,12 @@
 ---
+
+- name: set MapAppStore package ids
+  shell: mas list
+  register: mas_list_ids
+  ignore_errors: True
+  changed_when: False
+
 - name: install MacAppStore packages
   shell: mas install {{ item.id }}
-  when: "mas list | grep {{ item.id }}"
+  when: mas_list_ids.stdout is not search("803453959")
   with_items: "{{ macappstore }}"
-  tags: macappstore

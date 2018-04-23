@@ -1,7 +1,7 @@
 ---
 - name: install npm packages
   npm:
-    name: {{ item.name }}
+    name: "{{ item.name }}"
     global: yes
     state: present
   with_items: "{{ npm }}"

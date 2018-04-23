@@ -5,34 +5,34 @@
   roles:
     # prefs
 
-    - { role: desktop_and_screen_saver }
-    - { role: dock }
-    - { role: language_and_region }
-    - { role: security_and_privacy }
-    - { role: keyboard }
-    - { role: trackpad }
-    - { role: bluetooth }
-    - { role: computer_names }
-    - { role: users_and_groups }
-    - { role: ds_store }
-    - { role: symlinks }
+    - { role: desktop_and_screen_saver, tags: [prefs] }
+    - { role: dock, tags: [prefs] }
+    - { role: language_and_region, tags: [prefs] }
+    - { role: security_and_privacy, tags: [prefs] }
+    - { role: keyboard, tags: [prefs] }
+    - { role: trackpad, tags: [prefs] }
+    - { role: bluetooth, tags: [prefs] }
+    - { role: computer_names, tags: [prefs] }
+    - { role: users_and_groups, tags: [prefs] }
+    - { role: ds_store, tags: [prefs] }
+    - { role: symlinks, tags: [prefs] }
 
     # shell
 
-    - { role: fish }
+    - { role: fish, tags: [shell] }
 
     # programming languages and package managers
 
-    - { role: anyenv }
-    - { role: ruby_with_rbenv }
-    - { role: node_with_ndenv }
-    - { role: php_with_phpenv }
-    - { role: php_composer }
-    - { role: go_with_goenv }
-    - { role: python_with_pyenv }
+    - { role: anyenv, tags: [anyenv] }
+    - { role: ruby_with_rbenv, tags: [anyenv, ruby] }
+    - { role: node_with_ndenv, tags: [anyenv, node] }
+    - { role: php_with_phpenv, tags: [anyenv, php] }
+    - { role: go_with_goenv, tags: [anyenv, go] }
+    - { role: python_with_pyenv, tags: [anyenv, python] }
 
     # install by package manager
 
-    - { role: homebrew }
-    - { role: macappstore }
-    - { role: npm }
+    - { role: homebrew, tags: [homebrew] }
+    - { role: homebrew_cask, tags: [homebrew_cask] }
+    - { role: macappstore, tags: [macappstore] }
+    - { role: npm, tags: [npm] }

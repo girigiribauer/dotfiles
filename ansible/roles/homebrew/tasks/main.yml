@@ -5,7 +5,6 @@
     state: present
   when: item.tap is defined
   with_items: "{{ homebrew }}"
-  tags: homebrew
 
 - name: install Homebrew packages
   homebrew:
@@ -13,18 +12,3 @@
     state: present
     install_options: "{{ item.install_options | default('') }}"
   with_items: "{{ homebrew }}"
-  tags: homebrew
-
-- name: install Homebrew Cask
-  homebrew_tap:
-    name: caskroom/cask
-    state: present
-  tags: homebrew
-
-- name: install Homebrew Cask packages
-  homebrew_cask:
-    name: "{{ item.name }}"
-    state: present
-    install_options: "{{ item.install_options | default('') }}"
-  with_items: "{{ homebrew_cask }}"
-  tags: homebrew
