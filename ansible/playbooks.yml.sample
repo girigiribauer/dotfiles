@@ -5,34 +5,34 @@
   roles:
     # prefs
 
-    - desktop_and_screen_saver
-    - dock
-    - language_and_region
-    - security_and_privacy
-    - keyboard
-    - trackpad
-    - bluetooth
-    - computer_names
-    - users_and_groups
-    - ds_store
-    - symlinks
+    - { role: desktop_and_screen_saver }
+    - { role: dock }
+    - { role: language_and_region }
+    - { role: security_and_privacy }
+    - { role: keyboard }
+    - { role: trackpad }
+    - { role: bluetooth }
+    - { role: computer_names }
+    - { role: users_and_groups }
+    - { role: ds_store }
+    - { role: symlinks }
 
     # shell
 
-    - fish_shell
+    - { role: fish }
 
     # programming languages and package managers
 
-    - anyenv
-    - ruby_with_rbenv
-    - node_with_ndenv
-    - php_with_phpenv
-    - php_composer
-    - go_with_goenv
-    - python_with_pyenv
+    - { role: anyenv }
+    - { role: ruby_with_rbenv }
+    - { role: node_with_ndenv }
+    - { role: php_with_phpenv }
+    - { role: php_composer }
+    - { role: go_with_goenv }
+    - { role: python_with_pyenv }
 
     # install by package manager
 
-    - homebrew
-    - macappstore
-    - npm
+    - { role: homebrew }
+    - { role: macappstore }
+    - { role: npm }
