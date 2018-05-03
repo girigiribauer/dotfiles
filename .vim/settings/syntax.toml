@@ -17,6 +17,9 @@ filetypes = 'scss'
 repo = 'editorconfig/editorconfig-vim'
 
 [[plugins]]
+repo = 'dag/vim-fish'
+
+[[plugins]]
 repo = 'fatih/vim-go'
 on_ft = 'go'
 
