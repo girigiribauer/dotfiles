@@ -97,7 +97,7 @@ heading "5. clone dotfiles repository"
 
 if [ ! -d "$dotfilesdir" ]
 then
-  git clone https://github.com/girigiribauer/dotfiles.git "$dotfilesdir"
+  git clone git@github.com:girigiribauer/dotfiles.git "$dotfilesdir"
 else
   skip "already exist dotfiles directory..."
 fi
