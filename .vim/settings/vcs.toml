@@ -1,0 +1,13 @@
+# ---------------------------------------------------------------------------- #
+# vcs plugins
+# ---------------------------------------------------------------------------- #
+
+[[plugins]]
+repo = 'lambdalisue/vim-gista'
+hook_add = '''
+  " set .vimrc.local
+  let g:gista#github_user = $GIT_COMMITTER_NAME
+
+  " TODO: improve
+  " nnoremap <silent> [unite]g :<C-u>Unite gista<CR>
+'''

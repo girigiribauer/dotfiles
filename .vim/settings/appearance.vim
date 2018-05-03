@@ -12,6 +12,8 @@ colorscheme brogrammer
 
 set background=dark
 
+highlight Normal guibg=NONE ctermbg=NONE
+
 if has("gui_macvim")
   let g:macvim_skip_colorscheme=1
 

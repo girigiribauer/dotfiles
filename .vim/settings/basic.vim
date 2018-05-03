@@ -86,6 +86,11 @@ set tabpagemax=128
 set t_BE=
 
 if has("nvim")
-  let g:python_host_prog = $PYENV_ROOT . '/shims/python'
-  let g:python3_host_prog = $PYENV_ROOT . '/shims/python3'
+  if exists("$PYENV_ROOT")
+    let g:python_host_prog = $PYENV_ROOT . '/shims/python'
+    let g:python3_host_prog = $PYENV_ROOT . '/shims/python3'
+  else
+    let g:python_host_prog = '/usr/local/bin/python'
+    let g:python3_host_prog = '/usr/local/bin/python3'
+  endif
 endif

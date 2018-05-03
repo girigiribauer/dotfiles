@@ -1,0 +1,11 @@
+# ---------------------------------------------------------------------------- #
+# completion plugins
+# ---------------------------------------------------------------------------- #
+
+[[plugins]]
+repo = 'Shougo/deoplete.nvim'
+depends = ['Shougo/context_filetype.vim']
+if = '''has("nvim")'''
+hook_add = '''
+  let g:deoplete#enable_at_startup = 1
+'''
