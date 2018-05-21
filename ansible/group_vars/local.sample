@@ -117,6 +117,7 @@ homebrew:
   - { name: wget }
   - { name: imagemagick }
   - { name: awscli }
+  - { name: terraform }
 
   # editor and terminal
 
@@ -225,6 +226,7 @@ npm:
 
   # lint, validator
 
+  - { name: ternjs }
   - { name: eslint }
   - { name: tslint }
   - { name: jsonlint }
