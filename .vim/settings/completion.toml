@@ -4,8 +4,30 @@
 
 [[plugins]]
 repo = 'Shougo/deoplete.nvim'
-depends = ['Shougo/context_filetype.vim']
 if = '''has("nvim")'''
 hook_add = '''
   let g:deoplete#enable_at_startup = 1
+  let g:deoplete#enable_smart_case = 1
+
+  call deoplete#custom#option('omni_patterns', {
+        \ 'terraform': '[^ *\t"{=$]\w*',
+        \})
 '''
+
+[[plugins]]
+repo = 'carlitux/deoplete-ternjs'
+on_ft = ['javascript']
+build = 'npm install -g ternjs'
+
+[[plugins]]
+repo = 'mhartington/nvim-typescript'
+on_ft = ['typescript']
+
+[[plugins]]
+repo = 'zchee/deoplete-go'
+on_ft = ['go']
+build = 'make'
+
+[[plugins]]
+repo = 'juliosueiras/vim-terraform-completion'
+on_ft = ['terraform']
