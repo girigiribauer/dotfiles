@@ -24,6 +24,9 @@ set -xg LSCOLORS "gxfxbEaEBxxEhEhBaDaCaD"
 set -xg GOPATH "$HOME/go"
 set -x PATH $PATH "$GOPATH/bin"
 
+# node
+set -xg PATH "$HOME/.nodebrew/current/bin" $PATH
+
 
 
 # ---------------------------------------------------------------------------- #
@@ -54,48 +57,49 @@ end
 if status --is-interactive
   set -g fish_user_abbreviations
 
-# gui
-  abbr -a o "open ."
+  # gui
+  abbr --add --global o "open ."
 
-# vim
-  alias vi "nvim"
-  alias vim "nvim"
-  alias nvim "nvim -p"
+  # vim
+  abbr --add --global vi "nvim -p"
+  abbr --add --global vim "nvim -p"
+  abbr --add --global nvim "nvim -p"
 
-# git
-  abbr -a g "git"
-  abbr -a ga "git add"
-  abbr -a gaa "git add ."
-  abbr -a gb "git branch --all"
-  abbr -a gbd "git branch -d "
-  abbr -a gc "git commit"
-  abbr -a gca "git commit -a"
-  abbr -a gco "git checkout"
-  abbr -a gcom "git checkout master"
-  abbr -a gcod "git checkout develop"
-  abbr -a gcob "git checkout -b"
-  abbr -a gre "git rebase -i"
-  abbr -a gd "git diff"
-  abbr -a gl "git log --graph --all --pretty=format:'%Cred%h%Creset %Cgreen(%cI) -%C(yellow)%d%Creset %s %C(bold blue)<%an>%Creset' --abbrev-commit --date=rfc2822"
-  abbr -a gp "git pull"
-  abbr -a gs "git status"
-  abbr -a gst "git stash"
-  abbr -a gf "git fetch"
+  # git
+  abbr --add --global g "git"
+  abbr --add --global ga "git add"
+  abbr --add --global gaa "git add ."
+  abbr --add --global gb "git branch --all"
+  abbr --add --global gbd "git branch -d "
+  abbr --add --global gc "git commit"
+  abbr --add --global gca "git commit -a"
+  abbr --add --global gco "git checkout"
+  abbr --add --global gcom "git checkout master"
+  abbr --add --global gcod "git checkout develop"
+  abbr --add --global gcob "git checkout -b"
+  abbr --add --global gre "git rebase -i"
+  abbr --add --global gd "git diff"
+  abbr --add --global gl "git log --graph --all --pretty=format:'%Cred%h%Creset %Cgreen(%cI) -%C(yellow)%d%Creset %s %C(bold blue)<%an>%Creset' --abbrev-commit --date=rfc2822"
+  abbr --add --global gp "git pull"
+  abbr --add --global gs "git status"
+  abbr --add --global gst "git stash"
+  abbr --add --global gf "git fetch"
 
-# docker
-  abbr -a d "docker"
-  abbr -a dc "docker container" # override original dc command
-  abbr -a dls 'docker container ls'
-  abbr -a di "docker image"
-  abbr -a dils "docker image ls"
-  abbr -a dn "docker network"
-  abbr -a dnls "docker network ls"
-  abbr -a dv "docker volume"
-  abbr -a dvls "docker volume ls"
-  abbr -a dcom "docker-compose"
-  abbr -a drun "docker run"
-  abbr -a dex "docker exec"
-  abbr -a dpull "docker pull"
+  # docker
+  abbr --add --global d "docker"
+  abbr --add --global dc "docker container" # override original dc command
+  abbr --add --global dls 'docker container ls'
+  abbr --add --global di "docker image"
+  abbr --add --global dils "docker image ls"
+  abbr --add --global dn "docker network"
+  abbr --add --global dnls "docker network ls"
+  abbr --add --global dv "docker volume"
+  abbr --add --global dvls "docker volume ls"
+  abbr --add --global dcom "docker-compose"
+  abbr --add --global drun "docker run"
+  abbr --add --global dex "docker exec"
+  abbr --add --global dpull "docker pull"
+
 end
 
 
@@ -105,9 +109,5 @@ end
 # ---------------------------------------------------------------------------- #
 
 if test -z "$TMUX"
-  if tmux has-session -t "works" 2> /dev/null
-    tmux attach-session -t "works"
-  else
-    tmux new-session -d -s "works"
-  end
+  tmux new-session -A -s "works"
 end
