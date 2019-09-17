@@ -7,7 +7,7 @@ scriptencoding utf-8
 
 set runtimepath^=$HOME/.vim
 
-source $HOME/.vim/settings/bundles.vim
+"source $HOME/.vim/settings/plugin_manager.vim
 source $HOME/.vim/settings/encoding.vim
 source $HOME/.vim/settings/basic.vim
 source $HOME/.vim/settings/statusline.vim

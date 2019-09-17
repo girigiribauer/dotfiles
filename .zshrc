@@ -31,3 +31,7 @@ fi
 export PATH="$HOME/.local/bin/luna-studio:$PATH"
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/Users/y/.sdkman"
+[[ -s "/Users/y/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/y/.sdkman/bin/sdkman-init.sh"

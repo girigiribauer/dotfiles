@@ -62,3 +62,6 @@
 	process = git-lfs filter-process
 	required = true
 	clean = git-lfs clean -- %f
+[user]
+	name = autotelic_y
+	email = y@autotelic.jp

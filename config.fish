@@ -27,7 +27,21 @@ set -x PATH $PATH "$GOPATH/bin"
 # node
 set -xg PATH "$HOME/.nodebrew/current/bin" $PATH
 
+# php
+set -xg PATH "$HOME/.config/composer/vendor/bin" $PATH
 
+# for android
+set -xg JAVA_HOME (/usr/libexec/java_home -v 1.8)
+set -xg ANDROID_HOME "$HOME/Library/Android/sdk"
+set -xg ANDROID_SDK_ROOT "$HOME/Library/Android/sdk"
+set -xg PATH $PATH "$ANDROID_HOME/tools"
+set -xg PATH $PATH "$ANDROID_HOME/tools/bin"
+set -xg PATH $PATH "$ANDROID_HOME/platform-tools"
+set -xg PATH $PATH "/opt/gradle/gradle-5.4/bin"
+
+# for flutter
+set -xg PATH $PATH "$HOME/flutter/bin"
+set -xg PATH $PATH "$HOME/.pub-cache/bin"
 
 # ---------------------------------------------------------------------------- #
 # local settings

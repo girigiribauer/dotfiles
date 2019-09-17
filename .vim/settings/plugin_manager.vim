@@ -16,6 +16,10 @@ if dein#load_state('$HOME/.cache/dein')
   " Let dein manage dein
   " Required:
   call dein#add('$HOME/.cache/dein/repos/github.com/Shougo/dein.vim')
+  if !has('nvim')
+    call dein#add('roxma/nvim-yarp')
+    call dein#add('roxma/vim-hug-neovim-rpc')
+  endif
 
   call dein#load_toml('$HOME/.vim/settings/syntax.toml')
   call dein#load_toml('$HOME/.vim/settings/linter.toml')

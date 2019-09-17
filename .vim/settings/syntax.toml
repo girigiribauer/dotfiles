@@ -76,6 +76,10 @@ hook_add = '''
 '''
 
 [[plugins]]
+repo = 'mattn/vim-sqlfmt'
+on_ft = 'sql'
+
+[[plugins]]
 repo = 'tmux-plugins/vim-tmux'
 on_ft = 'tmux'
 
