@@ -119,3 +119,14 @@ export LANG=en_US.UTF-8
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+#
+#
+my_globalias() {
+   zle _expand_alias
+   zle expand-word
+   zle accept-line
+}
+zle -N my_globalias
+
+bindkey -M emacs "^m" my_globalias
+bindkey -M viins "^m" my_globalias
