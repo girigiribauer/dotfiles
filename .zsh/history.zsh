@@ -2,10 +2,10 @@
 # $HOME/.zsh/history.zsh
 # ---------------------------------------------------------------------------- #
 
-export HISTFILE="$HOME/.zsh_history"
-export HISTSIZE=100000
-export SAVEHIST=100000
-export HISTIGNORE=pwd:ls:ll:history
+HISTFILE="$HOME/.zsh_history"
+HISTSIZE=100000
+SAVEHIST=100000
+HISTIGNORE=pwd:ls:ll:history
 
 setopt share_history
 setopt no_flow_control
