@@ -4,6 +4,7 @@
 
 # Golang
 export GOPATH="$HOME/go"
+export GOROOT="$HOME/go"
 export PATH="$PATH:$GOPATH/bin"
 export GO111MODULE="on"
 
