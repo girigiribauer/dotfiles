@@ -3,7 +3,7 @@
   precomposeunicode = true # for utf-8-mac(NFD)
   bare = false
   excludesfile = ~/.gitignore
-  editor = nvim
+  editor = vim
   pager = lv -c
   autocrlf = false
 [clean]
