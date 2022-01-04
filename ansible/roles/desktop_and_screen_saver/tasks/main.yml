@@ -1,8 +1,0 @@
----
-- name: idle time
-  osx_defaults:
-    domain: com.apple.screensaver
-    key: idleTime
-    type: int
-    value: "{{ desktop_and_screen_saver.screensaver_idle_time }}"
-    state: present

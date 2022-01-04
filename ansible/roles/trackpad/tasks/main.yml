@@ -1,8 +1,0 @@
----
-
-- name: Trackpad scroll direction
-  osx_defaults:
-    key: com.apple.swipescrolldirection
-    type: bool
-    value: "{{ trackpad.swipescrolldirection }}"
-    state: present

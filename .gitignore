@@ -1,7 +1,3 @@
 .vim/snippets/*.snip
 .vim/bundles/*
 .tmux/
-!ansible/group_vars/local.sample
-ansible/group_vars/local
-!ansible/playbooks.yml.sample
-ansible/playbooks.yml

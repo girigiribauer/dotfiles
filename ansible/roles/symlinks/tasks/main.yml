@@ -1,7 +1,0 @@
----
-- name: set symbolic links
-  file:
-    src: "~/dotfiles/{{ item.src }}"
-    dest: "~/{{ item.dest | default(item.src) }}"
-    state: link
-  with_items: "{{ symlinks }}"
