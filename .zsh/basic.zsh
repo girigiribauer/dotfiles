@@ -19,3 +19,8 @@ bindkey -M emacs "^m" my_globalias
 bindkey -M viins "^m" my_globalias
 
 alias make="nocorrect make"
+
+# for oh-my-zsh vi-mode
+export VI_MODE_RESET_PROMPT_ON_MODE_CHANGE=true
+export MODE_INDICATOR="%F{yellow}[NORMAL]%f"
+export INSERT_MODE_INDICATOR="%F{red}[INSERT]%f"
